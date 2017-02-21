@@ -5,6 +5,7 @@ addons:
   apt:
     packages:
     - texlive-full
+    - texlive-extra
 
 script:
 - mkdir _build
