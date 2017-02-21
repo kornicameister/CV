@@ -1,5 +1,8 @@
 before_install:
-- "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-full dvipng"
+- "sudo apt-get update && sudo apt-get install --no-install-recommends dvipng"
+- "wget https://github.com/scottkosty/install-tl-ubuntu/raw/master/install-tl-ubuntu"
+- "chmod +x ./install-tl-ubuntu"
+- "./install-tl-ubuntu"
 
 script:
 - mkdir _build
