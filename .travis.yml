@@ -1,5 +1,5 @@
-before_install:
-- "sudo apt-get update"
+dist: trusty
+sudo: required
 
 addons:
   apt:
