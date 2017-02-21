@@ -1,0 +1,16 @@
+before_install:
+- "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng"
+
+script:
+- mkdir _build
+- xelatex -output-directory _build cv.tex
+
+deploy:
+  provider: releases
+  api_key:
+    secure: [YOUR KEY]
+  file:
+  - _build/cv.pdf
+  skip_cleanup: false
+  on:
+    tags: true
