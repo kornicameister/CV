@@ -1,8 +1,10 @@
 before_install:
 - "sudo apt-get update"
-- "wget https://github.com/scottkosty/install-tl-ubuntu/raw/master/install-tl-ubuntu"
-- "chmod +x ./install-tl-ubuntu"
-- "sudo ./install-tl-ubuntu"
+
+addons:
+  apt:
+    packages:
+    - texlive-full
 
 script:
 - mkdir _build
@@ -14,6 +16,6 @@ deploy:
     secure: [YOUR KEY]
   file:
   - _build/cv.pdf
-  skip_cleanup: false
+  skip_cleanup: true
   on:
     tags: true
