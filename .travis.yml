@@ -8,7 +8,7 @@ before_install:
 - docker pull harshjv/texlive-2015
 
 script:
-- docker run --rm -it -v $(pwd):/var/texlive texlive xelatex cv.tex
+- docker run --rm -it -v $(pwd):/var/texlive harshjv/texlive-2015 xelatex cv.tex
 
 deploy:
   provider: releases
