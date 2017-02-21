@@ -8,6 +8,7 @@ addons:
     - texlive-latex-extra
 
 script:
+- wget http://math.sut.ac.th/lab/software/texlive/texmf-dist/tex/latex/unicode-math/unicode-math.sty
 - mkdir _build
 - xelatex -output-directory _build cv.tex
 
