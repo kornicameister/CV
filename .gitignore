@@ -182,3 +182,4 @@ TSWLatexianTemp*
 # out file
 cv.pdf
 
+*.swp
