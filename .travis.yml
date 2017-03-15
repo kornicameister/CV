@@ -8,13 +8,13 @@ before_install:
   - docker pull harshjv/texlive-2015
 script:
   - docker run --rm -it -v $(pwd):/var/texlive harshjv/texlive-2015 xelatex cv.tex
+
 deploy:
   provider: releases
   api_key:
-    secure:
-      secure: gTztuShot/IDWx3VAPKRHB7zUwOMLi1uzrxtxVh4Lclwb/gt99v6ck0tMWkl5/6QqXYNih3HWmanpCQtMxcqQeIVtzlfJa4Wy+z7IXhfwDO/crTBoPG/6uzSz6bR/wRHPWgmpXu8OKNVgjamTlrmtfinK5e9UDlyp0PxkoHsQ5AymeN9plVEPIvIWulWUVGodA17UmcCjtL41j3slA54BL+ERDSrgz5XZoVD7Hogvdu1hSEo0x0Fh+oHcIGVnle7apgCMKlKXUv5jyiInejdpwJbl/TFkjSLZRD2Rd1HHvyPyiJN6W2qINQ28dMhoVdFEtNTn+WStc6SQu9Q8Dm5/iZCeycfkuUcS7vByLMZJrv0KH8Q5EP4fdj+VrJPxpHKOmXelF5EgaBNBE5ZLaGrW3u7CcqtriRgSXBMiThAXRGJmq/GUuEA8/2SZC1mCOMMK9Bzdd7krkdhGxTOlI8mIg9o8wxKY9Wfs3VGKexnmlcF0ROX9PpZr2kpzoEZzpZ9ymaeLnJh+LyLwhaUN3vMJJe2dn+kROfjGJQJcBkQ5xnw6oPi0piyrw3Z5Byvj4SCIipDI2O+Ra92VlXdra7SMAhHe+rVJO+J03bQwVFAousPMsFM/xQ2TDoMrmnjhmGsfVQLAohj+bsGsBdk0+uRWv0rZiI0PVMvxrckdvWoqR8=
-  file:
-  - _build/cv.pdf
+    secure: XibTG1omV4Gjkn3JgGN4OvJ9MgN3VoDIlNAsV/s4Xxj1TRKSajzoZ7PIQVSi1W1euPf91U3OqSodtvEtIFhf+9r3IEIRMdH46eec95snIYXta8rKhCDaEWvolAtY8WpE+OG3CtufpIFAKrjzB2JYsTEeCjNigMFwj2HP4yOK4ege3cU4h7NAto+eaDjZteNQTKKJa5hWlNORqTFXd6Ab1AlZ5UyccW9bZu5FTXYA1Gm3tAzpUHlYt2+q8mCKR0De43e+Xn97ZIjT28CN7eh0eTPtOs6Vo8TM+MO2fSWDou+ZO0qiuFiLpamrKFX2hSAOhwiPUVYYDh9H8aQ6D7JWhTwxpEHsDniaxbCbdlrQ/zdxZhg+s+QEFkVqdkjbzyVykV1iQAPtJGQI4VSCper0Nzrp+tOwKFkWYFcM9TwXGbYIGGdU9dg75erRqYMBWWenrsfrdbXy6UDgKA1SVREngJ2UavGBQQ2CDhMVXTDYuLaBW231b+w1HeCgnJpu0LH7U/VlVXZVNrr3X6ANhRAKIWUZdl/B+//dvasDMBeefYi3onC9rgdlFUil8uSxF7eCitTb/8vtUjBaBkIfmmpXAfM55K57FR8vk8eW9+ZwCpjvgC8x5666rbX0lcdIN34xVu/AVlUWG4znfk7Z5U0i3kt6XPDBUkulQzdliJqCrK4=
+  file: 
+    - _build/cv.pdf
   skip_cleanup: true
   on:
     tags: true
