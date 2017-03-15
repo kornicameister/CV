@@ -4,16 +4,20 @@ sudo: required
 services:
   - docker
 
+env:
+  matrix:
+    secure: VBp0cCbKj2zS0uQTRIwS1kPFMzYxb1xrh+q7WngcYwNW/twVodEPjX2PCNqahYOtRnwMZF7rMupf39h7s0Pa721LtbUdScoawmjUuisqp4Yjq6bHmY+X/u0yjfNLFmZ/Q1vmuwzXXfppJU0qR3TSl1yfTQFENYw3S7QNQO0jXfZ233KljXAgE9AudJBGrOwf/Bq3RqR4OfnvMDu11FmZFFSLQQDGb7fmNanjvsGaeOjqCwWs9uum8u/ThdLSFb+WfDfc8pPHnRMJ4p/9kZcrk5t9aVq7tuytE90nAyhGvzlmRYE1tMtxuB2XSVQyoNYmgUP9BcfBS48xPS7nV6iSF5WSPCtoc8aThDzkT9XLfiBZx9lxxiFvJ+ku5NGD9f9EsxhLdKbq9kyKxwo5ewGQeG30OKJneHIy0JNI6CtH1y29USWLK5EAVdTnbw8bhq4GRY8ebK0G/eaz+GMLnPylmFbqqUD32hUCmhM4TpkIBxuwTSUp0GSB6/gAUJT3w6XsbkbErYsm5YXi2PI2c+hWCwROJKMkoxhJkQ/EPth3CX+6fSGhfbwoYwc6dTFxMs3As8gFxL93QH+rF/0RJg4fvw9vBFx6/F7e+fARSzPSQUttiPXjRTZT6Tv0O314g+Fux+On4fRZ6iatHAWVQE+KJ9avxoMNODp2cYepnYo1aoY=
+
 before_install:
-- docker pull harshjv/texlive-2015
+  - docker pull harshjv/texlive-2015
 
 script:
-- docker run --rm -it -v $(pwd):/var/texlive harshjv/texlive-2015 xelatex cv.tex
+  - docker run --rm -it -v $(pwd):/var/texlive harshjv/texlive-2015 xelatex cv.tex
 
 deploy:
   provider: releases
   api_key:
-    secure: $GITHUB_API_KEY
+    secure: "$GITHUB_API_KEY"
   file:
   - _build/cv.pdf
   skip_cleanup: true
