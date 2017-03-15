@@ -520,11 +520,9 @@
 
 % Define a footer for CV
 % Usage: \makecvfooter{<left>}{<center>}{<right>}
-\newcommand*{\makecvfooter}[3]{%
+\newcommand*{\makecvfooter}[1]{%
   \fancyfoot{}
-  \fancyfoot[L]{\footerstyle{#1}}
-  \fancyfoot[C]{\footerstyle{#2}}
-  \fancyfoot[R]{\footerstyle{#3}}
+  \fancyfoot[R]{\footerstyle{#1}}
 }
 
 % Define a section for CV
