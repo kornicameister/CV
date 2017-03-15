@@ -5,15 +5,14 @@ services:
   - docker
 
 before_install:
-- docker pull harshjv/texlive-2015
-
+  - docker pull harshjv/texlive-2015
 script:
-- docker run --rm -it -v $(pwd):/var/texlive harshjv/texlive-2015 xelatex cv.tex
-
+  - docker run --rm -it -v $(pwd):/var/texlive harshjv/texlive-2015 xelatex cv.tex
 deploy:
   provider: releases
   api_key:
-    secure: [YOUR KEY]
+    secure:
+      secure: gTztuShot/IDWx3VAPKRHB7zUwOMLi1uzrxtxVh4Lclwb/gt99v6ck0tMWkl5/6QqXYNih3HWmanpCQtMxcqQeIVtzlfJa4Wy+z7IXhfwDO/crTBoPG/6uzSz6bR/wRHPWgmpXu8OKNVgjamTlrmtfinK5e9UDlyp0PxkoHsQ5AymeN9plVEPIvIWulWUVGodA17UmcCjtL41j3slA54BL+ERDSrgz5XZoVD7Hogvdu1hSEo0x0Fh+oHcIGVnle7apgCMKlKXUv5jyiInejdpwJbl/TFkjSLZRD2Rd1HHvyPyiJN6W2qINQ28dMhoVdFEtNTn+WStc6SQu9Q8Dm5/iZCeycfkuUcS7vByLMZJrv0KH8Q5EP4fdj+VrJPxpHKOmXelF5EgaBNBE5ZLaGrW3u7CcqtriRgSXBMiThAXRGJmq/GUuEA8/2SZC1mCOMMK9Bzdd7krkdhGxTOlI8mIg9o8wxKY9Wfs3VGKexnmlcF0ROX9PpZr2kpzoEZzpZ9ymaeLnJh+LyLwhaUN3vMJJe2dn+kROfjGJQJcBkQ5xnw6oPi0piyrw3Z5Byvj4SCIipDI2O+Ra92VlXdra7SMAhHe+rVJO+J03bQwVFAousPMsFM/xQ2TDoMrmnjhmGsfVQLAohj+bsGsBdk0+uRWv0rZiI0PVMvxrckdvWoqR8=
   file:
   - _build/cv.pdf
   skip_cleanup: true
