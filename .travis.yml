@@ -8,6 +8,7 @@ before_install:
   - docker pull kornicameister/resume-cli:latest
 script:
   - docker run --rm -it -v $(pwd):/app -w /app kornicameister/resume-cli:latest resume test
+  - docker run --rm -it -v $(pwd):/app -w /app kornicameister/resume-cli:latest resume export --theme stackoverflow cv.pdf
 
 deploy:
   provider: releases

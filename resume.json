@@ -47,34 +47,37 @@
       "company": "Fujitsu Technology Solutions Sp. z o.o.",
       "position": "Senior Development Engineer",
       "website": "http://www.fujitsu.com/pl/about/local/lodz/",
-      "startDate": "11.2017",
+      "startDate": "01.11.2017",
       "endDate": "",
       "summary": "NGI: Cloud Orchestration",
-      "highlights": []
+      "highlights": [
+        "Responsible for both client and server side"
+      ]
     },
     {
       "company": "Fujitsu Technology Solutions Sp. z o.o.",
       "position": "(Senior) Development Engineer",
       "website": "http://www.fujitsu.com/pl/about/local/lodz/",
-      "startDate": "03.2015",
-      "endDate": "10.2017",
+      "startDate": "01.03.2015",
+      "endDate": "31.10.2017",
       "summary": "Cloud Monitoring Management: CMM",
       "highlights": [
-        "Initial author of the open source openstack/monasca-log-api project in Python. Also a contributor to the Java implementation ofthe same project. Projects aims to be a REST-ful API receiving logs from agents deployed on target machines to collect them",
-        "Initial author of the open source openstack/monasca-log-api project[link], Python implementation, also a contributor to the Java implementation ofthe same project. Projects aims to be a REST-ful API receiving logs from agents deployed on target machines to collect them - plugin bringing multitenancy of OpenStack to Kibana",
+        "Initial author of the open source openstack/monasca-log-api project in Python. Also a contributor to the Java implementation of the same project. Projects aims to be a REST-ful API receiving logs from agents deployed on target machines to collect them",
+        "Initial author of the open source openstack/monasca-log-api project, Python implementation, also a contributor to the Java implementation of the same project. Projects aims to be a REST-ful API receiving logs from agents deployed on target machines to collect them - plugin bringing multitenancy of OpenStack to Kibana",
         "Initial author of the open source keystone-v3-client project - Keystone binding for Node.JS",
         "One of the authors of PostgreSQL support for monasca",
         "Core-Reviewer at OpenStack’s Gerrit for monasca-* projects, designed to monitor cloud environment",
         "Major contributor for monasca at Openstack",
-        "Contributor to monasca-docker (monasca in containers)"
+        "Contributor to monasca-docker (monasca in containers)",
+        "Author of several migrations in monasca projects [i.e. oslo.config, cliff]"
       ]
     },
     {
       "company": "Fujitsu Technology Solutions Sp. z o.o.",
       "position": "Development Engineer",
       "website": "http://www.fujitsu.com/pl/about/local/lodz/",
-      "startDate": "01.2015",
-      "endDate": "02.2015",
+      "startDate": "01.01.2015",
+      "endDate": "28.02.2015",
       "summary": "OpenService Catalog Manager",
       "highlights": [
         "Responsible for porting an application to newer Glassfish (3.x), both in server side and client side"
@@ -84,8 +87,8 @@
       "company": "Transition Technologies Solutions S.A.",
       "position": "Java & JavaScript Developer",
       "website": "https://tt.com.pl",
-      "startDate": "02.2013",
-      "endDate": "12.2014",
+      "startDate": "01.02.2013",
+      "endDate": "31.12.2014",
       "summary": "",
       "highlights": [
         "Primarily working with Windchill customization/extensions on 2 different projects. One of them was developed forAirbus Helicopterscom-pany, focused on adding new functionalities according to client specification. Actively participated ind development of migration tool to allowAirbus Helicoptersupload data from their legacy system through JMS queue (Tibco). Customizing Windchill forScaniawas short experience.Assignment were circling around development of new features, mostly frontend of Windchill.",
@@ -99,9 +102,9 @@
       "company": "Transition Technologies Solutions S.A",
       "position": "Intern",
       "website": "https://tt.com.pl",
-      "startDate": "06.2012",
-      "endDate": "09.2012",
-      "summary": "",
+      "startDate": "01.06.2012",
+      "endDate": "31.09.2012",
+      "summary": "Creating web based application [prototype written in ExtJS] for lifecycle management in Windchill system [PLM]",
       "highlights": []
     }
   ],
@@ -144,9 +147,187 @@
       "courses": []
     }
   ],
-  "awards": [],
-  "publications": [],
-  "skills": [],
+  "awards": [
+    {
+      "title": "Pegazy innowacji",
+      "date": "2013",
+      "awarder": "Transition Technologies S.A.",
+      "summary": "Awarded for overall contribution to the project and internships"
+    },
+    {
+      "title": "Bronze Medal",
+      "date": "2015",
+      "awarder": "Fujitsu Technology Solutions Sp. z.o.o",
+      "summary": "Awarded for the creation of monasca-log-api"
+    },
+    {
+      "title": "Silver Medal",
+      "date": "2016",
+      "awarder": "Fujitsu Technology Solutions Sp. z.o.o",
+      "summary": "Awarded for extraordinary performance and results in the project CMM"
+    }
+  ],
+  "publications": [
+    {
+      "name": "Monitoring of OpenStack Clouds",
+      "publisher": "OpenStack Day",
+      "releaseDate": "2017-03-22",
+      "website": "",
+      "summary": "Overview of cloud monitoring with monasca"
+    },
+    {
+      "name": "Monasca Bootcamp",
+      "publisher": "Openstack Summmit 2016 - Barcelona",
+      "releaseDate": "2016-10-26",
+      "website": "",
+      "summary": "Live presentation of monasca features with practical examples"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Overall",
+      "level": "",
+      "keywords": [
+        "#team_work",
+        "#communicative",
+        "#love_challanges",
+        "#love_learning"
+      ]
+    },
+    {
+      "name": "Programming",
+      "level": "",
+      "keywords": [
+        "Java",
+        "ES5",
+        "ES6",
+        "HTML5",
+        "CSS",
+        "Python2",
+        "Python 3",
+        "SQL",
+        "YAML",
+        "JSON",
+        "LaTex",
+        "TypeScript",
+        "Bash"
+      ]
+    },
+    {
+      "name": "Python",
+      "level": "",
+      "keywords": [
+        "oslo.*",
+        "Alembic",
+        "six",
+        "gunicorn",
+        "Falcon",
+        "tox",
+        "cliff",
+        "WSGI"
+      ]
+    },
+    {
+      "name": "Databases",
+      "level": "",
+      "keywords": [
+        "MySQL",
+        "PostgreSQL",
+        "ElasticSearch",
+        "InfluxDB"
+      ]
+    },
+    {
+      "name": "CVS",
+      "level": "",
+      "keywords": [
+        "Git",
+        "SVN",
+        "OSC"
+      ]
+    },
+    {
+      "name": "IDEs",
+      "level": "",
+      "keywords": [
+        "Eclipse",
+        "IntelliJ IDEA",
+        "WebStorm",
+        "PyCharm",
+        "Atom",
+        "VIM",
+        "VSCode"
+      ]
+    },
+    {
+      "name": "QA",
+      "level": "",
+      "keywords": [
+        "Travis",
+        "Gerrit",
+        "Gitlab CI",
+        "Openstack CI [Zuul]",
+        "Github Reviews",
+        "Gitlab Reviews"
+      ]
+    },
+    {
+      "name": "Java",
+      "level": "",
+      "keywords": [
+        "Spring (MVC, Data, Boot, Rest), ",
+        "Tetra",
+        "wro4j",
+        "jUnit",
+        "DynamicJasper",
+        "Wro4j",
+        "Ehcache",
+        "c3p0",
+        "Joda",
+        "Apache Tiles",
+        "Jackson",
+        "Guava",
+        "Hibernate",
+        "QueryDSL"
+      ]
+    },
+    {
+      "name": "JS",
+      "level": "",
+      "keywords": [
+        "NodeJS",
+        "React",
+        "ExtJS",
+        "Angular (1.*, familiar with 2.*)",
+        "Angular Material",
+        "Dojo",
+        "jQuery",
+        "Jasmine",
+        "Karma",
+        "NVM",
+        "Yarn"
+      ]
+    },
+    {
+      "name": "Docker",
+      "level": "",
+      "keywords": [
+        "building",
+        "publishing",
+        "export/import",
+        "compose",
+        "swarm"
+      ]
+    },
+    {
+      "name": "Deployment",
+      "level": "",
+      "keywords": [
+        "Ansible",
+        "Crowbar"
+      ]
+    }
+  ],
   "languages": [
     {
       "language": "Polish",
@@ -161,8 +342,14 @@
     {
       "name": "Tanks",
       "keywords": [
-        "Historical battles",
-        "World Of Tanks"
+        "Historical battles, History of tanks"
+      ]
+    },
+    {
+      "name": "World of Tanks",
+      "keywords": [
+        "MMO",
+        "Arcade"
       ]
     }
   ],
