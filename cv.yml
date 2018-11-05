@@ -1,0 +1,85 @@
+---
+quote: |
+  Every complex structure needs an architect
+
+basic:
+  photoUrl: ./media/profile.png
+  firstName: Tomasz
+  lastName: Trębski
+  position: Senior Development Engineer
+
+contact:
+  address: Niciarniana 13/4, 92-238 Łódź, Polska
+  email: tomasz.trebski@gmail.com
+  mobile: '(+48) 789231312'
+
+social:
+  - key: github
+    value: kornicameister
+  - key: linkedin
+    value: tomasz.trebski
+  - key: gitlab
+    value: kornicameister
+  - key: stackoverflow
+    id: 1396508
+    value: kornicameister
+
+education:
+  - years: 2006-2009
+    city: Łowicz, PL
+    school: I Liceum Ogólnokształcące Józefa Chełmońskiego
+    faculty: Mathematic and Computer Science
+  - years: 2009-2013
+    city: Łódź, PL
+    school: Lodz University Of Technology
+    faculty: 'Bachelor: Logistic'
+    thesis: WMS(Warehouse Management System) implementation with computer tools
+  - years: 2010-2014
+    city: Łódź, PL
+    school: Lodz University Of Technology
+    faculty: 'Bachelor: Computer Science'
+    thesis: Tool supporting car service station management using Spring application framework
+  - years: 2014-2016
+    city: Łódź, PL
+    school: Lodz University Of Technology
+    faculty: 'Master: Computer Science'
+    thesis: Collecting, analysis and inferring - meaning of logs in cloud environment
+
+experience:
+  - start: 02.2015
+    end: now
+    position: Senior Development Engineer
+    company: Fujitsu Technology Solutions Sp. z o.o.
+    city: Łódź, PL
+    tasks:
+      - project: EOS
+        entries:
+          - Maintaining, developing and supervising frontend application of an EOS project
+          - Supervising backend API health
+          - Influencing better code quality for backend and frontend services by promoting best practices
+            and equivalent CI setup
+          - Activities towards increasing the performance of critical services
+          - Technical proposals about API management and maintenance
+          - Participating in full life-cycle of a features, from product owners' requests to final
+            implementation through design phase
+      - project: monasca
+        entries:
+          - Developing backend services for log processing in OpenStack environment
+          - Maintaining (and originally creating) monasca-log-api, monasca-kibana-plugin and keystone-v3-client
+            projects
+          - Increasing code quality for monasca projects by influencing proper CI setup
+          - Core-reviewer responsibilities within monasca organization at OpenStack Gerrit service
+          - Active collaborator and participant of monasca weekly and annual meetings
+          - Maintaining and creating dockerized monasca-log pipeline for monasca-docker project
+
+settings:
+  fontSize: 11pt
+  format: a4paper
+  geometry: 'left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm'
+  colorFlavor: skyblue
+
+rodo:
+  en: |
+    I agree that my personal data will be processed by recruiting company
+    in order to recruit for the position I am applying for.
+...
