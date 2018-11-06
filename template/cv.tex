@@ -71,7 +71,6 @@ $if(experience)$
                     $for(experience.tasks.entries)$
                     \item $experience.tasks.entries$
                     $endfor$
-                    \item
                 \end{description}
             }
             $endfor$
@@ -82,6 +81,23 @@ $if(experience)$
     $endif$
     $endfor$
 \end{cventries}
+$endif$
+
+$if(skill)$
+\cvsection{Skills}
+\begin{cvskills}
+$for(skill)$
+    \cvskill
+    {$skill.category$}
+    {
+        \begin{itemize}[label={}]
+            $for(skill.subskill)$
+            \item $skill.subskill$
+            $endfor$
+        \end{itemize}
+    }
+\end{cvskills}
+$endfor$
 $endif$
 
 \end{document}

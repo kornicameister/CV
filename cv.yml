@@ -54,23 +54,98 @@ experience:
     tasks:
       - project: EOS
         entries:
-          - Maintaining, developing and supervising frontend application of an EOS project
-          - Supervising backend API health
-          - Influencing better code quality for backend and frontend services by promoting best practices
+          - maintaining, developing and supervising frontend application
+          - influencing better code quality for backend and frontend services by promoting best practices
             and equivalent CI setup
-          - Activities towards increasing the performance of critical services
-          - Technical proposals about API management and maintenance
-          - Participating in full life-cycle of a features, from product owners' requests to final
+          - activities towards increasing the performance of critical services
+          - technical proposals about API management and maintenance
+          - supervising backend API health
+          - participating in full life-cycle of a features, from product owners' requests to final
             implementation through design phase
       - project: monasca
         entries:
-          - Developing backend services for log processing in OpenStack environment
-          - Maintaining (and originally creating) monasca-log-api, monasca-kibana-plugin and keystone-v3-client
+          - developing backend services for log processing in OpenStack environment
+          - maintaining (and originally creating) monasca-log-api, monasca-kibana-plugin and keystone-v3-client
             projects
-          - Increasing code quality for monasca projects by influencing proper CI setup
-          - Core-reviewer responsibilities within monasca organization at OpenStack Gerrit service
-          - Active collaborator and participant of monasca weekly and annual meetings
-          - Maintaining and creating dockerized monasca-log pipeline for monasca-docker project
+          - increasing code quality for monasca projects by influencing proper CI setup
+          - core-reviewer responsibilities within monasca organization at OpenStack Gerrit service
+          - active collaborator and participant of monasca weekly and annual meetings
+          - maintaining and creating dockerized monasca-log pipeline for monasca-docker project
+      - project: OpenService Catalog Manager
+        entries:
+          - migrating the monolithic application from Glassfish 2.x to Glassfish 3.x
+          - adjusting both backend and frontend side of aforementioned application
+  - start: 02.2013
+    end: 12.2014
+    position: Java & JavaScript Developer
+    company: Transition Technologies Solutions S.A.
+    city: Łódź, PL
+    tasks:
+      - project: Windchill for Airbus Helicopters
+        entries:
+          - customizations of PTC system to client's requirements
+          - active participation in development of integration/migration layer based
+            on Tibco JMS queue to allow uploading client's specific data
+            into PTC system format
+      - project: Web application for field technicians
+        entries:
+          - writing new features in Angular 1.x based codebase
+          - writing integration layer in Java between aforementioned system and Windchill
+      - project: Extra activities
+        entries:
+          - writing and conducting JavaScript trainings (internal and external)
+          - participating in recruitment process
+          - internship leader
+  - start: 06.2012
+    end: 09.2012
+    position: Intern
+    company: Transition Technologies Solutions S.A.
+    city: Łódź, PL
+    tasks:
+      - project: Intern assignment
+        entries:
+          - creating web application supporting life cycle management process in ExtJs
+
+skill:
+  - category: General
+    subskill:
+      - team work
+      - communicative
+      - like challenges
+      - interdisciplinarity
+  - category: Programming
+    subskill:
+      - Java
+      - JavaScript
+      - TypeScript
+      - HTML
+      - CSS
+      - Python 2 & 3
+      - SQL
+      - YML
+      - JSON
+      - LaTex
+      - Elm
+      - Docker
+      - docker-compose
+      - Kubernetes
+      - OpenAPI 2 & 3 (Swagger)
+  - category: Databases
+    subskill:
+      - MySQL
+      - PostgreSQL
+      - ElasticSearch
+      - InfluxDB
+  - category: CSV
+    subskill:
+      - GIT
+      - SVN
+      - OSC
+  - category: Other
+    subskill:
+      - Monitoring As a Service
+      - Logging As a Service
+      - VIM enthusiast
 
 settings:
   fontSize: 11pt
