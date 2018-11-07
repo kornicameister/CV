@@ -1,0 +1,126 @@
+\documentclass[$settings.fontSize$, $settings.format$]{awesome-cv}
+\geometry{$settings.geometry$}
+
+% stuff needed to drop last \s, from the end of skill list
+\def\striplast#1{\striplastHelper{#1}#1\end s\end\eend}
+\def\striplastHelper#1#2, \end#3\eend{\ifx\end#3\end#1\else#2\fi}
+% end of stupid helper
+
+\colorlet{awesome}{awesome-$settings.colorFlavor$}
+
+\photo{$basic.photoUrl$}
+\name{$basic.firstName$}{$basic.lastName$}
+\position{$basic.position$}
+
+% contact
+\address{$contact.address$}
+\email{$contact.email$}
+\mobile{$contact.mobile$}
+
+% social links
+$for(social)$
+\$social.key$$if(social.id)${$social.id$}$endif${$social.value$}
+$endfor$
+
+\quote{``$quote$``}
+
+\begin{document}
+
+\makecvheader
+\makecvfooter{
+    $rodo.en$
+}
+
+$if(education)$
+\cvsection{Education}
+\begin{cventries}
+    $for(education)$
+    \cventry
+    {$education.faculty$}
+    {$education.school$}
+    {$education.city$}
+    {$education.years$}
+    $if(education.thesis)$
+    {
+        \begin{cvitems}
+            \item{Thesis: $education.thesis$}
+        \end{cvitems}
+    }
+    $else$
+    {}
+    $endif$
+    $endfor$
+\end{cventries}
+$endif$
+
+$if(experience)$
+\cvsection{Experience}
+\begin{cventries}
+    $for(experience)$
+    \cventry
+    {$experience.position$}
+    {$experience.company$}
+    {$experience.city$}
+    {$experience.start$ - $experience.end$}
+    $if(experience.tasks)$
+    {
+        \begin{cvitems}
+            $for(experience.tasks)$
+            \item[]{
+                \textbf{$experience.tasks.project$}
+                \begin{description}
+                    $for(experience.tasks.entries)$
+                    \item $experience.tasks.entries$
+                    $endfor$
+                \end{description}
+            }
+            $endfor$
+        \end{cvitems}
+    }
+    $else$
+    {}
+    $endif$
+    $endfor$
+\end{cventries}
+$endif$
+
+$if(skill)$
+\cvsection{Skills}
+\begin{cvskills}
+$for(skill)$
+    \cvskill
+    {$skill.category$}
+    {
+        \striplast{
+            $for(skill.subskill)$$skill.subskill$, $endfor$
+        }
+    }
+$endfor$
+\end{cvskills}
+$endif$
+
+$if(presentation)$
+\cvsection{Presentations}
+\begin{cventries}
+    $for(presentation)$
+    \cventry
+        {$presentation.title$}
+        {$presentation.conference$}
+        {$presentation.location$}
+        {$presentation.when$}
+        $if(presentation.detail)$
+        {
+            \begin{cvitems}
+            $for(presentation.detail)$
+                \item{$presentation.detail$}
+            $endfor$
+            \end{cvitems}
+        }
+        $else$
+        {}
+        $endif$
+    $endfor$
+\end{cventries}
+$endif$
+
+\end{document}
