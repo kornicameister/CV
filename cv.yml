@@ -26,21 +26,21 @@ social:
 
 education:
   - years: 2006-2009
-    city: Łowicz, PL
+    city: Łowicz, Poland
     school: I Liceum Ogólnokształcące Józefa Chełmońskiego
     faculty: Mathematic and Computer Science
   - years: 2009-2013
-    city: Łódź, PL
+    city: Łódź, Poland
     school: Lodz University Of Technology
     faculty: 'Bachelor: Logistic'
     thesis: WMS(Warehouse Management System) implementation with computer tools
   - years: 2010-2014
-    city: Łódź, PL
+    city: Łódź, Poland
     school: Lodz University Of Technology
     faculty: 'Bachelor: Computer Science'
     thesis: Tool supporting car service station management using Spring application framework
   - years: 2014-2016
-    city: Łódź, PL
+    city: Łódź, Poland
     school: Lodz University Of Technology
     faculty: 'Master: Computer Science'
     thesis: Collecting, analysis and inferring - meaning of logs in cloud environment
@@ -50,7 +50,7 @@ experience:
     end: now
     position: Senior Development Engineer
     company: Fujitsu Technology Solutions Sp. z o.o.
-    city: Łódź, PL
+    city: Łódź, Poland
     tasks:
       - project: EOS
         entries:
@@ -79,7 +79,7 @@ experience:
     end: 12.2014
     position: Java, JavaScript Developer
     company: Transition Technologies Solutions S.A.
-    city: Łódź, PL
+    city: Łódź, Poland
     tasks:
       - project: Windchill for Airbus Helicopters
         entries:
@@ -100,7 +100,7 @@ experience:
     end: 09.2012
     position: Intern
     company: Transition Technologies Solutions S.A.
-    city: Łódź, PL
+    city: Łódź, Poland
     tasks:
       - project: Intern assignment
         entries:
@@ -162,7 +162,7 @@ presentation:
       - Live presentation of monasca features backed by practical examples
       - Workshop for attended
   - when: 2017-03-22
-    location: Warsaw, PL
+    location: Warsaw, Poland
     conference: OpenStack Day
     title: Monitoring of OpenStack Cloud
     detail:
@@ -171,8 +171,8 @@ presentation:
 
 settings:
   fontSize: 11pt
-  format: a4paper
-  geometry: 'left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm'
+  format: final
+  geometry: 'left=1.5cm, top=.8cm, right=1.5cm, bottom=2cm, footskip=.5cm'
   colorFlavor: skyblue
 
 rodo:

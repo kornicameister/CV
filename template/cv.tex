@@ -1,11 +1,14 @@
 \documentclass[$settings.fontSize$, $settings.format$]{awesome-cv}
+\usepackage{enumitem}
 \geometry{$settings.geometry$}
+\urlstyle{same}
 
 % stuff needed to drop last \s, from the end of skill list
 \def\striplast#1{\striplastHelper{#1}#1\end s\end\eend}
 \def\striplastHelper#1#2, \end#3\eend{\ifx\end#3\end#1\else#2\fi}
 % end of stupid helper
 
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
 \colorlet{awesome}{awesome-$settings.colorFlavor$}
 
 \photo{$basic.photoUrl$}
@@ -27,28 +30,22 @@ $endfor$
 \begin{document}
 
 \makecvheader
-\makecvfooter{
-    $rodo.en$
-}
+\makecvfooter{$rodo.en$}
 
 $if(education)$
 \cvsection{Education}
 \begin{cventries}
     $for(education)$
     \cventry
-    {$education.faculty$}
-    {$education.school$}
-    {$education.city$}
-    {$education.years$}
-    $if(education.thesis)$
-    {
-        \begin{cvitems}
-            \item{Thesis: $education.thesis$}
-        \end{cvitems}
-    }
-    $else$
-    {}
-    $endif$
+        {$education.faculty$}
+        {$education.school$}
+        {$education.city$}
+        {$education.years$}
+        $if(education.thesis)$
+        {Thesis: $education.thesis$}
+        $else$
+        {}
+        $endif$
     $endfor$
 \end{cventries}
 $endif$
