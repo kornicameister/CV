@@ -1,7 +1,10 @@
 \documentclass[$settings.fontSize$, $settings.format$]{awesome-cv}
-
-\usepackage{enumitem}
 \geometry{$settings.geometry$}
+
+% stuff needed to drop last \s, from the end of skill list
+\def\striplast#1{\striplastHelper{#1}#1\end s\end\eend}
+\def\striplastHelper#1#2, \end#3\eend{\ifx\end#3\end#1\else#2\fi}
+% end of stupid helper
 
 \colorlet{awesome}{awesome-$settings.colorFlavor$}
 
@@ -27,8 +30,6 @@ $endfor$
 \makecvfooter{
     $rodo.en$
 }
-{\today}
-{\thepage}
 
 $if(education)$
 \cvsection{Education}
@@ -90,14 +91,36 @@ $for(skill)$
     \cvskill
     {$skill.category$}
     {
-        \begin{itemize}[label={}]
-            $for(skill.subskill)$
-            \item $skill.subskill$
-            $endfor$
-        \end{itemize}
+        \striplast{
+            $for(skill.subskill)$$skill.subskill$, $endfor$
+        }
     }
-\end{cvskills}
 $endfor$
+\end{cvskills}
+$endif$
+
+$if(presentation)$
+\cvsection{Presentations}
+\begin{cventries}
+    $for(presentation)$
+    \cventry
+        {$presentation.title$}
+        {$presentation.conference$}
+        {$presentation.location$}
+        {$presentation.when$}
+        $if(presentation.detail)$
+        {
+            \begin{cvitems}
+            $for(presentation.detail)$
+                \item{$presentation.detail$}
+            $endfor$
+            \end{cvitems}
+        }
+        $else$
+        {}
+        $endif$
+    $endfor$
+\end{cventries}
 $endif$
 
 \end{document}

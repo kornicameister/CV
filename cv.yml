@@ -77,7 +77,7 @@ experience:
           - adjusting both backend and frontend side of aforementioned application
   - start: 02.2013
     end: 12.2014
-    position: Java & JavaScript Developer
+    position: Java, JavaScript Developer
     company: Transition Technologies Solutions S.A.
     city: Łódź, PL
     tasks:
@@ -120,16 +120,15 @@ skill:
       - TypeScript
       - HTML
       - CSS
-      - Python 2 & 3
+      - Python 2
+      - Python 3
       - SQL
       - YML
       - JSON
       - LaTex
       - Elm
-      - Docker
-      - docker-compose
-      - Kubernetes
-      - OpenAPI 2 & 3 (Swagger)
+      - Containers (docker, docker-compose, Kubernetes)
+      - OpenAPI (Swagger)
   - category: Databases
     subskill:
       - MySQL
@@ -141,11 +140,34 @@ skill:
       - GIT
       - SVN
       - OSC
+  - category: QA
+    subskill:
+      - CircleCI
+      - Gerrit
+      - Travis
+      - Github Reviews
+      - OpenStack CI
   - category: Other
     subskill:
       - Monitoring As a Service
       - Logging As a Service
       - VIM enthusiast
+
+presentation:
+  - when: 2016-10-26
+    location: Barcelona, Spain
+    conference: OpenStack Summit 2016
+    title: Monasca Bootcamp
+    detail:
+      - Live presentation of monasca features backed by practical examples
+      - Workshop for attended
+  - when: 2017-03-22
+    location: Warsaw, PL
+    conference: OpenStack Day
+    title: Monitoring of OpenStack Cloud
+    detail:
+      - Overview of how monasca deals with cloud monitoring
+      - Discussing future plans
 
 settings:
   fontSize: 11pt
