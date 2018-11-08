@@ -7,7 +7,7 @@ services:
 before_install:
   - docker pull vipintm/xelatex:latest
 script:
-  - make pdf
+  - make cv
 
 deploy:
   provider: releases

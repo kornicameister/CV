@@ -1,3 +1,5 @@
+.DEFAULT_GOAL := cv
+
 SOURCE_FILES := $(wildcard src/*.yml)
 
 CWD=${PWD}
@@ -19,5 +21,17 @@ build_docker:
 init: clean build_docker
 	mkdir -p $(BUILD_DIR)
 
-pdf: init
+build_appendix:
+	test -f appendix.md && \
+		$(PANDOC) metadata.yml $(PANDOC_OPTS)  \
+		-f markdown \
+		-B template/appendix_before.tex \
+		-A template/appendix_after.tex \
+		-o build/appendix.pdf \
+		appendix.md
+
+build_pdf:
 	$(PANDOC) cv.yml $(PANDOC_PDF_OPTS) -o build/cv.pdf
+
+cv: init build_appendix build_pdf
+	test -f build/appendix.pdf && pdfunite build/cv.pdf build/appendix.pdf build/cv_with_appendix.pdf
