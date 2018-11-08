@@ -64,12 +64,12 @@ $if(experience)$
         \begin{cvitems}
             $for(experience.tasks)$
             \item[]{
-                \textbf{$experience.tasks.project$}
-                \begin{description}
+                \begin{scriptsize}Project: \textit{$experience.tasks.project$}\end{scriptsize}
+                \begin{itemize}
                     $for(experience.tasks.entries)$
                     \item $experience.tasks.entries$
                     $endfor$
-                \end{description}
+                \end{itemize}
             }
             $endfor$
         \end{cvitems}
