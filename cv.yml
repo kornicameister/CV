@@ -25,32 +25,32 @@ social:
     value: kornicameister
 
 education:
-  - years: 2006-2009
-    city: Łowicz, PL
-    school: I Liceum Ogólnokształcące Józefa Chełmońskiego
-    faculty: Mathematic and Computer Science
-  - years: 2009-2013
-    city: Łódź, PL
-    school: Lodz University Of Technology
-    faculty: 'Bachelor: Logistic'
-    thesis: WMS(Warehouse Management System) implementation with computer tools
-  - years: 2010-2014
-    city: Łódź, PL
-    school: Lodz University Of Technology
-    faculty: 'Bachelor: Computer Science'
-    thesis: Tool supporting car service station management using Spring application framework
   - years: 2014-2016
-    city: Łódź, PL
+    city: Łódź, Poland
     school: Lodz University Of Technology
     faculty: 'Master: Computer Science'
     thesis: Collecting, analysis and inferring - meaning of logs in cloud environment
+  - years: 2010-2014
+    city: Łódź, Poland
+    school: Lodz University Of Technology
+    faculty: 'Bachelor: Computer Science'
+    thesis: Tool supporting car service station management using Spring application framework
+  - years: 2009-2013
+    city: Łódź, Poland
+    school: Lodz University Of Technology
+    faculty: 'Bachelor: Logistic'
+    thesis: WMS(Warehouse Management System) implementation with computer tools
+  - years: 2006-2009
+    city: Łowicz, Poland
+    school: I Liceum Ogólnokształcące Józefa Chełmońskiego
+    faculty: Mathematic and Computer Science
 
 experience:
   - start: 02.2015
     end: now
     position: Senior Development Engineer
     company: Fujitsu Technology Solutions Sp. z o.o.
-    city: Łódź, PL
+    city: Łódź, Poland
     tasks:
       - project: EOS
         entries:
@@ -79,7 +79,7 @@ experience:
     end: 12.2014
     position: Java, JavaScript Developer
     company: Transition Technologies Solutions S.A.
-    city: Łódź, PL
+    city: Łódź, Poland
     tasks:
       - project: Windchill for Airbus Helicopters
         entries:
@@ -100,7 +100,7 @@ experience:
     end: 09.2012
     position: Intern
     company: Transition Technologies Solutions S.A.
-    city: Łódź, PL
+    city: Łódź, Poland
     tasks:
       - project: Intern assignment
         entries:
@@ -154,29 +154,31 @@ skill:
       - VIM enthusiast
 
 presentation:
+  - when: 2017-03-22
+    location: Warsaw, Poland
+    conference: OpenStack Day
+    title: Monitoring of OpenStack Cloud
+    detail:
+      - Overview of how monasca deals with cloud monitoring
+      - Discussing future plans
   - when: 2016-10-26
     location: Barcelona, Spain
     conference: OpenStack Summit 2016
     title: Monasca Bootcamp
     detail:
       - Live presentation of monasca features backed by practical examples
-      - Workshop for attended
-  - when: 2017-03-22
-    location: Warsaw, PL
-    conference: OpenStack Day
-    title: Monitoring of OpenStack Cloud
-    detail:
-      - Overview of how monasca deals with cloud monitoring
-      - Discussing future plans
+      - Workshop for attendees
 
 settings:
   fontSize: 11pt
-  format: a4paper
-  geometry: 'left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm'
+  format: final
+  geometry: 'left=1.5cm, top=.8cm, right=1.5cm, bottom=2cm, footskip=.5cm'
   colorFlavor: skyblue
 
 rodo:
   en: |
-    I agree that my personal data will be processed by recruiting company
-    in order to recruit for the position I am applying for.
+    I hereby give consent for my personal data included in my application to
+    be processed for the purposes of the recruitment process under the
+    Personal Data Protection Act as of 29 August 1997,
+    consolidated text: Journal of Laws 2016, item 922 as amended.
 ...
