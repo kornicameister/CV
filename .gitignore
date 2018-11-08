@@ -186,3 +186,5 @@ cv.pdf
 
 # appendix stuff that I do not normally keep in public CV
 appendix.md
+
+build/
