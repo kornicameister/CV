@@ -37,15 +37,15 @@ $if(education)$
 \begin{cventries}
     $for(education)$
     \cventry
-        {$education.faculty$}
-        {$education.school$}
-        {$education.city$}
-        {$education.years$}
-        $if(education.thesis)$
-        {Thesis: $education.thesis$}
-        $else$
-        {}
-        $endif$
+    {$education.faculty$}
+    {$education.school$}
+    {$education.city$}
+    {$education.years$}
+    $if(education.thesis)$
+    {Thesis: $education.thesis$}
+    $else$
+    {}
+    $endif$
     $endfor$
 \end{cventries}
 $endif$
