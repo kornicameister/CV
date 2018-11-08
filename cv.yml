@@ -154,13 +154,6 @@ skill:
       - VIM enthusiast
 
 presentation:
-  - when: 2016-10-26
-    location: Barcelona, Spain
-    conference: OpenStack Summit 2016
-    title: Monasca Bootcamp
-    detail:
-      - Live presentation of monasca features backed by practical examples
-      - Workshop for attended
   - when: 2017-03-22
     location: Warsaw, Poland
     conference: OpenStack Day
@@ -168,6 +161,13 @@ presentation:
     detail:
       - Overview of how monasca deals with cloud monitoring
       - Discussing future plans
+  - when: 2016-10-26
+    location: Barcelona, Spain
+    conference: OpenStack Summit 2016
+    title: Monasca Bootcamp
+    detail:
+      - Live presentation of monasca features backed by practical examples
+      - Workshop for attendees
 
 settings:
   fontSize: 11pt
