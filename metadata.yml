@@ -1,0 +1,10 @@
+---
+papersize: a4
+documentclass: article
+
+fontsize: 11pt
+fontfamily: sourcesanspro
+
+format: final
+geometry: 'left=1.5cm, top=.8cm, right=1.5cm, bottom=2cm, footskip=.5cm'
+...
