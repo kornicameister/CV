@@ -12,26 +12,29 @@ PANDOC=docker run --rm -v $(CWD):$(CONTAINER_WORK_DIR) -v $(BUILD_DIR):$(CONTAIN
 PANDOC_OPTS=--standalone --smart
 PANDOC_PDF_OPTS=$(PANDOC_OPTS) --latex-engine=xelatex --template=template/cv.tex
 
+init: build_docker
+	mkdir -p $(BUILD_DIR)
+
 clean:
 	rm -rf $(BUILD_DIR)
 
-build_docker:
-	docker build -t pandoc .
+build_docker: Dockerfile
+	docker build -t pandoc -f $< .
 
-init: clean build_docker
-	mkdir -p $(BUILD_DIR)
-
-build_appendix:
-	test -f appendix.md && \
-		$(PANDOC) metadata.yml $(PANDOC_OPTS)  \
+ifneq ("$(wildcard appendix.md)","")
+appendix.pdf: init
+	$(PANDOC) metadata.yml $(PANDOC_OPTS) \
 		-f markdown \
-		-B template/appendix_before.tex \
-		-A template/appendix_after.tex \
-		-o build/appendix.pdf \
+		-B template/cv_before.tex \
+		-A template/cv_after.tex \
+		-o build/$@ \
 		appendix.md
+else
+appendix.pdf:
+endif
 
-build_pdf:
-	$(PANDOC) cv.yml $(PANDOC_PDF_OPTS) -o build/cv.pdf
+cv.pdf: init
+	$(PANDOC) cv.yml $(PANDOC_PDF_OPTS) -o build/$@
 
-cv: init build_appendix build_pdf
-	test -f build/appendix.pdf && pdfunite build/cv.pdf build/appendix.pdf build/cv_with_appendix.pdf
+cv: clean init appendix.pdf cv.pdf
+	test -e ./build/appendix.pdf && pdfunite build/cv.pdf build/appendix.pdf build/cv_with_appendix.pdf || exit 0
