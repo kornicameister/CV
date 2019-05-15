@@ -125,9 +125,11 @@ $if(article)$
 \begin{cventries}
     $for(article)$
     \cventry
-        {$presentation.title$}
-        {$presentation.location$}
-        {$presentation.when$}
+        {$article.title$}
+        {$article.location$}
+        {$article.when$}
+        {}
+        {}
     $endfor$
 \end{cventries}
 $endif$
