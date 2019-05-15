@@ -120,4 +120,16 @@ $if(presentation)$
 \end{cventries}
 $endif$
 
+$if(article)$
+\cvsection{Articles}
+\begin{cventries}
+    $for(article)$
+    \cventry
+        {$presentation.title$}
+        {$presentation.location$}
+        {$presentation.when$}
+    $endfor$
+\end{cventries}
+$endif$
+
 \end{document}
