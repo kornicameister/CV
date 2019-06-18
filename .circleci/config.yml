@@ -1,0 +1,51 @@
+---
+version: 2.1
+
+orbs:
+  github-release: haskell-works/github-release@1.3.3
+  diagnostic-orb: circleci/diagnostic-orb@1.0.0
+
+jobs:
+  build:
+    working_directory: ~/cv
+    machine: true
+
+    steps:
+      - checkout
+      - run:
+          name: Build PDF
+          command: make cv.pdf
+          persist_to_workspace:
+            root: /build
+            paths:
+              - build/cv.pdf
+      - run:
+          name: Build JSON
+          command: make cv.json
+          persist_to_workspace:
+            root: /build
+            paths:
+              - build/cv.json
+workflows:
+  version: 2
+  cv:
+    jobs:
+      - build:
+          post-steps:
+            - diagnostic-orb/store-report
+          pre-steps:
+            - diagnostic-orb/env-info
+            - diagnostic-orb/memory
+            - diagnostic-orb/test-results
+      - github-release/release:
+          tag: $CIRCLE_BUILD_NAME
+          title: Release $CIRCLE_BUILD_NUM
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+          workspace-root: /build
+          attach-workspace: true
