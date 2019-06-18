@@ -1,4 +1,5 @@
 ---
+author: Tomasz Trębski
 quote: |
   Every complex structure needs an architect
 
@@ -11,7 +12,7 @@ basic:
 contact:
   address: Niciarniana 13/4, 92-238 Łódź, Polska
   email: tomasz.trebski@gmail.com
-  mobile: "(+48) 789231312"
+  mobile: '(+48) 789231312'
 
 social:
   - key: github
@@ -28,17 +29,17 @@ education:
   - years: 2014-2016
     city: Łódź, Poland
     school: Lodz University Of Technology
-    faculty: "Master: Computer Science"
+    faculty: 'Master: Computer Science'
     thesis: Collecting, analysis and inferring - meaning of logs in cloud environment
   - years: 2010-2014
     city: Łódź, Poland
     school: Lodz University Of Technology
-    faculty: "Bachelor: Computer Science"
+    faculty: 'Bachelor: Computer Science'
     thesis: Tool supporting car service station management using Spring application framework
   - years: 2009-2013
     city: Łódź, Poland
     school: Lodz University Of Technology
-    faculty: "Bachelor: Logistic"
+    faculty: 'Bachelor: Logistic'
     thesis: WMS(Warehouse Management System) implementation with computer tools
   - years: 2006-2009
     city: Łowicz, Poland
@@ -177,8 +178,8 @@ article:
 settings:
   fontSize: 11pt
   format: final
-  geometry: "left=1.5cm, top=.8cm, right=1.5cm, bottom=2cm, footskip=.5cm"
-  colorFlavor: skyblue
+  geometry: 'left=1.5cm, top=.8cm, right=1.5cm, bottom=2cm, footskip=.5cm'
+  color: skyblue
 
 rodo:
   en: |
@@ -186,3 +187,5 @@ rodo:
     be processed for the purposes of the recruitment process under the
     Personal Data Protection Act as of 29 August 1997,
     consolidated text: Journal of Laws 2016, item 922 as amended.
+---
+

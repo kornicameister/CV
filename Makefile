@@ -25,6 +25,7 @@ ifneq ("$(wildcard appendix.md)","")
 appendix.pdf: init
 	$(PANDOC) metadata.yml $(PANDOC_OPTS) \
 		-f markdown \
+		-t pdf \
 		-B template/cv_before.tex \
 		-A template/cv_after.tex \
 		-o build/$@ \
