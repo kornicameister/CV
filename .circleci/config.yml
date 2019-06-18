@@ -3,7 +3,6 @@ version: 2.1
 
 orbs:
   github-release: haskell-works/github-release@1.3.3
-  diagnostic-orb: circleci/diagnostic-orb@1.0.0
 
 jobs:
   build:
@@ -30,13 +29,7 @@ workflows:
   version: 2
   cv:
     jobs:
-      - build:
-          post-steps:
-            - diagnostic-orb/store-report
-          pre-steps:
-            - diagnostic-orb/env-info
-            - diagnostic-orb/memory
-            - diagnostic-orb/test-results
+      - build
       - github-release/release:
           tag: $CIRCLE_BUILD_NAME
           title: Release $CIRCLE_BUILD_NUM
