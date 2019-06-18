@@ -35,7 +35,7 @@ appendix.pdf:
 endif
 
 cv.pdf: init build_docker
-	$(PANDOC) cv.yml $(PANDOC_PDF_OPTS) -o build/$@
+	$(PANDOC) cv.yml metadata.yml $(PANDOC_PDF_OPTS) -o build/$@
 
 cv_full.pdf: clean init appendix.pdf cv.pdf
 	test -e ./build/appendix.pdf && pdfunite build/cv.pdf build/appendix.pdf build/cv_with_appendix.pdf || exit 0

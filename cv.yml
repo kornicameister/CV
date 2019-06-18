@@ -1,5 +1,4 @@
 ---
-author: Tomasz Trębski
 quote: |
   Every complex structure needs an architect
 
@@ -176,10 +175,6 @@ article:
     title: GIL - koniec z katarem, weź asyncio
 
 settings:
-  fontSize: 11pt
-  format: final
-  geometry: 'left=1.5cm, top=.8cm, right=1.5cm, bottom=2cm, footskip=.5cm'
-  color: skyblue
 
 rodo:
   en: |
