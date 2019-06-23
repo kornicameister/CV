@@ -34,7 +34,7 @@ workflows:
             tags:
               ignore: /.*/
     jobs-release:
-      - build
+      - build:
           filters:
             branches:
               ignore: /.*/
