@@ -169,11 +169,12 @@ presentation:
       - Live presentation of monasca features backed by practical examples
       - Workshop for attendees
 
+article:
+  - when: 2019-03-27
+    location: bulldogjob.pl
+    title: GIL - koniec z katarem, weź asyncio
+
 settings:
-  fontSize: 11pt
-  format: final
-  geometry: 'left=1.5cm, top=.8cm, right=1.5cm, bottom=2cm, footskip=.5cm'
-  colorFlavor: skyblue
 
 rodo:
   en: |
@@ -181,4 +182,3 @@ rodo:
     be processed for the purposes of the recruitment process under the
     Personal Data Protection Act as of 29 August 1997,
     consolidated text: Journal of Laws 2016, item 922 as amended.
-...

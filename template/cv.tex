@@ -1,6 +1,6 @@
-\documentclass[$settings.fontSize$, $settings.format$]{awesome-cv}
+\documentclass[$fontSize$, $format$]{awesome-cv}
 \usepackage{enumitem}
-\geometry{$settings.geometry$}
+\geometry{$geometry$}
 \urlstyle{same}
 
 % stuff needed to drop last \s, from the end of skill list
@@ -9,7 +9,7 @@
 % end of stupid helper
 
 \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
-\colorlet{awesome}{awesome-$settings.colorFlavor$}
+\colorlet{awesome}{awesome-$color$}
 
 \photo{$basic.photoUrl$}
 \name{$basic.firstName$}{$basic.lastName$}
@@ -116,6 +116,20 @@ $if(presentation)$
         $else$
         {}
         $endif$
+    $endfor$
+\end{cventries}
+$endif$
+
+$if(article)$
+\cvsection{Articles}
+\begin{cventries}
+    $for(article)$
+    \cventry
+        {$article.title$}
+        {$article.location$}
+        {$article.when$}
+        {}
+        {}
     $endfor$
 \end{cventries}
 $endif$
