@@ -27,13 +27,14 @@ jobs:
               - build/cv.json
 workflows:
   version: 2
-  cv:
-    build:
+  build:
+    jobs:
       - build:
           filters:
             tags:
               ignore: /.*/
-    release:
+  release:
+    jobs:
       - build:
           filters:
             branches:
