@@ -29,7 +29,17 @@ workflows:
   version: 2
   cv:
     jobs:
+      - build:
+          filters:
+            tags:
+              ignore: /.*/
+    jobs-release:
       - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
       - github-release/release:
           tag: $CIRCLE_BUILD_NAME
           title: Release $CIRCLE_BUILD_NUM
