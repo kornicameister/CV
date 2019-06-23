@@ -27,9 +27,20 @@ jobs:
               - build/cv.json
 workflows:
   version: 2
-  cv:
+  build:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              ignore: /.*/
+  release:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
       - github-release/release:
           tag: $CIRCLE_BUILD_NAME
           title: Release $CIRCLE_BUILD_NUM
