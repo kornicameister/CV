@@ -15,16 +15,16 @@ jobs:
           name: Build PDF
           command: make cv.pdf
           persist_to_workspace:
-            root: /build
+            root: /tmp/build
             paths:
-              - build/cv.pdf
+              - ./build/cv.pdf
       - run:
           name: Build JSON
           command: make cv.json
           persist_to_workspace:
-            root: /build
+            root: /tmp/build
             paths:
-              - build/cv.json
+              - ./build/cv.json
 workflows:
   version: 2
   build:
@@ -42,8 +42,8 @@ workflows:
             tags:
               only: /^\d+\.\d+\.\d+$/
       - github-release/release:
-          tag: $CIRCLE_BUILD_NAME
-          title: Release $CIRCLE_BUILD_NUM
+          tag: $CIRCLE_TAG
+          title: Release $CIRCLE_TAG
           requires:
             - build
           filters:
@@ -51,5 +51,7 @@ workflows:
               ignore: /.*/
             tags:
               only: /^\d+\.\d+\.\d+$/
-          workspace-root: /build
+          github-token: $DEPLOY_KEY
+          checkout: true
           attach-workspace: true
+          artefacts-folder: /tmp/build
