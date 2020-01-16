@@ -10,7 +10,7 @@ CONTAINER_BUILD_DIR=$(CONTAINER_WORK_DIR)/build
 
 PANDOC=@docker run --rm -v $(CWD):$(CONTAINER_WORK_DIR) -v $(BUILD_DIR):$(CONTAINER_BUILD_DIR) pandoc:latest
 PANDOC_OPTS=--standalone --smart
-PANDOC_PDF_OPTS=$(PANDOC_OPTS) --latex-engine=xelatex --template=template/cv.tex
+PANDOC_PDF_OPTS=$(PANDOC_OPTS) --latex-engine=xelatex --template=$(CWD)/template/cv.tex
 
 YAML_TO_JSON=@docker run -i --rm ingy/yaml-to-json
 
@@ -28,20 +28,20 @@ appendix.pdf: init
 	$(PANDOC) metadata.yml $(PANDOC_OPTS) \
 		-f markdown \
 		-t pdf \
-		-B template/cv_before.tex \
-		-A template/cv_after.tex \
-		-o build/$@ \
+		-B $(CWD)/template/cv_before.tex \
+		-A t$(CWD)/emplate/cv_after.tex \
+		-o $(BUILD_DIR)/$@ \
 		appendix.md
 else
 appendix.pdf:
 endif
 
 cv.pdf: init build_docker
-	$(PANDOC) cv.yml metadata.yml $(PANDOC_PDF_OPTS) -o build/$@
+	$(PANDOC) cv.yml metadata.yml $(PANDOC_PDF_OPTS) -o $(BUILD_DIR)/$@
 
 cv_full.pdf: clean init appendix.pdf cv.pdf
-	test -e ./build/appendix.pdf && pdfunite build/cv.pdf build/appendix.pdf build/cv_with_appendix.pdf || exit 0
+	test -e $(BUILD_DIR)/appendix.pdf && pdfunite build/cv.pdf build/appendix.pdf build/cv_with_appendix.pdf || exit 0
 
 cv.json: init
-	cat cv.yml | $(YAML_TO_JSON) | tee build/cv.json
+	cat cv.yml | $(YAML_TO_JSON) | tee $(BUILD_DIR)/cv.json
 
