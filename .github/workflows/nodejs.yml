@@ -1,0 +1,30 @@
+name: kornicameister@cv
+
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        target : ['cv.pdf', 'cv.json']
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: setup-docker
+      uses: docker-practice/actions-setup-docker@0.0.1
+    - name: make ${{ matrix.target }}
+      uses: ouzi-dev/go-make-action@v1.1.0
+      with:
+        target: ${{ matrix.target }}
+    - name: cv.pdf
+      uses: ouzi-dev/go-make-action@v1.1.0
+      with:
+        target: cv.json
+    - name: Release Drafter
+      uses: release-drafter/release-drafter@v5.6.1
