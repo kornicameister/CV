@@ -1,0 +1,31 @@
+---
+ 
+name: release
+
+on:
+  push:
+    branches-ignore: '*'
+    tags: /^\d+\.\d+\.\d+$/
+  pull_request:
+    branches-ignore: '*'
+    tags-ignore: '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        target : ['cv.pdf', 'cv.json']
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: make ${{ matrix.target }}
+      uses: ouzi-dev/go-make-action@v1.1.0
+      with:
+        target: ${{ matrix.target }}
+    - name: Release
+      uses: fnkr/github-action-ghr@v1
+      env:
+        GHR_PATH: build/
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
