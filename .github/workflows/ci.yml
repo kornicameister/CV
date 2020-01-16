@@ -13,18 +13,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        target : ['cv.pdf', 'cv.json']
-
+    
     steps:
     - uses: actions/checkout@v1
+
     - name: setup-docker
       uses: docker-practice/actions-setup-docker@0.0.1
-    - name: make ${{ matrix.target }}
-      uses: ouzi-dev/go-make-action@v1.1.0
-      with:
-        target: ${{ matrix.target }}
+
+    - name: make cv.pdf
+      run: make cv.pdf
+    - name: make cv.json
+      run: make cv.json
+
     - name: Collect Docker Logs
       uses: jwalton/gh-docker-logs@v1.0.0
