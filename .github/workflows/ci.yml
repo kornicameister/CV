@@ -1,5 +1,5 @@
 ---
- 
+
 name: CI
 
 on:
@@ -13,7 +13,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         target : ['cv.pdf', 'cv.json']
@@ -24,9 +24,3 @@ jobs:
       uses: ouzi-dev/go-make-action@v1.1.0
       with:
         target: ${{ matrix.target }}
-    - name: Release
-      uses: fnkr/github-action-ghr@v1
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-        GHR_PATH: build/
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
