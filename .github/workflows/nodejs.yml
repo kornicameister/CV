@@ -1,3 +1,5 @@
+---
+ 
 name: kornicameister@cv
 
 on:
@@ -26,5 +28,5 @@ jobs:
       uses: ouzi-dev/go-make-action@v1.1.0
       with:
         target: cv.json
-    - name: Release Drafter
+    - name: Draft next release
       uses: release-drafter/release-drafter@v5.6.1
