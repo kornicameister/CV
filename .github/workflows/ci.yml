@@ -20,7 +20,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: setup-docker
+      uses: docker-practice/actions-setup-docker@0.0.1
     - name: make ${{ matrix.target }}
       uses: ouzi-dev/go-make-action@v1.1.0
       with:
         target: ${{ matrix.target }}
+    - name: Collect Docker Logs
+      uses: jwalton/gh-docker-logs@v1.0.0
