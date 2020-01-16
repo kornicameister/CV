@@ -26,3 +26,9 @@ jobs:
 
       - name: Collect Docker Logs
         uses: jwalton/gh-docker-logs@v1.0.0
+
+      - name: Upload artifact
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: cv.pdf
+          path: build/
