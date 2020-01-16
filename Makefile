@@ -21,7 +21,7 @@ clean:
 	rm -rf $(BUILD_DIR)
 
 build_docker: Dockerfile
-	docker build -t pandoc -f $< .
+	@docker build -t pandoc -f $< .
 
 ifneq ("$(wildcard appendix.md)","")
 appendix.pdf: init
