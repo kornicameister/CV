@@ -1,8 +1,7 @@
 ---
-
 name: release
 
-on:
+'on':
   push:
     branches-ignore: '*'
     tags: /^\d+\.\d+\.\d+$/
@@ -13,19 +12,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
- 
-    strategy:
-      matrix:
-        target : ['cv.pdf', 'cv.json']
 
     steps:
-    - uses: actions/checkout@v1
-    - name: make ${{ matrix.target }}
-      uses: ouzi-dev/go-make-action@v1.1.0
-      with:
-        target: ${{ matrix.target }}
-    - name: Release
-      uses: fnkr/github-action-ghr@v1
-      env:
-        GHR_PATH: build/
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v1
+
+      - name: setup-docker
+        uses: docker-practice/actions-setup-docker@0.0.1
+
+      - name: make cv.pdf
+        run: make cv.pdf
+      - name: make cv.json
+        run: make cv.json
+
+      - name: Release
+        uses: fnkr/github-action-ghr@v1
+        env:
+          GHR_PATH: build/
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
