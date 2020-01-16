@@ -8,11 +8,11 @@ BUILD_DIR=${CWD}/build
 CONTAINER_WORK_DIR=/data
 CONTAINER_BUILD_DIR=$(CONTAINER_WORK_DIR)/build
 
-PANDOC=docker run --rm -v $(CWD):$(CONTAINER_WORK_DIR) -v $(BUILD_DIR):$(CONTAINER_BUILD_DIR) pandoc:latest
+PANDOC=@docker run --rm -v $(CWD):$(CONTAINER_WORK_DIR) -v $(BUILD_DIR):$(CONTAINER_BUILD_DIR) pandoc:latest
 PANDOC_OPTS=--standalone --smart
 PANDOC_PDF_OPTS=$(PANDOC_OPTS) --latex-engine=xelatex --template=template/cv.tex
 
-YAML_TO_JSON=docker run -i --rm ingy/yaml-to-json
+YAML_TO_JSON=@docker run -i --rm ingy/yaml-to-json
 
 init:
 	mkdir -p $(BUILD_DIR)
