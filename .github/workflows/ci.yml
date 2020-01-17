@@ -1,0 +1,34 @@
+---
+name: CI
+
+'on':
+  push:
+    branches: master
+    tags-ignore: '*'
+  pull_request:
+    branches: master
+    tags-ignore: '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: setup-docker
+        uses: docker-practice/actions-setup-docker@0.0.1
+
+      - name: make cv.pdf
+        run: make cv.pdf
+      - name: make cv.json
+        run: make cv.json
+
+      - name: Collect Docker Logs
+        uses: jwalton/gh-docker-logs@v1.0.0
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: 'cv_${{ github.sha }}_build'
+          path: build/
