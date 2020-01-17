@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/kornicameister/CV.svg?branch=master)](https://travis-ci.org/kornicameister/CV)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kornicameister/CV/CI?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kornicameister/CV/Release?style=flat-square)
 
 # CV
 Personal CV (src)
