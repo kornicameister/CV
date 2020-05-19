@@ -121,14 +121,14 @@ $if(presentation)$
 $endif$
 
 $if(article)$
-\cvsection{Articles}
+\cvsection{Articles \& Courses}
 \begin{cventries}
     $for(article)$
     \cventry
         {$article.title$}
         {$article.location$}
         {$article.when$}
-        {}
+        {$articile.language$}
         {}
     $endfor$
 \end{cventries}

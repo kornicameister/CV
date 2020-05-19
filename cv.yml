@@ -173,8 +173,11 @@ article:
   - when: 2019-03-27
     location: bulldogjob.pl
     title: GIL - koniec z katarem, weź asyncio
-
-settings:
+    language: PL
+  - when: 2019-07-11
+    location: helion.pl
+    title: Asynchroniczne REST API w Pythonie. Kurs video. Tworzenie aplikacji w aiohttp
+    language: PL
 
 rodo:
   en: |
