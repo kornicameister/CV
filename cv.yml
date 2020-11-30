@@ -52,6 +52,18 @@ experience:
     company: Fujitsu Technology Solutions Sp. z o.o.
     city: Łódź, Poland
     tasks:
+      - project: AWS Project 2 [proprietary]
+        entries:
+          - building multi-service deployment with CloudFormation
+          - project architecture based on Makefile (own idea)
+          - uses various AWS components ranging from HA networing setup to advanced EC2 deployments
+          - due to project restrictions some of the clusters were manually deployed based on EC2
+          - introduced project wide restrictions regarding code quality also for CloudFormation templates
+      - project: AWS Project 1 [proprietary]
+        entries:
+          - building deployment with CloudFormation
+          - solution was based on REST Api (Lambda based) and UI (S3 based)
+          - CI/CD built in this project was based on Github Actions and Least Priviliged IAM entity
       - project: EOS
         entries:
           - maintaining, developing and supervising frontend application
