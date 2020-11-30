@@ -178,6 +178,10 @@ article:
     location: helion.pl
     title: Asynchroniczne REST API w Pythonie. Kurs video. Tworzenie aplikacji w aiohttp
     language: PL
+  - when: 2020-08-07
+    location: helion.pl
+    title: GIT - Zaawansowane aspekty konfiguracji popularnego systemu kontroli wersji
+    language: PL
 
 rodo:
   en: |
