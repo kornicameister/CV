@@ -3,11 +3,7 @@ name: Release
 
 'on':
   push:
-    branches-ignore: '*'
-    tags: /^\d+\.\d+\.\d+$/
-  pull_request:
-    branches-ignore: '*'
-    tags-ignore: '*'
+    tags: v*
 
 jobs:
   build:
@@ -23,9 +19,45 @@ jobs:
         run: make cv.pdf
       - name: make cv.json
         run: make cv.json
-
-      - name: Release
-        uses: fnkr/github-action-ghr@v1
+      
+      - name: Generate changelog
+        uses: CharMixer/auto-changelog-action@v1
+    
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
         env:
-          GHR_PATH: build/
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload cv.pdf
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/cv.pdf
+          asset_name: cv.pdf
+          asset_content_type: application/pdf
+      - name: Upload cv.json 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/cv.json
+          asset_name: cv.json
+          asset_content_type: application/json
+      - name: Upload CHANGELOG.md
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./CHANGELOG.md
+          asset_name: CHANGELOG.md
+          asset_content_type: text/plain
