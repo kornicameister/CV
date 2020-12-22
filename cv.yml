@@ -125,22 +125,36 @@ skill:
       - communicative
       - like challenges
       - interdisciplinarity
-  - category: Programming
+      - automation
+  - category: AWS
     subskill:
+      - IAAC (CloudFormation)
+      - Compute services
+      - Storage services
+      - Serverless processing
+      - Building large applications (substacks vs imports)
+  - category: Programming [Backend]
+    subskill:
+      - Python 3
+      - Python 2
       - Java
+      - SQL
+      - OpenAPI (Swagger)
+  - category: Programming [Web]
+    subskill:
       - JavaScript
       - TypeScript
       - HTML
       - CSS
-      - Python 2
-      - Python 3
-      - SQL
       - YML
       - JSON
       - LaTex
       - Elm
-      - Containers (docker, docker-compose, Kubernetes)
-      - OpenAPI (Swagger)
+  - category: Programming [Containers]
+    subskill:
+      - docker
+      - docker-compose
+      - k8s
   - category: Databases
     subskill:
       - MySQL
@@ -151,19 +165,19 @@ skill:
     subskill:
       - GIT
       - SVN
-      - OSC
   - category: QA
     subskill:
       - CircleCI
       - Gerrit
       - Travis
       - Github Reviews
+      - Github Actions
       - OpenStack CI
   - category: Other
     subskill:
       - Monitoring As a Service
       - Logging As a Service
-      - VIM enthusiast
+      - (Neo)VIM enthusiast
 
 presentation:
   - when: 2017-03-22
