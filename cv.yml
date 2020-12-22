@@ -40,10 +40,6 @@ education:
     school: Lodz University Of Technology
     faculty: 'Bachelor: Logistic'
     thesis: WMS(Warehouse Management System) implementation with computer tools
-  - years: 2006-2009
-    city: Łowicz, Poland
-    school: I Liceum Ogólnokształcące Józefa Chełmońskiego
-    faculty: Mathematic and Computer Science
 
 experience:
   - start: 01.2015
