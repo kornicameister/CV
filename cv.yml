@@ -124,18 +124,22 @@ skill:
       - automation
   - category: AWS
     subskill:
-      - IAAC (CloudFormation)
-      - Compute services
-      - Storage services
-      - Serverless processing
-      - Building large applications (substacks vs imports)
+      - IAAC (CloudFormation, CDK)
+      - Compute services (EC2, EKS, ECS, Lambda)
+      - Storage services (S3, EBS, EFS)
+      - Databases services (RDS + PostgreSQL)
+      - Serverless processing (i.e. Lambda + integrations)
+      - Distributed computing (i.e. SNS,SQS)
+      - Building large multi-tier applications
+      - Architecting solutions
   - category: Programming [Backend]
     subskill:
-      - Python 3
-      - Python 2
-      - Java
+      - Python 3.x
+      - Python 2.x
       - SQL
       - OpenAPI (Swagger)
+      - Java
+      - TypeScript
   - category: Programming [Web]
     subskill:
       - JavaScript
@@ -144,7 +148,6 @@ skill:
       - CSS
       - YML
       - JSON
-      - LaTex
       - Elm
   - category: Programming [Containers]
     subskill:
@@ -166,14 +169,16 @@ skill:
       - CircleCI
       - Gerrit
       - Travis
-      - Github Reviews
-      - Github Actions
+      - Github Reviews & Actions
       - OpenStack CI
   - category: Other
     subskill:
       - Monitoring As a Service
       - Logging As a Service
       - (Neo)VIM enthusiast
+      - Dotfiles geek
+      - LaTex
+      - OSS contributor
 
 presentation:
   - when: 2017-03-22
