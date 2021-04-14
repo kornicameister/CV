@@ -210,6 +210,11 @@ article:
     title: GIT - Zaawansowane aspekty konfiguracji popularnego systemu kontroli wersji
     language: PL
 
+oss:
+  - name: loguru-mypy
+    description: mypy plugin veryfying proper loguru (logging library) usage
+    url: https://github.com/kornicameister/loguru-mypy
+
 rodo:
   en: |
     I hereby give consent for my personal data included in my application to
