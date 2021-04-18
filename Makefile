@@ -15,13 +15,13 @@ PANDOC_PDF_OPTS=$(PANDOC_OPTS) --latex-engine=xelatex --template=template/cv.tex
 YAML_TO_JSON=docker run -i --rm ingy/yaml-to-json
 
 init:
-	mkdir -p $(BUILD_DIR)
+	@mkdir -p $(BUILD_DIR)
 
 clean:
-	rm -rf $(BUILD_DIR)
+	@$(RM) -r $(BUILD_DIR)
 
-build_docker: Dockerfile
-	docker build -t pandoc -f $< .
+Dockerfile:
+	@docker build -t pandoc -f $@ .
 
 ifneq ("$(wildcard appendix.md)","")
 appendix.pdf: init
@@ -36,8 +36,8 @@ else
 appendix.pdf:
 endif
 
-cv.pdf: init build_docker
-	$(PANDOC) cv.yml metadata.yml $(PANDOC_PDF_OPTS) -o build/$@
+cv.pdf: init Dockerfile
+	@$(PANDOC) cv.yml metadata.yml $(PANDOC_PDF_OPTS) -o build/$@
 
 cv_full.pdf: clean init appendix.pdf cv.pdf
 	test -e ./build/appendix.pdf && pdfunite build/cv.pdf build/appendix.pdf build/cv_with_appendix.pdf || exit 0
