@@ -125,8 +125,10 @@ $if(oss)$
 \begin{cventries}
     $for(oss)$
     \cventry
-        \href{{$oss.url$}}{{$oss.name$}} 
         {$oss.description$}
+        {\href{$oss.url$}{$oss.name$}}
+        {}
+        {}
         {}
     $endfor$
 \end{cventries}
