@@ -88,9 +88,16 @@ $for(skill)$
     \cvskill
     {$skill.category$}
     {
-        \striplast{
-            $for(skill.subskill)$$skill.subskill$, $endfor$
-        }
+        $for(skill.subskill)$
+        \begin{minipage}[t]{.35\linewidth}
+        $for(skill.subskill)$
+        \begin{itemize}
+            \item{$skill.subskill$}
+        \end{itemize}
+        $endfor$
+        \end{minipage}
+        $endfor$
+        \vspace{5pt}
     }
 $endfor$
 \end{cvskills}
