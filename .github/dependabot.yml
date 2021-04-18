@@ -1,3 +1,4 @@
+---
 version: 2
 updates:
 - package-ecosystem: docker
@@ -5,4 +6,10 @@ updates:
   schedule:
     interval: daily
     time: '04:00'
+  open-pull-requests-limit: 10
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "04:00"
   open-pull-requests-limit: 10
