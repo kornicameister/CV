@@ -120,6 +120,20 @@ $if(presentation)$
 \end{cventries}
 $endif$
 
+$if(oss)$
+\cvsection{OSS}
+\begin{cventries}
+    $for(oss)$
+    \cventry
+        {$oss.description$}
+        {\href{$oss.url$}{$oss.name$}}
+        {}
+        {}
+        {}
+    $endfor$
+\end{cventries}
+$endif$
+
 $if(article)$
 \cvsection{Articles \& Courses}
 \begin{cventries}
