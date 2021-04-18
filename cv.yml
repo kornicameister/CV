@@ -171,6 +171,7 @@ skill:
       - Travis
       - Github Reviews & Actions
       - OpenStack CI
+      - Gitlab CI
   - category: Other
     subskill:
       - Monitoring As a Service
