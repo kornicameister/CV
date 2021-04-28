@@ -52,9 +52,10 @@ experience:
         entries:
           - building multi-service deployment with CloudFormation
           - project architecture based on Makefile (own idea)
-          - uses various AWS components ranging from HA networing setup to advanced EC2 deployments
+          - uses various AWS components ranging from HA networking setup to advanced EC2 deployments
           - due to project restrictions some of the clusters were manually deployed based on EC2
           - introduced project wide restrictions regarding code quality also for CloudFormation templates
+          - EMR/MSK clusters setups
       - project: AWS Project 1 [proprietary]
         entries:
           - building deployment with CloudFormation
