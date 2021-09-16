@@ -42,8 +42,20 @@ education:
     thesis: WMS(Warehouse Management System) implementation with computer tools
 
 experience:
-  - start: 01.2015
+  - start: 08.2021
     end: now
+    position: Lead Backend Developer
+    company: AppYourself Sp. Z.o.o
+    city: Łódź, Poland
+    tasks:
+      - projects: various AWS-based projects
+        entries:
+          - improving security postures
+          - creating new features, using AWS services, to supplement exisiting services
+          - reimplementing, migrating old functionalities if needed with backward compatibility in mind
+          - creating design containing detailed feature analysis from requirements down to cost assessments
+  - start: 01.2015
+    end: 07.2021
     position: Lead Software Engineer
     company: Fujitsu Technology Solutions Sp. z o.o.
     city: Łódź, Poland
