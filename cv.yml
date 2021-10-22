@@ -217,7 +217,7 @@ article:
     location: bulldogjob.pl
     title: GIL - koniec z katarem, weź asyncio
     language: PL
-  - when: 2019-08-77
+  - when: 2019-08-07
     location: bulldogjob.pl
     title: Dlaczego Python i JavaScript bez typów to kiepski pomysł
     language: PL
