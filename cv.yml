@@ -217,6 +217,10 @@ article:
     location: bulldogjob.pl
     title: GIL - koniec z katarem, weź asyncio
     language: PL
+  - when: 2019-08-77
+    location: bulldogjob.pl
+    title: Dlaczego Python i JavaScript bez typów to kiepski pomysł
+    language: PL
   - when: 2019-07-11
     location: helion.pl
     title: Asynchroniczne REST API w Pythonie. Kurs video. Tworzenie aplikacji w aiohttp
