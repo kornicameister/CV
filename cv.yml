@@ -48,12 +48,17 @@ experience:
     company: AppYourself Sp. Z.o.o
     city: Łódź, Poland
     tasks:
-      - projects: various AWS-based projects
+      - project: product specific
         entries:
-          - improving security postures
+          - migrating old monolithic stack into AWS-based environment
+          - improving/implementing monitoring for old/new features
           - creating new features, using AWS services, to supplement exisiting services
-          - reimplementing, migrating old functionalities if needed with backward compatibility in mind
-          - creating design containing detailed feature analysis from requirements down to cost assessments
+          - creating designs containing detailed feature analysis from requirements down to cost assessments
+      - project: team specific
+        entries:
+          - improving security posture by utilizing least priviliged concept
+          - helping with Scrum adoption (Git and release workflow, documentation, planning)
+          - building awareness concerning an importance of documentation both preliminary (designs) and final one
   - start: 01.2015
     end: 07.2021
     position: Lead Software Engineer
