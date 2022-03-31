@@ -9,8 +9,8 @@ CONTAINER_WORK_DIR=/data
 CONTAINER_BUILD_DIR=$(CONTAINER_WORK_DIR)/build
 
 PANDOC=docker run --rm -v $(CWD):$(CONTAINER_WORK_DIR) -v $(BUILD_DIR):$(CONTAINER_BUILD_DIR) pandoc:latest
-PANDOC_OPTS=--standalone --smart
-PANDOC_PDF_OPTS=$(PANDOC_OPTS) --latex-engine=xelatex --template=template/cv.tex
+PANDOC_OPTS=--standalone -f "markdown+smart"
+PANDOC_PDF_OPTS=$(PANDOC_OPTS) --pdf-engine=xelatex --template=template/cv.tex
 
 YAML_TO_JSON=docker run -i --rm ingy/yaml-to-json
 
@@ -21,7 +21,7 @@ clean:
 	rm -rf $(BUILD_DIR)
 
 build_docker: Dockerfile
-	docker build -t pandoc -f $< .
+	docker build --pull -t pandoc -f $< .
 
 ifneq ("$(wildcard appendix.md)","")
 appendix.pdf: init
