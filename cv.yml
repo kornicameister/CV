@@ -48,15 +48,25 @@ experience:
     company: AppYourself Sp. Z.o.o
     city: Łódź, Poland
     tasks:
-      - project: product specific
+      - project: AY-NextGen
+        entries:
+          - event storming & DDD 
+          - design documents
+          - technical documentation
+          - setting up AWS organization with AWS CDK
+          - microservice architecture
+          - building serverless components/services
+          - designed and implemented deployment model on top of NodeJS and AWS CDK
+          - supporting team with auxiliary DevOps tools 
+      - project: AY-OldGen
         entries:
           - migrating old monolithic stack into AWS-based environment
           - improving/implementing monitoring for old/new features
-          - creating new features, using AWS services, to supplement exisiting services
+          - creating new features, using AWS services, to supplement existing services
           - creating designs containing detailed feature analysis from requirements down to cost assessments
       - project: team specific
         entries:
-          - improving security posture by utilizing least priviliged concept
+          - improving security posture by utilizing least privileged concept
           - helping with Scrum adoption (Git and release workflow, documentation, planning)
           - building awareness concerning an importance of documentation both preliminary (designs) and final one
   - start: 01.2015
@@ -135,71 +145,65 @@ experience:
 skill:
   - category: General
     subskill:
-      - - team work
-        - communicative
-        - like challenges
-      - - interdisciplinarity
-        - automation
+      - team work
+      - communicative
+      - like challenges
+      - interdisciplinary
+      - automation
   - category: AWS
     subskill:
-      - - IAAC (CloudFormation, CDK)
-        - Compute services (EC2, EKS, ECS, Lambda)
-        - Storage services (S3, EBS, EFS)
-        - Databases services (RDS + PostgreSQL)
-        - Serverless processing (i.e. Lambda + integrations)
-      - - Distributed computing (i.e. SNS,SQS)
-        - Building large multi-tier applications
-        - Architecting solutions
+      - AWS CDK (components, applications, pipelines)
+      - IAAC (CloudFormation, CDK)
+      - Compute services (EC2, EKS, ECS, Lambda)
+      - Storage services (S3, EBS, EFS)
+      - Databases services (RDS + PostgreSQL)
+      - Serverless processing (i.e. Lambda + integrations)
+      - Distributed computing (i.e. SNS, SQS)
+      - Building large multi-tier applications
+      - Designing solutions
   - category: Backend
     subskill:
-      - - Python 3.x
-        - Python 2.x
-        - SQL
-        - OpenAPI (Swagger)
-      - - Java
-        - TypeScript
-      - - JSON
-        - YML
-        - msgpack
-  - category: Web
-    subskill:
-      - - JavaScript
-        - TypeScript
-        - Elm
-      - - HTML
-        - CSS
+      - Python 3.x
+      - Python 2.x
+      - SQL
+      - OpenAPI (Swagger)
+      - Java
+      - TypeScript
+      - JSON
+      - YML
+      - msgpack
   - category: Containers
     subskill:
-      - - docker
-        - docker-compose
-      - - k8s
+      - docker
+      - docker-compose
+      - k8s (familiar)
   - category: Databases
     subskill:
-      - - MySQL
-        - PostgreSQL
-      - - ElasticSearch
-        - InfluxDB
-  - category: CSV
+      - MySQL
+      - PostgreSQL
+      - ElasticSearch
+      - InfluxDB
+  - category: GIT
     subskill:
-      - - GIT
-        - SVN
-  - category: QA
+      - subtree
+      - modules
+      - rebasing, merges
+  - category: CICD
     subskill:
-      - - CircleCI
-        - Travis
-        - OpenStack CI
-        - Gerrit
-      - - Github Reviews
-        - Github Actions
-        - Gitlab CI
+      - CircleCI
+      - Travis
+      - Gerrit
+      - Github Actions
+      - Gitlab CI
+      - Bitbucket pipelines
   - category: Other
     subskill:
-      - - Monitoring As a Service
-        - Logging As a Service
-      - - (Neo)VIM enthusiast
-        - Dotfiles geek
-      - - LaTex
-        - OSS contributor
+      - Monitoring As a Service
+      - Logging As a Service
+      - (Neo)VIM enthusiast
+      - Dotfiles geek
+      - LaTex
+      - OSS contributor
 
 presentation:
   - when: 2017-03-22
