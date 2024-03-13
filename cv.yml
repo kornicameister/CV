@@ -50,14 +50,14 @@ experience:
     tasks:
       - project: AY-NextGen
         entries:
-          - event storming & DDD 
+          - event storming & DDD
           - design documents
           - technical documentation
           - setting up AWS organization with AWS CDK
           - microservice architecture
           - building serverless components/services
           - designed and implemented deployment model on top of NodeJS and AWS CDK
-          - supporting team with auxiliary DevOps tools 
+          - supporting team with auxiliary DevOps tools
       - project: AY-OldGen
         entries:
           - migrating old monolithic stack into AWS-based environment
