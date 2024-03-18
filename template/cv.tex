@@ -49,6 +49,7 @@ $if(education)$
     $else$
     {}
     $endif$
+    \vspace{5pt}
     $endfor$
 \end{cventries}
 $endif$
@@ -76,6 +77,7 @@ $if(experience)$
             }
             $endfor$
         \end{cvitems}
+        \vspace{5pt}
     }
     $else$
     {}
@@ -92,21 +94,15 @@ $for(skill)$
     {$skill.category$}
     {
         $for(skill.subskill)$
-        \begin{minipage}[t]{.35\linewidth}
-        $for(skill.subskill)$
-        \begin{itemize}
-            \item{$skill.subskill$}
-        \end{itemize}
+            {$skill.subskill$}${ sep },
         $endfor$
-        \end{minipage}
-        $endfor$
-        \vspace{5pt}
     }
 $endfor$
 \end{cvskills}
 $endif$
 
 $if(presentation)$
+\pagebreak
 \cvsection{Presentations}
 \begin{cventries}
     $for(presentation)$
