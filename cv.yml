@@ -166,7 +166,7 @@ skill:
       - like challenges
       - interdisciplinary
       - automation
-  - category: \faAws 
+  - category: \faAws
     subskill:
       - AWS CDK (components, applications, pipelines)
       - AWS Bedrock (including AWS Strands)
