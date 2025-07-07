@@ -1,27 +1,14 @@
-FROM texlive/texlive:latest
+FROM pandoc/extra:3.7.0.2-alpine
 
-RUN apt-get update && \
-    apt-get upgrade -y -qq && \
-    apt-get install \
-      --no-install-recommends -y \
-      fonts-font-awesome \
-      latexmk \
-      lmodern \
-      pandoc \
-      texlive-fonts-extra \
-      texlive-fonts-recommended \
-      texlive-latex-base \
-      texlive-latex-extra \
-      texlive-latex-recommended \
-      texlive-luatex \
-      texlive-pictures \
-      texlive-xetex \
-      xzdec \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN tlmgr init-usertree \
+  && tlmgr update --self \
+  && tlmgr install \
+    fontawesome6 \
+    ragged2e \
+    xifthen \
+    roboto \
+    xstring \
+  && mktexlsr
 
 WORKDIR /data
-
-ENTRYPOINT ["/usr/bin/pandoc"]
-CMD ["--help"]
+VOLUME ["/data"]
