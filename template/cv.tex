@@ -126,6 +126,20 @@ $if(presentation)$
 \end{cventries}
 $endif$
 
+$if(cert)$
+\cvsection{Certificates}
+\begin{cventries}
+$for(cert)$
+    \cventry
+        {$cert.code$}
+        {$cert.title$}
+        {\large\faAws}
+        {}
+        {$cert.when$}
+$endfor$
+\end{cventries}
+$endif$
+
 $if(oss)$
 \cvsection{OSS}
 \begin{cventries}

@@ -42,8 +42,24 @@ education:
     thesis: WMS(Warehouse Management System) implementation with computer tools
 
 experience:
-  - start: 08.2021
+  - start: 10.2024
     end: now
+    position: Cloud Engineer
+    company: LCloud
+    city: Warsaw, Poland
+    tasks:
+      - project: (Gen)AI/ML
+        entries:
+          - building systems leveraging GenAI and/or ML technologies
+          - appropriate AWS services being used
+          - projects are mostly commercial in nature
+          - serverless solutions
+          - customer meetings
+      - project: internal
+        entries:
+          - variety of tasks of different nature depending on the internal needs
+  - start: 08.2021
+    end: 12.2024
     position: Lead Backend Developer
     company: AppYourself Sp. Z.o.o
     city: Łódź, Poland
@@ -150,10 +166,12 @@ skill:
       - like challenges
       - interdisciplinary
       - automation
-  - category: AWS
+  - category: \faAws 
     subskill:
       - AWS CDK (components, applications, pipelines)
-      - IAAC (CloudFormation, CDK)
+      - AWS Bedrock (including AWS Strands)
+      - AWS Quicksight and Q for Quicksight
+      - IAAC (CloudFormation, SAM, CDK, Terraform)
       - Compute services (EC2, EKS, ECS, Lambda)
       - Storage services (S3, EBS, EFS)
       - Databases services (RDS + PostgreSQL)
@@ -161,6 +179,11 @@ skill:
       - Distributed computing (i.e. SNS, SQS)
       - Building large multi-tier applications
       - Designing solutions
+  - category: AI
+    subskill:
+      - MCP servers
+      - Agents
+      - Prompt engineering
   - category: Backend
     subskill:
       - Python 3.x
@@ -170,8 +193,7 @@ skill:
       - Java
       - TypeScript
       - JSON
-      - YML
-      - msgpack
+      - YAML
   - category: Containers
     subskill:
       - docker
@@ -243,6 +265,11 @@ oss:
   - name: loguru-mypy
     description: mypy plugin veryfying proper loguru (logging library) usage
     url: https://github.com/kornicameister/loguru-mypy
+
+cert:
+  - when: 2025-03-03
+    code: CLF-C02
+    title: AWS Cerfified Cloud Practitioner
 
 rodo:
   en: |
