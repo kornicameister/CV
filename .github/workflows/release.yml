@@ -21,7 +21,9 @@ jobs:
         run: make cv.json
       
       - name: Generate changelog
-        uses: CharMixer/auto-changelog-action@v1
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
     
       - name: Create Release
         id: create_release
