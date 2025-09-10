@@ -49,7 +49,7 @@ experience:
     city: Warsaw, Poland
     tasks:
       - project: NP problems
-        entries: 
+        entries:
           - working with Timefold solver
           - solving NP-hard problem according to customer's needs
           - Java based ecosystem
