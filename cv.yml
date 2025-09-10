@@ -48,16 +48,24 @@ experience:
     company: LCloud
     city: Warsaw, Poland
     tasks:
+      - project: NP problems
+        entries: 
+          - working with Timefold solver
+          - solving NP-hard problem according to customer's needs
+          - Java based ecosystem
       - project: (Gen)AI/ML
         entries:
-          - building systems leveraging GenAI and/or ML technologies
+          - regular customer meetings
+          - writing design documents, architectures + cost analysis
+          - building systems leveraging GenAI, ML and MCP
           - appropriate AWS services being used
           - projects are mostly commercial in nature
           - serverless solutions
-          - customer meetings
+          - Python, TypeScript and Java
       - project: internal
         entries:
           - variety of tasks of different nature depending on the internal needs
+          - mostly building internal services with AWS cloud
   - start: 08.2021
     end: 12.2024
     position: Lead Backend Developer
@@ -169,7 +177,8 @@ skill:
   - category: \faAws
     subskill:
       - AWS CDK (components, applications, pipelines)
-      - AWS Bedrock (including AWS Strands)
+      - AWS Bedrock (AgentCore, Prompts, Flows, KnowledgeBases)
+      - AWS StrandsFramework
       - AWS Quicksight and Q for Quicksight
       - IAAC (CloudFormation, SAM, CDK, Terraform)
       - Compute services (EC2, EKS, ECS, Lambda)
@@ -184,6 +193,7 @@ skill:
       - MCP servers
       - Agents
       - Prompt engineering
+      - Knowledge bases
   - category: Backend
     subskill:
       - Python 3.x
