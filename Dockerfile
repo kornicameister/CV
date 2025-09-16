@@ -1,4 +1,4 @@
-FROM pandoc/extra:3.7.0.2-alpine
+FROM pandoc/extra:3.8.0.0-alpine
 
 RUN tlmgr init-usertree \
   && tlmgr update --self \
