@@ -35,7 +35,7 @@ jobs:
         uses: jwalton/gh-docker-logs@v2
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: 'cv_${{ github.sha }}_build'
           path: build/
