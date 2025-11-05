@@ -279,7 +279,7 @@ oss:
 cert:
   - when: 2025-03-03
     code: CLF-C02
-    title: AWS Cerfified Cloud Practitioner
+    title: AWS Certified Cloud Practitioner
 
 rodo:
   en: |
