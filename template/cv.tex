@@ -35,21 +35,6 @@ $endfor$
   {}
   {\thepage}
 
-$if(skill)$
-\cvsection{Skills}
-\begin{cvskills}
-$for(skill)$
-    \cvskill
-    {$skill.category$}
-    {
-        $for(skill.subskill)$
-            {$skill.subskill$}${ sep },
-        $endfor$
-    }
-$endfor$
-\end{cvskills}
-$endif$
-
 $if(education)$
 \cvsection{Education}
 \begin{cventries}
@@ -99,6 +84,21 @@ $if(experience)$
     $endif$
     $endfor$
 \end{cventries}
+$endif$
+
+$if(skill)$
+\cvsection{Skills}
+\begin{cvskills}
+$for(skill)$
+    \cvskill
+    {$skill.category$}
+    {
+        $for(skill.subskill)$
+            {$skill.subskill$}${ sep },
+        $endfor$
+    }
+$endfor$
+\end{cvskills}
 $endif$
 
 $if(presentation)$
