@@ -1,5 +1,6 @@
 \documentclass[$fontSize$, $format$]{awesome-cv}
 \usepackage{enumitem}
+\usepackage{needspace}
 \geometry{$geometry$}
 \urlstyle{same}
 
@@ -87,6 +88,7 @@ $if(experience)$
 $endif$
 
 $if(skill)$
+\needspace{15\baselineskip}
 \cvsection{Skills}
 \begin{cvskills}
 $for(skill)$
@@ -102,7 +104,6 @@ $endfor$
 $endif$
 
 $if(presentation)$
-\pagebreak
 \cvsection{Presentations}
 \begin{cventries}
     $for(presentation)$
