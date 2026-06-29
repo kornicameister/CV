@@ -1,0 +1,138 @@
+---
+interface Cert {
+  when: string;
+  code: string;
+  title: string;
+}
+
+interface Props {
+  certs: Cert[];
+}
+
+const { certs } = Astro.props;
+---
+
+<section id="certs" class="section">
+  <div class="container">
+    <h2 class="section-title">Certifications</h2>
+    <div class="certs-grid">
+      {certs.map(cert => (
+        <div class="cert-card">
+          <div class="cert-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+          </div>
+          <h3 class="cert-name">{cert.title}</h3>
+          <p class="cert-code">{cert.code}</p>
+          <p class="cert-date">{cert.when}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: 4rem 0;
+    scroll-margin-top: 2rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .cert-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .cert-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-from);
+    box-shadow: 0 8px 24px var(--shadow);
+  }
+
+  .cert-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: var(--accent-gradient);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    color: white;
+    transition: transform 0.3s ease;
+  }
+
+  .cert-card:hover .cert-badge {
+    transform: scale(1.1);
+  }
+
+  .cert-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+
+  .cert-code {
+    font-size: 0.9rem;
+    color: var(--accent-from);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .cert-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .certs-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .certs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .certs-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
