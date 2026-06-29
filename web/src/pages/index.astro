@@ -1,10 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import cvData from '../data/cv.json';
 ---
 
-<BaseLayout title="Tomasz Trębski - CV">
-  <div class="container">
-    <h1 class="gradient-text">Test Layout</h1>
-    <p>Theme system working</p>
-  </div>
+<BaseLayout title={`${cvData.basic.firstName} ${cvData.basic.lastName} - CV`}>
+  <Hero
+    firstName={cvData.basic.firstName}
+    lastName={cvData.basic.lastName}
+    position={cvData.basic.position}
+    photoUrl={cvData.basic.photoUrl}
+    social={cvData.social}
+  />
 </BaseLayout>
