@@ -111,11 +111,14 @@ for (let i = 0; i < shapeCount; i++) {
   </div>
 
   <div class="hero-content">
-    <div class="hero-photo-container">
+    <div class="hero-photo-container" id="hero-photo-container">
       <img src={fullPhotoUrl} alt={`${firstName} ${lastName}`} class="hero-photo hero-photo-primary" />
       <img src={avatarDevUrl} alt={`${firstName} ${lastName} - Developer Avatar`} class="hero-photo hero-photo-secondary" />
     </div>
-    <h1 class="hero-name gradient-text">{firstName} {lastName}</h1>
+    <h1 class="hero-name gradient-text">
+      <span class="name-real">{firstName} {lastName}</span>
+      <span class="name-alias">kornicameister</span>
+    </h1>
     <p class="hero-position">{position}</p>
     <div class="hero-social">
       {displaySocial.map(social => (
@@ -230,6 +233,31 @@ for (let i = 0; i < shapeCount; i++) {
     font-weight: 800;
     margin-bottom: 0.5rem;
     color: white;
+    position: relative;
+  }
+
+  .name-real,
+  .name-alias {
+    transition: opacity 0.3s ease;
+  }
+
+  .name-real {
+    opacity: 1;
+  }
+
+  .name-alias {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+
+  .hero-photo-container:hover ~ .hero-name .name-real {
+    opacity: 0;
+  }
+
+  .hero-photo-container:hover ~ .hero-name .name-alias {
+    opacity: 1;
   }
 
   .hero-position {
