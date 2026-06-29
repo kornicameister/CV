@@ -9,6 +9,33 @@ interface Props {
 }
 
 const { skills } = Astro.props;
+
+// Map LaTeX FontAwesome codes to FontAwesome classes
+const iconMap: Record<string, string> = {
+  '\\faAws': 'fab fa-aws',
+  'AI': 'fas fa-brain',
+  'Backend': 'fas fa-server',
+  'Containers': 'fab fa-docker',
+  'Databases': 'fas fa-database',
+  'GIT': 'fab fa-git-alt',
+  'CICD': 'fas fa-infinity',
+  'General': 'fas fa-star',
+  'Other': 'fas fa-ellipsis-h',
+};
+
+// Helper function to get icon class
+function getIconClass(category: string): string {
+  return iconMap[category] || 'fas fa-code';
+}
+
+// Helper function to get display name
+function getDisplayName(category: string): string {
+  // Remove LaTeX command prefix if present
+  if (category.startsWith('\\fa')) {
+    return category.substring(3).toUpperCase();
+  }
+  return category;
+}
 ---
 
 <section id="skills" class="section">
@@ -18,7 +45,8 @@ const { skills } = Astro.props;
       {skills.map(category => (
         <div class="skill-category">
           <h3 class="category-name">
-            <span class="category-icon">{category.category}</span>
+            <i class={`category-icon ${getIconClass(category.category)}`}></i>
+            <span>{getDisplayName(category.category)}</span>
           </h3>
           <div class="skill-pills">
             {category.subskill.map(skill => (
