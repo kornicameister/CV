@@ -252,13 +252,6 @@ for (let i = 0; i < shapeCount; i++) {
     opacity: 0;
   }
 
-  .hero-photo-container:hover ~ .hero-name .name-real {
-    opacity: 0;
-  }
-
-  .hero-photo-container:hover ~ .hero-name .name-alias {
-    opacity: 1;
-  }
 
   .hero-position {
     font-size: 1.5rem;
@@ -304,3 +297,23 @@ for (let i = 0; i < shapeCount; i++) {
     }
   }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const photoContainer = document.getElementById('hero-photo-container');
+    const nameReal = document.querySelector('.name-real');
+    const nameAlias = document.querySelector('.name-alias');
+
+    if (photoContainer && nameReal && nameAlias) {
+      photoContainer.addEventListener('mouseenter', () => {
+        nameReal.style.opacity = '0';
+        nameAlias.style.opacity = '1';
+      });
+
+      photoContainer.addEventListener('mouseleave', () => {
+        nameReal.style.opacity = '1';
+        nameAlias.style.opacity = '0';
+      });
+    }
+  });
+</script>
