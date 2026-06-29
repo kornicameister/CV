@@ -73,18 +73,18 @@ interface Shape {
 }
 
 const shapes: Shape[] = [];
-const shapeCount = 15;
-const colors = ['#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4', '#10b981'];
+const shapeCount = 25;
+const colors = ['#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4', '#10b981', '#f59e0b', '#ef4444'];
 
 for (let i = 0; i < shapeCount; i++) {
   const types: Array<'circle' | 'triangle' | 'square'> = ['circle', 'triangle', 'square'];
   shapes.push({
     type: types[Math.floor(rng.next() * types.length)],
-    x: rng.range(0, 100),
-    y: rng.range(0, 100),
-    size: rng.range(50, 200),
+    x: rng.range(-10, 110),
+    y: rng.range(-10, 110),
+    size: rng.range(100, 400),
     rotation: rng.range(0, 360),
-    opacity: rng.range(0.05, 0.15),
+    opacity: rng.range(0.15, 0.35),
     color: colors[Math.floor(rng.next() * colors.length)]
   });
 }
@@ -166,6 +166,7 @@ for (let i = 0; i < shapeCount; i++) {
     position: absolute;
     pointer-events: none;
     will-change: transform;
+    filter: blur(40px);
   }
 
   .shape-circle {
@@ -177,7 +178,7 @@ for (let i = 0; i < shapeCount; i++) {
   }
 
   .shape-square {
-    border-radius: 4px;
+    border-radius: 12px;
   }
 
   .hero-content {
