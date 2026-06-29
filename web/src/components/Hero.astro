@@ -24,11 +24,17 @@ const displaySocial = social.filter(s =>
 const baseUrl = import.meta.env.BASE_URL || '/';
 const normalizedPhotoUrl = photoUrl.startsWith('./') ? photoUrl.slice(1) : photoUrl;
 const fullPhotoUrl = normalizedPhotoUrl.startsWith(baseUrl) ? normalizedPhotoUrl : `${baseUrl}${normalizedPhotoUrl}`;
+
+// Second avatar for hover effect
+const avatarDevUrl = `${baseUrl}media/avatar-dev.png`;
 ---
 
 <section id="hero" class="hero">
   <div class="hero-content">
-    <img src={fullPhotoUrl} alt={`${firstName} ${lastName}`} class="hero-photo" />
+    <div class="hero-photo-container">
+      <img src={fullPhotoUrl} alt={`${firstName} ${lastName}`} class="hero-photo hero-photo-primary" />
+      <img src={avatarDevUrl} alt={`${firstName} ${lastName} - Developer Avatar`} class="hero-photo hero-photo-secondary" />
+    </div>
     <h1 class="hero-name gradient-text">{firstName} {lastName}</h1>
     <p class="hero-position">{position}</p>
     <div class="hero-social">
@@ -84,14 +90,43 @@ const fullPhotoUrl = normalizedPhotoUrl.startsWith(baseUrl) ? normalizedPhotoUrl
     z-index: 1;
   }
 
+  .hero-photo-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    cursor: pointer;
+  }
+
   .hero-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 200px;
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
     border: 6px solid rgba(255, 255, 255, 0.3);
-    margin-bottom: 2rem;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease;
+  }
+
+  .hero-photo-primary {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .hero-photo-secondary {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .hero-photo-container:hover .hero-photo-primary {
+    opacity: 0;
+  }
+
+  .hero-photo-container:hover .hero-photo-secondary {
+    opacity: 1;
   }
 
   .hero-name {
@@ -126,6 +161,11 @@ const fullPhotoUrl = normalizedPhotoUrl.startsWith(baseUrl) ? normalizedPhotoUrl
   }
 
   @media (max-width: 640px) {
+    .hero-photo-container {
+      width: 150px;
+      height: 150px;
+    }
+
     .hero-photo {
       width: 150px;
       height: 150px;
