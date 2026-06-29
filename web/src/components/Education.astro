@@ -1,0 +1,149 @@
+---
+interface EducationEntry {
+  years: string;
+  city: string;
+  school: string;
+  faculty: string;
+  thesis?: string;
+}
+
+interface Props {
+  entries: EducationEntry[];
+}
+
+const { entries } = Astro.props;
+---
+
+<section id="education" class="section">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="education-list">
+      {entries.map(edu => (
+        <div class="education-card">
+          <div class="education-header">
+            <div>
+              <h3 class="education-school">{edu.school}</h3>
+              <p class="education-faculty">{edu.faculty}</p>
+              <p class="education-location">{edu.city}</p>
+              {edu.thesis && (
+                <p class="education-thesis">
+                  <strong>Thesis:</strong> {edu.thesis}
+                </p>
+              )}
+            </div>
+            <div class="education-years">{edu.years}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: 4rem 0;
+    scroll-margin-top: 2rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .education-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .education-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .education-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px var(--shadow);
+  }
+
+  .education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .education-school {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .education-faculty {
+    font-size: 1rem;
+    color: var(--accent-from);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .education-location {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .education-thesis {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: 0.5rem;
+  }
+
+  .education-years {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    white-space: nowrap;
+    background: var(--bg-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .education-card {
+      padding: 1.25rem;
+    }
+
+    .education-header {
+      flex-direction: column;
+    }
+
+    .education-years {
+      align-self: flex-start;
+    }
+
+    .education-school {
+      font-size: 1.1rem;
+    }
+  }
+</style>
