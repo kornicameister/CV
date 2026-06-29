@@ -233,31 +233,29 @@ for (let i = 0; i < shapeCount; i++) {
     font-weight: 800;
     margin-bottom: 0.5rem;
     color: white;
-    position: relative;
-    display: inline-block;
-    min-height: 5rem;
   }
 
   .name-real,
   .name-alias {
     transition: opacity 0.3s ease;
-    display: block;
   }
 
   .name-real {
     opacity: 1;
-    position: relative;
-    z-index: 2;
   }
 
   .name-alias {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     opacity: 0;
-    z-index: 1;
-    white-space: nowrap;
+    display: none;
+  }
+
+  .name-real.hidden {
+    display: none;
+  }
+
+  .name-alias.visible {
+    display: inline;
+    opacity: 1;
   }
 
 
@@ -314,13 +312,13 @@ for (let i = 0; i < shapeCount; i++) {
 
     if (photoContainer && nameReal && nameAlias) {
       photoContainer.addEventListener('mouseenter', () => {
-        nameReal.style.opacity = '0';
-        nameAlias.style.opacity = '1';
+        nameReal.classList.add('hidden');
+        nameAlias.classList.add('visible');
       });
 
       photoContainer.addEventListener('mouseleave', () => {
-        nameReal.style.opacity = '1';
-        nameAlias.style.opacity = '0';
+        nameReal.classList.remove('hidden');
+        nameAlias.classList.remove('visible');
       });
     }
   });
