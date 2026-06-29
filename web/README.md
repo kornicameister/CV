@@ -1,43 +1,128 @@
-# Astro Starter Kit: Minimal
+# CV Website
 
-```sh
-npm create astro@latest -- --template minimal
+Modern single-page application (SPA) for displaying CV content online.
+
+## Tech Stack
+
+- **Framework:** Astro 6.x
+- **Styling:** CSS (vanilla, CSS variables for theming)
+- **JavaScript:** Vanilla JS for scroll-spy navigation (~2KB)
+- **Deployment:** GitHub Pages
+
+## Features
+
+- 📱 Fully responsive (mobile, tablet, desktop)
+- 🌓 Auto dark/light mode (system preference detection)
+- 🔗 URL routing with scroll-spy navigation
+- ⚡ Fast load times (< 3s on 3G)
+- 🎨 Modern design with gradients and animations
+- ♿ Accessible navigation
+
+## Development
+
+### Prerequisites
+
+- Node.js 18+
+- Data generated from root: `make cv.json`
+
+### Commands
+
+```bash
+# Start dev server
+make web-dev
+
+# Production build
+make web
+
+# Clean build artifacts
+make clean-web
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Dev Server
 
-## 🚀 Project Structure
+```bash
+cd web
+npm run dev
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+Visit: `http://localhost:4321`
 
-```text
-/
-├── public/
+## Build Process
+
+1. Root Makefile generates `build/cv.json` from YAML data
+2. JSON + media files copied to `web/src/data/` and `web/public/media/`
+3. Astro builds static site to `web/dist/`
+4. Deploy `web/dist/` to hosting
+
+## Project Structure
+
+```
+web/
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── pages/
+│   │   └── index.astro           # Main page
+│   ├── components/
+│   │   ├── Hero.astro            # Hero section
+│   │   ├── Experience.astro      # Experience timeline
+│   │   ├── Certifications.astro  # Certs grid
+│   │   ├── Skills.astro          # Skills by category
+│   │   ├── Education.astro       # Education timeline
+│   │   └── NavIndicator.astro    # Scroll-spy nav
+│   ├── layouts/
+│   │   └── BaseLayout.astro      # Base HTML wrapper
+│   ├── styles/
+│   │   └── global.css            # Global styles & theme
+│   └── data/
+│       └── cv.json               # CV data (generated)
+└── public/
+    └── media/                     # Images (copied)
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Deployment
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### GitHub Pages
 
-Any static assets, like images, can be placed in the `public/` directory.
+1. Build: `make web`
+2. Deploy `web/dist/` to `gh-pages` branch
+3. GitHub Actions handles this automatically on push to `master`
 
-## 🧞 Commands
+### Manual Deploy
 
-All commands are run from the root of the project, from a terminal:
+```bash
+make web
+cd web/dist
+# Deploy these files to any static hosting
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Browser Support
 
-## 👀 Want to learn more?
+Modern browsers (last 2 versions):
+- Chrome 111+
+- Firefox
+- Safari 18+
+- Edge
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Performance
+
+- **FCP:** < 1.5s
+- **TTI:** < 3.0s
+- **JS bundle:** < 10KB
+- **CSS bundle:** < 50KB
+
+## Customization
+
+### Theme
+
+Edit `web/src/styles/global.css` CSS variables:
+
+```css
+:root {
+  --accent-from: #3b82f6;
+  --accent-to: #8b5cf6;
+  /* ... */
+}
+```
+
+### Sections
+
+Add/remove sections in `web/src/pages/index.astro`.

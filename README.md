@@ -5,3 +5,16 @@
 
 # CV
 Personal CV (src)
+
+## Web Version
+
+The CV is also available as a modern SPA website.
+
+### Build Web Version
+
+```bash
+make web-dev  # Development server
+make web      # Production build
+```
+
+See [`web/README.md`](web/README.md) for full documentation.
