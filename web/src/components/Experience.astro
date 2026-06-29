@@ -35,27 +35,48 @@ function formatDate(dateStr: string | number): string {
         <div class="timeline-item" data-index={index}>
           <div class="timeline-marker"></div>
           <div class="experience-card">
-            <div class="experience-header">
-              <div>
-                <h3 class="experience-company">{exp.company}</h3>
-                <p class="experience-position">{exp.position}</p>
-                <p class="experience-location">{exp.city}</p>
-              </div>
-              <div class="experience-date">
-                {formatDate(exp.start)} - {formatDate(exp.end)}
-              </div>
-            </div>
-            <div class="experience-body">
-              {exp.tasks.map(task => (
-                <div class="project">
-                  <h4 class="project-name">{task.project}</h4>
-                  <ul class="project-entries">
-                    {task.entries.map(entry => (
-                      <li>{entry}</li>
-                    ))}
-                  </ul>
+            <button
+              class="accordion-header"
+              data-accordion-index={index}
+              aria-expanded={index === 0 ? "true" : "false"}
+              aria-controls={`accordion-content-${index}`}
+            >
+              <div class="accordion-header-content">
+                <div class="accordion-title-group">
+                  <h3 class="experience-company">{exp.company}</h3>
+                  <span class="accordion-separator">→</span>
+                  <p class="experience-position">{exp.position}</p>
+                  <span class="accordion-separator">→</span>
+                  <span class="experience-years">
+                    {formatDate(exp.start)} - {formatDate(exp.end)}
+                  </span>
                 </div>
-              ))}
+                <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+            <div
+              class={`accordion-content ${index === 0 ? 'expanded' : ''}`}
+              id={`accordion-content-${index}`}
+              role="region"
+              aria-labelledby={`accordion-header-${index}`}
+            >
+              <div class="experience-details">
+                <p class="experience-location">{exp.city}</p>
+                <div class="experience-body">
+                  {exp.tasks.map(task => (
+                    <div class="project">
+                      <h4 class="project-name">{task.project}</h4>
+                      <ul class="project-entries">
+                        {task.entries.map(entry => (
+                          <li>{entry}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -63,6 +84,44 @@ function formatDate(dateStr: string | number): string {
     </div>
   </div>
 </section>
+
+<script>
+  function initAccordion() {
+    const headers = document.querySelectorAll('.accordion-header');
+
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const index = header.getAttribute('data-accordion-index');
+        const content = document.getElementById(`accordion-content-${index}`);
+        const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+        // Close all accordions
+        document.querySelectorAll('.accordion-header').forEach(h => {
+          h.setAttribute('aria-expanded', 'false');
+        });
+        document.querySelectorAll('.accordion-content').forEach(c => {
+          c.classList.remove('expanded');
+        });
+
+        // If this wasn't expanded, expand it
+        if (!isExpanded) {
+          header.setAttribute('aria-expanded', 'true');
+          content?.classList.add('expanded');
+        }
+      });
+    });
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAccordion);
+  } else {
+    initAccordion();
+  }
+
+  // Re-initialize on view transitions (Astro navigation)
+  document.addEventListener('astro:page-load', initAccordion);
+</script>
 
 <style>
   .section {
@@ -111,15 +170,16 @@ function formatDate(dateStr: string | number): string {
     background: var(--accent-from);
     border: 3px solid var(--bg-primary);
     box-shadow: 0 0 0 4px var(--border-color);
+    z-index: 1;
   }
 
   .experience-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 2rem;
     box-shadow: 0 2px 8px var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
   }
 
   .experience-card:hover {
@@ -127,41 +187,93 @@ function formatDate(dateStr: string | number): string {
     box-shadow: 0 8px 24px var(--shadow);
   }
 
-  .experience-header {
+  .accordion-header {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 1.5rem 2rem;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .accordion-header:hover {
+    background: var(--bg-secondary);
+  }
+
+  .accordion-header:focus {
+    outline: 2px solid var(--accent-from);
+    outline-offset: -2px;
+  }
+
+  .accordion-header-content {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
+    align-items: center;
     gap: 1rem;
+  }
+
+  .accordion-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .accordion-separator {
+    color: var(--text-muted);
+    font-weight: 400;
   }
 
   .experience-company {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.25rem;
+    margin: 0;
   }
 
   .experience-position {
     font-size: 1.1rem;
     color: var(--accent-from);
     font-weight: 600;
-    margin-bottom: 0.25rem;
+    margin: 0;
+  }
+
+  .experience-years {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .accordion-icon {
+    flex-shrink: 0;
+    color: var(--accent-from);
+    transition: transform 0.3s ease;
+  }
+
+  .accordion-header[aria-expanded="true"] .accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .accordion-content.expanded {
+    max-height: 5000px;
+  }
+
+  .experience-details {
+    padding: 0 2rem 2rem;
   }
 
   .experience-location {
     font-size: 0.9rem;
     color: var(--text-muted);
-  }
-
-  .experience-date {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    font-weight: 600;
-    white-space: nowrap;
-    background: var(--bg-secondary);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    margin-bottom: 1.5rem;
   }
 
   .experience-body {
@@ -220,20 +332,34 @@ function formatDate(dateStr: string | number): string {
       left: -1.5rem;
     }
 
-    .experience-card {
-      padding: 1.5rem;
+    .accordion-header {
+      padding: 1.25rem 1.5rem;
     }
 
-    .experience-header {
+    .accordion-title-group {
       flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
     }
 
-    .experience-date {
-      align-self: flex-start;
+    .accordion-separator {
+      display: none;
     }
 
     .experience-company {
       font-size: 1.25rem;
+    }
+
+    .experience-position {
+      font-size: 1rem;
+    }
+
+    .experience-years {
+      font-size: 0.875rem;
+    }
+
+    .experience-details {
+      padding: 0 1.5rem 1.5rem;
     }
   }
 </style>
