@@ -5,6 +5,7 @@ import Experience from '../components/Experience.astro';
 import Certifications from '../components/Certifications.astro';
 import Skills from '../components/Skills.astro';
 import Education from '../components/Education.astro';
+import NavIndicator from '../components/NavIndicator.astro';
 import cvData from '../data/cv.json';
 ---
 
@@ -20,4 +21,85 @@ import cvData from '../data/cv.json';
   <Certifications certs={cvData.cert} />
   <Skills skills={cvData.skill} />
   <Education entries={cvData.education} />
+  <NavIndicator />
 </BaseLayout>
+
+<script>
+  // Scroll-spy navigation
+  const sections = ['experience', 'certs', 'skills', 'education'];
+  const navDots = document.querySelectorAll('.nav-dot');
+
+  // Track current section to avoid redundant history pushes
+  let currentSection = '';
+
+  // Update URL and nav indicator
+  function updateNavigation(sectionId: string) {
+    if (currentSection === sectionId) return;
+    currentSection = sectionId;
+
+    // Update URL
+    const newPath = `${window.location.pathname}#${sectionId}`;
+    history.pushState(null, '', newPath);
+
+    // Update nav indicator
+    navDots.forEach(dot => {
+      if (dot.getAttribute('data-section') === sectionId) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  // Intersection Observer for scroll detection
+  const observerOptions = {
+    root: null,
+    rootMargin: '-50% 0px -50% 0px',
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        updateNavigation(entry.target.id);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections
+  sections.forEach(id => {
+    const section = document.getElementById(id);
+    if (section) {
+      observer.observe(section);
+    }
+  });
+
+  // Handle initial hash on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.slice(1);
+    if (hash && sections.includes(hash)) {
+      setTimeout(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  });
+
+  // Handle back/forward navigation
+  window.addEventListener('popstate', () => {
+    const hash = window.location.hash.slice(1);
+    if (hash && sections.includes(hash)) {
+      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+
+  // Smooth scroll for nav clicks
+  navDots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      const sectionId = dot.getAttribute('data-section');
+      if (sectionId) {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
