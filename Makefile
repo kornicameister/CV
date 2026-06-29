@@ -47,3 +47,17 @@ cv_full.pdf: clean init appendix.pdf cv.pdf
 
 cv.json: build/cv.yml init
 	cat build/cv.yml | $(YAML_TO_JSON) | tee build/cv.json
+
+# Web targets
+web: build/cv.json
+	cp build/cv.json web/src/data/cv.json
+	cp -r media/* web/public/media/
+	cd web && npm run build
+
+web-dev: build/cv.json
+	cp build/cv.json web/src/data/cv.json
+	cp -r media/* web/public/media/
+	cd web && npm run dev
+
+clean-web:
+	rm -rf web/dist web/src/data/cv.json web/public/media
