@@ -234,22 +234,30 @@ for (let i = 0; i < shapeCount; i++) {
     margin-bottom: 0.5rem;
     color: white;
     position: relative;
+    display: inline-block;
+    min-height: 5rem;
   }
 
   .name-real,
   .name-alias {
     transition: opacity 0.3s ease;
+    display: block;
   }
 
   .name-real {
     opacity: 1;
+    position: relative;
+    z-index: 2;
   }
 
   .name-alias {
     position: absolute;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
+    z-index: 1;
+    white-space: nowrap;
   }
 
 
