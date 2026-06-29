@@ -52,11 +52,13 @@ cv.json: build/cv.yml init
 web: build/cv.json
 	cp build/cv.json web/src/data/cv.json
 	cp -r media/* web/public/media/
+	find data/ -type f | sort | xargs cat | shasum | cut -d' ' -f1 > web/src/data/content-seed.txt
 	cd web && npm run build
 
 web-dev: build/cv.json
 	cp build/cv.json web/src/data/cv.json
 	cp -r media/* web/public/media/
+	find data/ -type f | sort | xargs cat | shasum | cut -d' ' -f1 > web/src/data/content-seed.txt
 	cd web && npm run dev
 
 clean-web:

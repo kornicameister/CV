@@ -1,4 +1,7 @@
 ---
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
 interface Social {
   key: string;
   value: string;
@@ -27,9 +30,86 @@ const fullPhotoUrl = normalizedPhotoUrl.startsWith(baseUrl) ? normalizedPhotoUrl
 
 // Second avatar for hover effect
 const avatarDevUrl = `${baseUrl}media/avatar-dev.png`;
+
+// Read content seed for geometric pattern generation
+let seed = 12345; // fallback
+try {
+  const seedPath = join(process.cwd(), 'src', 'data', 'content-seed.txt');
+  const seedStr = readFileSync(seedPath, 'utf-8').trim();
+  seed = parseInt(seedStr.substring(0, 8), 16);
+} catch (e) {
+  console.warn('Could not read content-seed.txt, using fallback seed');
+}
+
+// Seeded PRNG (Linear Congruential Generator)
+class SeededRandom {
+  private seed: number;
+
+  constructor(seed: number) {
+    this.seed = seed;
+  }
+
+  next(): number {
+    this.seed = (this.seed * 1664525 + 1013904223) % 2147483648;
+    return this.seed / 2147483648;
+  }
+
+  range(min: number, max: number): number {
+    return min + this.next() * (max - min);
+  }
+}
+
+const rng = new SeededRandom(seed);
+
+// Generate geometric shapes
+interface Shape {
+  type: 'circle' | 'triangle' | 'square';
+  x: number;
+  y: number;
+  size: number;
+  rotation: number;
+  opacity: number;
+  color: string;
+}
+
+const shapes: Shape[] = [];
+const shapeCount = 15;
+const colors = ['#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4', '#10b981'];
+
+for (let i = 0; i < shapeCount; i++) {
+  const types: Array<'circle' | 'triangle' | 'square'> = ['circle', 'triangle', 'square'];
+  shapes.push({
+    type: types[Math.floor(rng.next() * types.length)],
+    x: rng.range(0, 100),
+    y: rng.range(0, 100),
+    size: rng.range(50, 200),
+    rotation: rng.range(0, 360),
+    opacity: rng.range(0.05, 0.15),
+    color: colors[Math.floor(rng.next() * colors.length)]
+  });
+}
 ---
 
 <section id="hero" class="hero">
+  <!-- Geometric pattern background -->
+  <div class="hero-pattern">
+    {shapes.map((shape, i) => (
+      <div
+        class={`shape shape-${shape.type}`}
+        style={`
+          left: ${shape.x}%;
+          top: ${shape.y}%;
+          width: ${shape.size}px;
+          height: ${shape.size}px;
+          transform: rotate(${shape.rotation}deg);
+          opacity: ${shape.opacity};
+          background-color: ${shape.color};
+        `}
+        data-shape-id={i}
+      />
+    ))}
+  </div>
+
   <div class="hero-content">
     <div class="hero-photo-container">
       <img src={fullPhotoUrl} alt={`${firstName} ${lastName}`} class="hero-photo hero-photo-primary" />
@@ -67,21 +147,37 @@ const avatarDevUrl = `${baseUrl}media/avatar-dev.png`;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--accent-gradient);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     position: relative;
     overflow: hidden;
   }
 
-  .hero::before {
-    content: '';
+  .hero-pattern {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1), transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05), transparent 50%);
     pointer-events: none;
+    z-index: 0;
+  }
+
+  .shape {
+    position: absolute;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  .shape-circle {
+    border-radius: 50%;
+  }
+
+  .shape-triangle {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  .shape-square {
+    border-radius: 4px;
   }
 
   .hero-content {
@@ -95,19 +191,18 @@ const avatarDevUrl = `${baseUrl}media/avatar-dev.png`;
     width: 200px;
     height: 200px;
     margin: 0 auto 2rem;
-    cursor: pointer;
   }
 
   .hero-photo {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 200px;
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
     border: 6px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
     transition: opacity 0.3s ease;
   }
 
