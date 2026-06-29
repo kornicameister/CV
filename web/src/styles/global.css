@@ -67,3 +67,32 @@ body {
     padding: 0 1rem;
   }
 }
+
+/* Scroll animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition-property: background-color, color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Prevent animation on page load */
+.preload * {
+  animation-duration: 0s !important;
+  transition: none !important;
+}
