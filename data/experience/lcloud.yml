@@ -1,0 +1,29 @@
+start: 10.2024
+end: now
+position: Cloud Engineer
+company: LCloud
+city: Warsaw, Poland
+tasks:
+- project: NP problems
+  entries:
+  - working with Timefold solver
+  - solving NP-hard problem according to customer's needs
+  - Java based ecosystem
+- project: Agentic AI on AWS
+  entries:
+  - designing and building multi-agent systems on AWS Bedrock AgentCore
+  - cross-account IAM chaining enabling agents to operate across AWS accounts securely
+  - MCP server infrastructure with OAuth2/Cognito authentication, CloudFront, ALB, ECS Fargate
+  - CDK-based IaC for full agentic workflow deployment lifecycle
+  - Python, serverless-first, production-grade
+- project: (Gen)AI/ML
+  entries:
+  - architecture design and cost analysis for GenAI commercial projects
+  - LLM evaluation pipelines for agentic RAG and multi-agent systems
+  - MCP server tooling including credential-aware proxies and AWS-integrated servers
+  - Python, TypeScript
+- project: internal
+  entries:
+  - IAM architecture, credential management tooling, and developer experience improvements
+  - event-driven integrations (webhook validation, EventBridge routing, data pipelines to Snowflake)
+  - security audit tooling and CloudFormation resource monitoring

@@ -1,0 +1,7 @@
+when: 2017-03-22
+location: Warsaw, Poland
+conference: OpenStack Day
+title: Monitoring of OpenStack Cloud
+detail:
+- Overview of how monasca deals with cloud monitoring
+- Discussing future plans

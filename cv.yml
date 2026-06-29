@@ -1,289 +1,50 @@
 ---
+# CV - Full Version (for website)
+# All data included
+
 quote: |
   Every complex structure needs an architect
 
-basic:
-  photoUrl: ./media/profile.png
-  firstName: Tomasz
-  lastName: Trębski
-  position: Lead Software Developer
-
-contact:
-  address: Niciarniana 13/4, 92-238 Łódź, Polska
-  email: tomasz.trebski@gmail.com
-  mobile: '(+48) 789231312'
-
-social:
-  - key: github
-    value: kornicameister
-  - key: linkedin
-    value: tomasz.trebski
-  - key: gitlab
-    value: kornicameister
-  - key: stackoverflow
-    id: 1396508
-    value: kornicameister
-
-education:
-  - years: 2014-2016
-    city: Łódź, Poland
-    school: Lodz University Of Technology
-    faculty: 'Master: Computer Science'
-    thesis: Collecting, analysis and inferring - meaning of logs in cloud environment
-  - years: 2010-2014
-    city: Łódź, Poland
-    school: Lodz University Of Technology
-    faculty: 'Bachelor: Computer Science'
-    thesis: Tool supporting car service station management using Spring application framework
-  - years: 2009-2013
-    city: Łódź, Poland
-    school: Lodz University Of Technology
-    faculty: 'Bachelor: Logistic'
-    thesis: WMS(Warehouse Management System) implementation with computer tools
+basic: !include data/basic.yml
+contact: !include data/contact.yml
+social: !include data/social.yml
 
 experience:
-  - start: 10.2024
-    end: now
-    position: Cloud Engineer
-    company: LCloud
-    city: Warsaw, Poland
-    tasks:
-      - project: NP problems
-        entries:
-          - working with Timefold solver
-          - solving NP-hard problem according to customer's needs
-          - Java based ecosystem
-      - project: (Gen)AI/ML
-        entries:
-          - regular customer meetings
-          - writing design documents, architectures + cost analysis
-          - building systems leveraging GenAI, ML and MCP
-          - appropriate AWS services being used
-          - projects are mostly commercial in nature
-          - serverless solutions
-          - Python, TypeScript and Java
-      - project: internal
-        entries:
-          - variety of tasks of different nature depending on the internal needs
-          - mostly building internal services with AWS cloud
-  - start: 08.2021
-    end: 12.2024
-    position: Lead Backend Developer
-    company: AppYourself Sp. Z.o.o
-    city: Łódź, Poland
-    tasks:
-      - project: AY-NextGen
-        entries:
-          - event storming & DDD
-          - design documents
-          - technical documentation
-          - setting up AWS organization with AWS CDK
-          - microservice architecture
-          - building serverless components/services
-          - designed and implemented deployment model on top of NodeJS and AWS CDK
-          - supporting team with auxiliary DevOps tools
-      - project: AY-OldGen
-        entries:
-          - migrating old monolithic stack into AWS-based environment
-          - improving/implementing monitoring for old/new features
-          - creating new features, using AWS services, to supplement existing services
-          - creating designs containing detailed feature analysis from requirements down to cost assessments
-      - project: team specific
-        entries:
-          - improving security posture by utilizing least privileged concept
-          - helping with Scrum adoption (Git and release workflow, documentation, planning)
-          - building awareness concerning an importance of documentation both preliminary (designs) and final one
-  - start: 01.2015
-    end: 07.2021
-    position: Lead Software Engineer
-    company: Fujitsu Technology Solutions Sp. z o.o.
-    city: Łódź, Poland
-    tasks:
-      - project: AWS Project 2 [proprietary]
-        entries:
-          - building multi-service deployment with CloudFormation
-          - project architecture based on Makefile (own idea)
-          - uses various AWS components ranging from HA networking setup to advanced EC2 deployments
-          - due to project restrictions some of the clusters were manually deployed based on EC2
-          - introduced project wide restrictions regarding code quality also for CloudFormation templates
-          - EMR/MSK clusters setups
-      - project: AWS Project 1 [proprietary]
-        entries:
-          - building deployment with CloudFormation
-          - solution was based on REST Api (Lambda based) and UI (S3 based)
-          - CI/CD built in this project was based on Github Actions and Least Priviliged IAM entity
-      - project: EOS
-        entries:
-          - maintaining, developing and supervising frontend application
-          - influencing better code quality for backend and frontend services by promoting best practices
-            and equivalent CI setup
-          - activities towards increasing the performance of critical services
-          - technical proposals about API management and maintenance
-          - supervising backend API health
-          - participating in full life-cycle of a features, from product owners' requests to final
-            implementation through design phase
-      - project: monasca
-        entries:
-          - developing backend services for log processing in OpenStack environment
-          - maintaining (and originally creating) monasca-log-api, monasca-kibana-plugin and keystone-v3-client
-            projects
-          - increasing code quality for monasca projects by influencing proper CI setup
-          - core-reviewer responsibilities within monasca organization at OpenStack Gerrit service
-          - active collaborator and participant of monasca weekly and annual meetings
-          - maintaining and creating dockerized monasca-log pipeline for monasca-docker project
-      - project: OpenService Catalog Manager
-        entries:
-          - migrating the monolithic application from Glassfish 2.x to Glassfish 3.x
-          - adjusting both backend and frontend side of aforementioned application
-  - start: 02.2013
-    end: 12.2014
-    position: Java, JavaScript Developer
-    company: Transition Technologies Solutions S.A.
-    city: Łódź, Poland
-    tasks:
-      - project: Windchill for Airbus Helicopters
-        entries:
-          - customizations of PTC system to client's requirements
-          - active participation in development of integration/migration layer based
-            on Tibco JMS queue to allow uploading client's specific data
-            into PTC system format
-      - project: Web application for field technicians
-        entries:
-          - writing new features in Angular 1.x based codebase
-          - writing integration layer in Java between aforementioned system and Windchill
-      - project: Extra activities
-        entries:
-          - writing and conducting JavaScript trainings (internal and external)
-          - participating in recruitment process
-          - internship leader
-  - start: 06.2012
-    end: 09.2012
-    position: Intern
-    company: Transition Technologies Solutions S.A.
-    city: Łódź, Poland
-    tasks:
-      - project: Intern assignment
-        entries:
-          - creating web application supporting life cycle management process in ExtJs
+  - !include data/experience/lcloud.yml
+  - !include data/experience/appyourself-sp-zoo.yml
+  - !include data/experience/fujitsu-technology-solutions-sp-z-oo.yml
+  - !include data/experience/transition-technologies-solutions-sa.yml
 
 skill:
-  - category: General
-    subskill:
-      - team work
-      - communicative
-      - like challenges
-      - interdisciplinary
-      - automation
-  - category: \faAws
-    subskill:
-      - AWS CDK (components, applications, pipelines)
-      - AWS Bedrock (AgentCore, Prompts, Flows, KnowledgeBases)
-      - AWS StrandsFramework
-      - AWS Quicksight and Q for Quicksight
-      - IAAC (CloudFormation, SAM, CDK, Terraform)
-      - Compute services (EC2, EKS, ECS, Lambda)
-      - Storage services (S3, EBS, EFS)
-      - Databases services (RDS + PostgreSQL)
-      - Serverless processing (i.e. Lambda + integrations)
-      - Distributed computing (i.e. SNS, SQS)
-      - Building large multi-tier applications
-      - Designing solutions
-  - category: AI
-    subskill:
-      - MCP servers
-      - Agents
-      - Prompt engineering
-      - Knowledge bases
-  - category: Backend
-    subskill:
-      - Python 3.x
-      - Python 2.x
-      - SQL
-      - OpenAPI (Swagger)
-      - Java
-      - TypeScript
-      - JSON
-      - YAML
-  - category: Containers
-    subskill:
-      - docker
-      - docker-compose
-      - k8s (familiar)
-  - category: Databases
-    subskill:
-      - MySQL
-      - PostgreSQL
-      - ElasticSearch
-      - InfluxDB
-  - category: GIT
-    subskill:
-      - subtree
-      - modules
-      - rebasing, merges
-  - category: CICD
-    subskill:
-      - CircleCI
-      - Travis
-      - Gerrit
-      - Github Actions
-      - Gitlab CI
-      - Bitbucket pipelines
-  - category: Other
-    subskill:
-      - Monitoring As a Service
-      - Logging As a Service
-      - (Neo)VIM enthusiast
-      - Dotfiles geek
-      - LaTex
-      - OSS contributor
+  - !include data/skills/aws.yml
+  - !include data/skills/ai.yml
+  - !include data/skills/backend.yml
+  - !include data/skills/containers.yml
+  - !include data/skills/databases.yml
+  - !include data/skills/git.yml
+  - !include data/skills/cicd.yml
+  - !include data/skills/general.yml
+  - !include data/skills/other.yml
+
+education:
+  - !include data/education/master-cs.yml
+  - !include data/education/bachelor-cs.yml
+  - !include data/education/bachelor-logistic.yml
 
 presentation:
-  - when: 2017-03-22
-    location: Warsaw, Poland
-    conference: OpenStack Day
-    title: Monitoring of OpenStack Cloud
-    detail:
-      - Overview of how monasca deals with cloud monitoring
-      - Discussing future plans
-  - when: 2016-10-26
-    location: Barcelona, Spain
-    conference: OpenStack Summit 2016
-    title: Monasca Bootcamp
-    detail:
-      - Live presentation of monasca features backed by practical examples
-      - Workshop for attendees
+  - !include data/presentations/openstack-day-2017.yml
+  - !include data/presentations/openstack-summit-2016-2016.yml
 
 article:
-  - when: 2019-03-27
-    location: bulldogjob.pl
-    title: GIL - koniec z katarem, weź asyncio
-    language: PL
-  - when: 2019-08-07
-    location: bulldogjob.pl
-    title: Dlaczego Python i JavaScript bez typów to kiepski pomysł
-    language: PL
-  - when: 2019-07-11
-    location: helion.pl
-    title: Asynchroniczne REST API w Pythonie. Kurs video. Tworzenie aplikacji w aiohttp
-    language: PL
-  - when: 2020-08-07
-    location: helion.pl
-    title: GIT - Zaawansowane aspekty konfiguracji popularnego systemu kontroli wersji
-    language: PL
+  - !include data/articles/article-2019-03-27.yml
+  - !include data/articles/article-2019-08-07.yml
+  - !include data/articles/article-2019-07-11.yml
+  - !include data/articles/article-2020-08-07.yml
 
 oss:
-  - name: loguru-mypy
-    description: mypy plugin veryfying proper loguru (logging library) usage
-    url: https://github.com/kornicameister/loguru-mypy
+  - !include data/oss/loguru-mypy.yml
 
 cert:
-  - when: 2025-03-03
-    code: CLF-C02
-    title: AWS Certified Cloud Practitioner
+  - !include data/certifications/clf-c02.yml
 
-rodo:
-  en: |
-    I hereby give consent for my personal data included in my application to
-    be processed for the purposes of the recruitment process under the
-    Personal Data Protection Act as of 29 August 1997,
-    consolidated text: Journal of Laws 2016, item 922 as amended.
+rodo: !include data/rodo.yml

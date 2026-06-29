@@ -1,0 +1,8 @@
+category: CICD
+subskill:
+- CircleCI
+- Travis
+- Gerrit
+- Github Actions
+- Gitlab CI
+- Bitbucket pipelines

@@ -1,0 +1,46 @@
+start: 1.2015
+end: 7.2021
+position: Lead Software Engineer
+company: Fujitsu Technology Solutions Sp. z o.o.
+city: Łódź, Poland
+tasks:
+- project: AWS Project 2 [proprietary]
+  entries:
+  - building multi-service deployment with CloudFormation
+  - project architecture based on Makefile (own idea)
+  - uses various AWS components ranging from HA networking setup to advanced EC2 deployments
+  - due to project restrictions some of the clusters were manually deployed based
+    on EC2
+  - introduced project wide restrictions regarding code quality also for CloudFormation
+    templates
+  - EMR/MSK clusters setups
+- project: AWS Project 1 [proprietary]
+  entries:
+  - building deployment with CloudFormation
+  - solution was based on REST Api (Lambda based) and UI (S3 based)
+  - CI/CD built in this project was based on Github Actions and Least Priviliged IAM
+    entity
+- project: EOS
+  entries:
+  - maintaining, developing and supervising frontend application
+  - influencing better code quality for backend and frontend services by promoting
+    best practices and equivalent CI setup
+  - activities towards increasing the performance of critical services
+  - technical proposals about API management and maintenance
+  - supervising backend API health
+  - participating in full life-cycle of a features, from product owners' requests
+    to final implementation through design phase
+- project: monasca
+  entries:
+  - developing backend services for log processing in OpenStack environment
+  - maintaining (and originally creating) monasca-log-api, monasca-kibana-plugin and
+    keystone-v3-client projects
+  - increasing code quality for monasca projects by influencing proper CI setup
+  - core-reviewer responsibilities within monasca organization at OpenStack Gerrit
+    service
+  - active collaborator and participant of monasca weekly and annual meetings
+  - maintaining and creating dockerized monasca-log pipeline for monasca-docker project
+- project: OpenService Catalog Manager
+  entries:
+  - migrating the monolithic application from Glassfish 2.x to Glassfish 3.x
+  - adjusting both backend and frontend side of aforementioned application

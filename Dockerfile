@@ -1,6 +1,7 @@
 FROM pandoc/extra:3.7.0.2-alpine
 
 RUN tlmgr init-usertree \
+  && tlmgr option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2025/tlnet-final \
   && tlmgr update --self \
   && tlmgr install \
     fontawesome6 \

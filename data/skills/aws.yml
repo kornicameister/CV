@@ -1,0 +1,14 @@
+category: \faAws
+subskill:
+- AWS CDK (components, applications, pipelines)
+- AWS Bedrock (AgentCore, Prompts, Flows, KnowledgeBases)
+- AWS StrandsFramework
+- AWS Quicksight and Q for Quicksight
+- IAAC (CloudFormation, SAM, CDK, Terraform)
+- Compute services (EC2, EKS, ECS, Lambda)
+- Storage services (S3, EBS, EFS)
+- Databases services (RDS + PostgreSQL)
+- Serverless processing (i.e. Lambda + integrations)
+- Distributed computing (i.e. SNS, SQS)
+- Building large multi-tier applications
+- Designing solutions

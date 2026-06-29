@@ -23,6 +23,9 @@ clean:
 build_docker: Dockerfile
 	docker build --pull -t pandoc -f $< .
 
+build/cv.yml: cv.yml expand_includes.py init
+	uv run --with pyyaml expand_includes.py cv.yml > $@
+
 ifneq ("$(wildcard appendix.md)","")
 appendix.pdf: init
 	$(PANDOC) metadata.yml $(PANDOC_OPTS) \
@@ -36,12 +39,11 @@ else
 appendix.pdf:
 endif
 
-cv.pdf: init build_docker
-	$(PANDOC) cv.yml metadata.yml $(PANDOC_PDF_OPTS) -o build/$@
+cv.pdf: build/cv.yml init build_docker
+	$(PANDOC) build/cv.yml metadata.yml $(PANDOC_PDF_OPTS) -o build/$@
 
 cv_full.pdf: clean init appendix.pdf cv.pdf
 	test -e ./build/appendix.pdf && pdfunite build/cv.pdf build/appendix.pdf build/cv_with_appendix.pdf || exit 0
 
-cv.json: init
-	cat cv.yml | $(YAML_TO_JSON) | tee build/cv.json
-
+cv.json: build/cv.yml init
+	cat build/cv.yml | $(YAML_TO_JSON) | tee build/cv.json

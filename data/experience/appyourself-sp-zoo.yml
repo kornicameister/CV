@@ -1,0 +1,29 @@
+start: 8.2021
+end: 12.2024
+position: Lead Backend Developer
+company: AppYourself Sp. Z.o.o
+city: Łódź, Poland
+tasks:
+- project: AY-NextGen
+  entries:
+  - event storming & DDD
+  - design documents
+  - technical documentation
+  - setting up AWS organization with AWS CDK
+  - microservice architecture
+  - building serverless components/services
+  - designed and implemented deployment model on top of NodeJS and AWS CDK
+  - supporting team with auxiliary DevOps tools
+- project: AY-OldGen
+  entries:
+  - migrating old monolithic stack into AWS-based environment
+  - improving/implementing monitoring for old/new features
+  - creating new features, using AWS services, to supplement existing services
+  - creating designs containing detailed feature analysis from requirements down to
+    cost assessments
+- project: team specific
+  entries:
+  - improving security posture by utilizing least privileged concept
+  - helping with Scrum adoption (Git and release workflow, documentation, planning)
+  - building awareness concerning an importance of documentation both preliminary
+    (designs) and final one
