@@ -85,15 +85,20 @@ function formatDate(dateStr: string | number): string {
   </div>
 </section>
 
-<script is:inline>
-  function initAccordion() {
+<script>
+  document.addEventListener('astro:page-load', () => {
     const headers = document.querySelectorAll('.accordion-header');
 
     headers.forEach(header => {
-      header.addEventListener('click', () => {
-        const index = header.getAttribute('data-accordion-index');
+      // Remove old listeners by cloning
+      const newHeader = header.cloneNode(true);
+      header.parentNode?.replaceChild(newHeader, header);
+
+      newHeader.addEventListener('click', (e) => {
+        e.preventDefault();
+        const index = newHeader.getAttribute('data-accordion-index');
         const content = document.getElementById(`accordion-content-${index}`);
-        const isExpanded = header.getAttribute('aria-expanded') === 'true';
+        const isExpanded = newHeader.getAttribute('aria-expanded') === 'true';
 
         // Close all accordions
         document.querySelectorAll('.accordion-header').forEach(h => {
@@ -105,22 +110,12 @@ function formatDate(dateStr: string | number): string {
 
         // If this wasn't expanded, expand it
         if (!isExpanded) {
-          header.setAttribute('aria-expanded', 'true');
+          newHeader.setAttribute('aria-expanded', 'true');
           content?.classList.add('expanded');
         }
       });
     });
-  }
-
-  // Initialize on page load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAccordion);
-  } else {
-    initAccordion();
-  }
-
-  // Re-initialize on view transitions (Astro navigation)
-  document.addEventListener('astro:page-load', initAccordion);
+  });
 </script>
 
 <style>
