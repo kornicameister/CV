@@ -1,0 +1,239 @@
+---
+interface Task {
+  project: string;
+  entries: string[];
+}
+
+interface ExperienceEntry {
+  start: string | number;
+  end: string | number;
+  position: string;
+  company: string;
+  city: string;
+  tasks: Task[];
+}
+
+interface Props {
+  entries: ExperienceEntry[];
+}
+
+const { entries } = Astro.props;
+
+// Helper to format date
+function formatDate(dateStr: string | number): string {
+  if (dateStr === 'now') return 'Present';
+  // Handle numeric dates like 10.2024 or string dates
+  return String(dateStr);
+}
+---
+
+<section id="experience" class="section">
+  <div class="container">
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+      {entries.map((exp, index) => (
+        <div class="timeline-item" data-index={index}>
+          <div class="timeline-marker"></div>
+          <div class="experience-card">
+            <div class="experience-header">
+              <div>
+                <h3 class="experience-company">{exp.company}</h3>
+                <p class="experience-position">{exp.position}</p>
+                <p class="experience-location">{exp.city}</p>
+              </div>
+              <div class="experience-date">
+                {formatDate(exp.start)} - {formatDate(exp.end)}
+              </div>
+            </div>
+            <div class="experience-body">
+              {exp.tasks.map(task => (
+                <div class="project">
+                  <h4 class="project-name">{task.project}</h4>
+                  <ul class="project-entries">
+                    {task.entries.map(entry => (
+                      <li>{entry}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: 4rem 0;
+    scroll-margin-top: 2rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-color);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: -2rem;
+    top: 0.5rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent-from);
+    border: 3px solid var(--bg-primary);
+    box-shadow: 0 0 0 4px var(--border-color);
+  }
+
+  .experience-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .experience-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--shadow);
+  }
+
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+  }
+
+  .experience-company {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .experience-position {
+    font-size: 1.1rem;
+    color: var(--accent-from);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .experience-location {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .experience-date {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    white-space: nowrap;
+    background: var(--bg-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+  }
+
+  .experience-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .project {
+    border-left: 3px solid var(--accent-from);
+    padding-left: 1rem;
+  }
+
+  .project-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-entries {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .project-entries li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .project-entries li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent-from);
+    font-weight: bold;
+  }
+
+  @media (max-width: 640px) {
+    .section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .timeline {
+      padding-left: 1.5rem;
+    }
+
+    .timeline-marker {
+      left: -1.5rem;
+    }
+
+    .experience-card {
+      padding: 1.5rem;
+    }
+
+    .experience-header {
+      flex-direction: column;
+    }
+
+    .experience-date {
+      align-self: flex-start;
+    }
+
+    .experience-company {
+      font-size: 1.25rem;
+    }
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import Experience from '../components/Experience.astro';
 import cvData from '../data/cv.json';
 ---
 
@@ -12,4 +13,5 @@ import cvData from '../data/cv.json';
     photoUrl={cvData.basic.photoUrl}
     social={cvData.social}
   />
+  <Experience entries={cvData.experience} />
 </BaseLayout>
