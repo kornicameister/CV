@@ -112,6 +112,10 @@ function formatDate(dateStr: string | number): string {
         if (!isExpanded) {
           newHeader.setAttribute('aria-expanded', 'true');
           content?.classList.add('expanded');
+          const timelineItem = newHeader.closest('.timeline-item');
+          requestAnimationFrame(() => {
+            (timelineItem || newHeader).scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
         }
       });
     });
