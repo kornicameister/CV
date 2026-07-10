@@ -30,7 +30,7 @@ jobs:
         run: make cv.json
 
       - name: Sync cv.json to web
-        run: cp build/cv.json web/src/data/cv.json
+        run: mkdir -p web/src/data && cp build/cv.json web/src/data/cv.json
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
