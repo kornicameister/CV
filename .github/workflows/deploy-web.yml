@@ -23,12 +23,6 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@v6
 
-      - name: Build cv.json
-        run: make cv.json
-
-      - name: Sync cv.json to web
-        run: mkdir -p web/src/data && cp build/cv.json web/src/data/cv.json
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -43,9 +37,8 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Build Astro site
-        working-directory: web
-        run: npm run build
+      - name: Build web
+        run: make web
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
