@@ -112,10 +112,14 @@ function formatDate(dateStr: string | number): string {
         if (!isExpanded) {
           newHeader.setAttribute('aria-expanded', 'true');
           content?.classList.add('expanded');
-          const timelineItem = newHeader.closest('.timeline-item');
-          requestAnimationFrame(() => {
-            (timelineItem || newHeader).scrollIntoView({ behavior: 'smooth', block: 'start' });
-          });
+          const timelineItem = newHeader.closest('.timeline-item') as Element;
+          const target = timelineItem || newHeader;
+          const onTransitionEnd = (ev: Event) => {
+            if ((ev as TransitionEvent).propertyName !== 'max-height') return;
+            content?.removeEventListener('transitionend', onTransitionEnd);
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          };
+          content?.addEventListener('transitionend', onTransitionEnd);
         }
       });
     });
