@@ -26,6 +26,9 @@ jobs:
       - name: setup-docker
         uses: docker/setup-buildx-action@v3
 
+      - name: setup-uv
+        uses: astral-sh/setup-uv@v6
+
       - name: make cv.pdf
         run: make cv.pdf
       - name: make cv.json
