@@ -19,12 +19,18 @@ init:
 
 clean:
 	rm -rf $(BUILD_DIR)
+	rm -rf web/dist web/src/data/cv.json web/public/media
 
 build_docker: Dockerfile
 	docker build --pull -t pandoc -f $< .
 
 build/cv.yml: cv.yml expand_includes.py init
 	uv run --with pyyaml expand_includes.py cv.yml > $@
+
+build/cv.json: build/cv.yml init
+	uv run --with pyyaml python3 -c \
+		"import yaml, json, pathlib, datetime; print(json.dumps(yaml.safe_load(pathlib.Path('build/cv.yml').read_text()), default=lambda o: o.isoformat() if isinstance(o, (datetime.date, datetime.datetime)) else str(o)))" \
+		> build/cv.json
 
 ifneq ("$(wildcard appendix.md)","")
 appendix.pdf: init
@@ -47,23 +53,9 @@ cv_full.pdf: clean init appendix.pdf cv.pdf
 
 cv.json: build/cv.json
 
-build/cv.json: build/cv.yml init
-	uv run --with pyyaml python3 -c \
-		"import yaml, json, pathlib, datetime; print(json.dumps(yaml.safe_load(pathlib.Path('build/cv.yml').read_text()), default=lambda o: o.isoformat() if isinstance(o, (datetime.date, datetime.datetime)) else str(o)))" \
-		> build/cv.json
-
-# Web targets
 web: build/cv.json
+	mkdir -p web/src/data web/public/media
 	cp build/cv.json web/src/data/cv.json
 	cp -r media/* web/public/media/
 	find data/ -type f | sort | xargs cat | shasum | cut -d' ' -f1 > web/src/data/content-seed.txt
 	cd web && npm run build
-
-web-dev: build/cv.json
-	cp build/cv.json web/src/data/cv.json
-	cp -r media/* web/public/media/
-	find data/ -type f | sort | xargs cat | shasum | cut -d' ' -f1 > web/src/data/content-seed.txt
-	cd web && npm run dev
-
-clean-web:
-	rm -rf web/dist web/src/data/cv.json web/public/media
