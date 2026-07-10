@@ -29,7 +29,8 @@ const normalizedPhotoUrl = photoUrl.startsWith('./') ? photoUrl.slice(1) : photo
 const fullPhotoUrl = normalizedPhotoUrl.startsWith(baseUrl) ? normalizedPhotoUrl : `${baseUrl}${normalizedPhotoUrl}`;
 
 // Second avatar for hover effect
-const avatarDevUrl = `${baseUrl}media/avatar-dev.png`;
+const baseUrlWithSlash = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+const avatarDevUrl = `${baseUrlWithSlash}media/avatar-dev.png`;
 
 // Read content seed for geometric pattern generation
 let seed = 12345; // fallback
