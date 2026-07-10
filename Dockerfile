@@ -1,4 +1,4 @@
-FROM pandoc/extra:3.7.0.2-alpine
+FROM pandoc/extra:3.9.0.2-alpine
 
 RUN tlmgr init-usertree \
   && tlmgr option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2025/tlnet-final \
