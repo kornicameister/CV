@@ -46,7 +46,9 @@ cv_full.pdf: clean init appendix.pdf cv.pdf
 	test -e ./build/appendix.pdf && pdfunite build/cv.pdf build/appendix.pdf build/cv_with_appendix.pdf || exit 0
 
 cv.json: build/cv.yml init
-	cat build/cv.yml | $(YAML_TO_JSON) | tee build/cv.json
+	uv run --with pyyaml python3 -c \
+		"import yaml, json, pathlib, datetime; print(json.dumps(yaml.safe_load(pathlib.Path('build/cv.yml').read_text()), default=lambda o: o.isoformat() if isinstance(o, (datetime.date, datetime.datetime)) else str(o)))" \
+		> build/cv.json
 
 # Web targets
 web: build/cv.json
