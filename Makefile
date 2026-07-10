@@ -25,10 +25,10 @@ build_docker: Dockerfile
 	docker build --pull -t pandoc -f $< .
 
 build/cv.yml: cv.yml expand_includes.py init
-	uv run --with pyyaml expand_includes.py cv.yml > $@
+	uv run expand_includes.py cv.yml > $@
 
 build/cv.json: build/cv.yml init
-	uv run --with pyyaml python3 -c \
+	uv run python3 -c \
 		"import yaml, json, pathlib, datetime; print(json.dumps(yaml.safe_load(pathlib.Path('build/cv.yml').read_text()), default=lambda o: o.isoformat() if isinstance(o, (datetime.date, datetime.datetime)) else str(o)))" \
 		> build/cv.json
 
