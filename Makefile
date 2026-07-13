@@ -53,6 +53,11 @@ cv_full.pdf: clean init appendix.pdf cv.pdf
 
 cv.json: build/cv.json
 
+build/cv.eng.json: build/cv.json
+	cp $< $@
+
+cv.eng.json: build/cv.eng.json
+
 web: build/cv.json
 	mkdir -p web/src/data web/public/media
 	cp build/cv.json web/src/data/cv.json

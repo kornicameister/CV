@@ -5,11 +5,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Overview
 
 This is a CV/Resume generation system that:
+
 - Maintains CV data in modular YAML files (`data/` directory)
 - Uses a custom `!include` directive for composable YAML structure
 - Generates PDF output via Pandoc + XeLaTeX in Docker
 - Produces JSON output for web consumption
 - Uses the Awesome-CV LaTeX template for professional formatting
+
+## Python
+
+All Python scripts and tools are run via `uv`. Never use `python` or
+`pip` directly.
+
+- Run scripts: `uv run script.py`
+- Run with ad-hoc deps: `uv run --with <package> script.py`
+- Never create virtualenvs manually — `uv` manages them automatically
 
 ## Build Commands
 
@@ -39,6 +49,7 @@ Build artifacts go to `build/` directory.
 ### Data Structure
 
 CV data is split across `data/` subdirectories:
+
 - `basic.yml` - name, position, photo
 - `contact.yml` - address, email
 - `social.yml` - LinkedIn, GitHub, etc.
@@ -87,17 +98,18 @@ YAML → JSON conversion uses `ingy/yaml-to-json` Docker image. Output is used f
 ### Adding a New Experience Entry
 
 1. Create `data/experience/company-name.yml` with structure:
+
 ```yaml
 start: MM.YYYY
-end: MM.YYYY  # or "now"
+end: MM.YYYY # or "now"
 position: Job Title
 company: Company Name
 city: Location
 tasks:
-- project: Project Name
-  entries:
-  - bullet point description
-  - another bullet point
+  - project: Project Name
+    entries:
+      - bullet point description
+      - another bullet point
 ```
 
 2. Add `!include data/experience/company-name.yml` to `cv.yml` under `experience:`
@@ -105,11 +117,12 @@ tasks:
 ### Adding a New Skill Category
 
 1. Create `data/skills/category-name.yml`:
+
 ```yaml
 name: Category Name
 items:
-- skill 1
-- skill 2
+  - skill 1
+  - skill 2
 ```
 
 2. Add `!include data/skills/category-name.yml` to `cv.yml` under `skill:`
@@ -117,6 +130,7 @@ items:
 ## CI/CD
 
 GitHub Actions workflows in `.github/workflows/`:
+
 - **CI**: Runs on push/PR to master. Prettier checks `cv.yml`, builds PDF and JSON, uploads artifacts.
 - **Release**: Runs on version tags (`v*`). Creates GitHub release with PDF/JSON.
 
@@ -131,6 +145,7 @@ No local Python virtualenv or LaTeX installation needed — everything runs in c
 ## Debugging Build Issues
 
 If PDF build fails:
+
 1. Check `build/cv.yml` was generated correctly (includes expanded)
 2. Verify Docker image built: `make build_docker`
 3. Check Pandoc command in Makefile targets (line 43)
