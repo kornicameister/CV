@@ -127,6 +127,10 @@ items:
 
 2. Add `!include data/skills/category-name.yml` to `cv.yml` under `skill:`
 
+## Git Workflow
+
+**Always use a PR for any change with 2+ commits.** Single-line hotfixes may go directly to master, but feature work MUST go through a branch + PR. Never push a feature branch directly to master.
+
 ## CI/CD
 
 GitHub Actions workflows in `.github/workflows/`:
