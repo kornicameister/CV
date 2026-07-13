@@ -61,7 +61,7 @@ cv.json: build/cv.json
 cv.eng.json: build/cv.eng.json
 cv.pl.json: build/cv.pl.json
 
-iac/deploy: iac/oidc-bedrock.yml iac/.env
+iac: iac/oidc-bedrock.yml iac/.env
 	aws cloudformation deploy \
 		--template-file iac/oidc-bedrock.yml \
 		--stack-name cv-translator-oidc \
