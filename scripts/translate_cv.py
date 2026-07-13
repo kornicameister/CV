@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 import json
+import os
 import sys
+from pathlib import Path
+
 import boto3
 
 
 MODEL_ID = "eu.anthropic.claude-haiku-4-5-20251001-v1:0"
-REGION = "eu-central-1"
+REGION = os.environ.get("AWS_DEFAULT_REGION", "eu-central-1")
 
 SYSTEM_PROMPT = (
     "You are a professional CV translator. "
@@ -124,11 +127,9 @@ def translate(strings: list[str]) -> list[str]:
     )
     raw = json.loads(response["body"].read())
     text = raw["content"][0]["text"].strip()
-    # Strip markdown code fences if the model wraps the output (e.g. ```json ... ```)
     if text.startswith("```"):
-        text = text.split("\n", 1)[1]
-        if text.endswith("```"):
-            text = text[: text.rfind("```")]
+        lines = text.splitlines()
+        text = "\n".join(lines[1:-1] if lines[-1].strip() == "```" else lines[1:])
     translated = json.loads(text)
     if len(translated) != len(strings):
         raise ValueError(
@@ -142,14 +143,12 @@ def main() -> None:
         print("Usage: translate_cv.py <input.json> <output.json>", file=sys.stderr)
         sys.exit(1)
 
-    source = json.loads(__import__("pathlib").Path(sys.argv[1]).read_text())
+    source = json.loads(Path(sys.argv[1]).read_text())
     strings = collect_strings(source)
     print(f"Translating {len(strings)} strings via Bedrock Haiku...", file=sys.stderr)
     translated = translate(strings)
     result = apply_translations(source, translated)
-    __import__("pathlib").Path(sys.argv[2]).write_text(
-        json.dumps(result, ensure_ascii=False, indent=2)
-    )
+    Path(sys.argv[2]).write_text(json.dumps(result, ensure_ascii=False, indent=2))
     print(f"Written: {sys.argv[2]}", file=sys.stderr)
 
 
