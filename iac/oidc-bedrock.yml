@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: OIDC provider and IAM role for GitHub Actions CV translation via Bedrock
+
+Parameters:
+  GitHubOrg:
+    Type: String
+    Description: GitHub organisation or user name
+  GitHubRepo:
+    Type: String
+    Description: GitHub repository name
+  GitHubBranch:
+    Type: String
+    Default: master
+    Description: Branch to trust for OIDC
+  AwsAccountId:
+    Type: String
+    Description: AWS account ID (no default - must be supplied)
+  BedrockRegion:
+    Type: String
+    Default: eu-central-1
+    Description: Region where Bedrock Haiku is invoked
+  CreateOIDCProvider:
+    Type: String
+    Default: "true"
+    AllowedValues: ["true", "false"]
+    Description: Set to false if the GitHub OIDC provider already exists in this account
+
+Conditions:
+  ShouldCreateOIDCProvider: !Equals [!Ref CreateOIDCProvider, "true"]
+
+Resources:
+  GitHubOIDCProvider:
+    Type: AWS::IAM::OIDCProvider
+    Condition: ShouldCreateOIDCProvider
+    Properties:
+      Url: https://token.actions.githubusercontent.com
+      ClientIdList:
+        - sts.amazonaws.com
+      ThumbprintList:
+        - 6938fd4d98bab03faadb97b34396831e3780aea1
+
+  CVTranslatorRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: cv-translator-github-actions
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !Sub "arn:aws:iam::${AwsAccountId}:oidc-provider/token.actions.githubusercontent.com"
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                "token.actions.githubusercontent.com:aud": sts.amazonaws.com
+                "token.actions.githubusercontent.com:sub": !Sub "repo:${GitHubOrg}/${GitHubRepo}:ref:refs/heads/${GitHubBranch}"
+      Policies:
+        - PolicyName: BedrockHaikuInvoke
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: bedrock:InvokeModel
+                Resource: !Sub "arn:aws:bedrock:${BedrockRegion}:${AwsAccountId}:inference-profile/eu.anthropic.claude-haiku-4-5-20251001-v1:0"
+
+Outputs:
+  RoleArn:
+    Value: !GetAtt CVTranslatorRole.Arn
+    Description: IAM Role ARN for GitHub Actions

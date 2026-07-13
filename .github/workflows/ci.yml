@@ -17,6 +17,15 @@ jobs:
       - uses: actionsx/prettier@v3
         with:
           args: --check cv.yml
+  test:
+    runs-on: ubuntu-latest
+    needs: [verify]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+      - name: run unit tests
+        run: uv run --with boto3 --with pytest pytest scripts/test_translate_cv.py -v
+
   build:
     runs-on: ubuntu-latest
     needs: [verify]
@@ -31,8 +40,12 @@ jobs:
 
       - name: make cv.pdf
         run: make cv.pdf
+
       - name: make cv.json
         run: make cv.json
+
+      - name: make cv.eng.json
+        run: make cv.eng.json
 
       - name: Collect Docker Logs
         uses: jwalton/gh-docker-logs@v2
@@ -42,3 +55,65 @@ jobs:
         with:
           name: 'cv_${{ github.sha }}_build'
           path: build/
+
+  translate-cache:
+    runs-on: ubuntu-latest
+    needs: [build, test]
+    outputs:
+      cache-hit: ${{ steps.pl-cache.outputs.cache-hit }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Restore translation cache
+        id: pl-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: build/cv.pl.json
+          key: cv-pl-${{ hashFiles('data/**', 'scripts/translate_cv.py') }}
+
+      - name: Upload Polish CV artifact (cache hit)
+        if: steps.pl-cache.outputs.cache-hit == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv_${{ github.sha }}_pl
+          path: build/cv.pl.json
+
+  translate-bedrock:
+    runs-on: ubuntu-latest
+    needs: [build, translate-cache]
+    if: github.ref == 'refs/heads/master' && needs.translate-cache.outputs.cache-hit != 'true'
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: setup-uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_BEDROCK_REGION }}
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: cv_${{ github.sha }}_build
+          path: build/
+
+      - name: make cv.pl.json
+        run: make cv.pl.json
+
+      - name: Save translation cache
+        uses: actions/cache/save@v4
+        with:
+          path: build/cv.pl.json
+          key: cv-pl-${{ hashFiles('data/**', 'scripts/translate_cv.py') }}
+
+      - name: Upload Polish CV artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv_${{ github.sha }}_pl
+          path: build/cv.pl.json

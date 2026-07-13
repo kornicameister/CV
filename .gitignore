@@ -189,6 +189,8 @@ appendix.md
 
 build/
 specs/
+iac/.env
+CLAUDE.local.md
 
 # Claude Code — shared workspace config (override global gitignore)
 !.claude/

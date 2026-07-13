@@ -24,8 +24,8 @@ clean:
 build_docker: Dockerfile
 	docker build --pull -t pandoc -f $< .
 
-build/cv.yml: cv.yml expand_includes.py init
-	uv run expand_includes.py cv.yml > $@
+build/cv.yml: cv.yml scripts/expand_includes.py init
+	uv run scripts/expand_includes.py cv.yml > $@
 
 build/cv.json: build/cv.yml init
 	uv run python3 -c \
@@ -45,6 +45,12 @@ else
 appendix.pdf:
 endif
 
+build/cv.eng.json: build/cv.json
+	cp $< $@
+
+build/cv.pl.json: build/cv.eng.json scripts/translate_cv.py
+	uv run --with boto3 scripts/translate_cv.py $< $@
+
 cv.pdf: build/cv.yml init build_docker
 	$(PANDOC) build/cv.yml metadata.yml $(PANDOC_PDF_OPTS) -o build/$@
 
@@ -52,6 +58,16 @@ cv_full.pdf: clean init appendix.pdf cv.pdf
 	test -e ./build/appendix.pdf && pdfunite build/cv.pdf build/appendix.pdf build/cv_with_appendix.pdf || exit 0
 
 cv.json: build/cv.json
+cv.eng.json: build/cv.eng.json
+cv.pl.json: build/cv.pl.json
+
+iac/deploy: iac/oidc-bedrock.yml iac/.env
+	aws cloudformation deploy \
+		--template-file iac/oidc-bedrock.yml \
+		--stack-name cv-translator-oidc \
+		--capabilities CAPABILITY_NAMED_IAM \
+		--parameter-overrides $$(cat iac/.env | tr '\n' ' ') \
+		--profile kornicameister
 
 web: build/cv.json
 	mkdir -p web/src/data web/public/media
