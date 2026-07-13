@@ -50,7 +50,7 @@ jobs:
         uses: jwalton/gh-docker-logs@v2
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: 'cv_${{ github.sha }}_build'
           path: build/
@@ -72,7 +72,7 @@ jobs:
 
       - name: Upload Polish CV artifact (cache hit)
         if: steps.pl-cache.outputs.cache-hit == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cv_${{ github.sha }}_pl
           path: build/cv.pl.json
@@ -112,7 +112,7 @@ jobs:
           key: cv-pl-${{ hashFiles('data/**', 'scripts/translate_cv.py') }}
 
       - name: Upload Polish CV artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cv_${{ github.sha }}_pl
           path: build/cv.pl.json
