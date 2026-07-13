@@ -1,4 +1,5 @@
 .DEFAULT_GOAL := cv
+.PHONY: init clean build_docker cv.pdf cv_full.pdf cv.json cv.eng.json cv.pl.json iac web
 
 SOURCE_FILES := $(wildcard src/*.yml)
 
