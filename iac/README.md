@@ -32,3 +32,12 @@ aws cloudformation deploy \
 | `CreateOIDCProvider` | `true` first time; `false` if OIDC provider already exists |
 
 `iac/.env` is gitignored — see `.env.example` for the template.
+
+## GitHub Secrets Required
+
+Add these in Settings → Secrets and variables → Actions:
+
+| Secret | Value |
+|---|---|
+| `AWS_ROLE_ARN` | `arn:aws:iam::<AwsAccountId>:role/cv-translator-github-actions` |
+| `AWS_BEDROCK_REGION` | `eu-central-1` |

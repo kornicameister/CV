@@ -81,9 +81,11 @@ def apply_translations(cv: dict, translations: list[str]) -> dict:
         for task in exp.get("tasks", []):
             if task.get("project"):
                 task["project"] = nxt()
-            task["entries"] = [nxt() for _ in task.get("entries", [])]
+            if task.get("entries"):
+                task["entries"] = [nxt() for _ in task["entries"]]
     for skill in result.get("skill", []):
-        skill["subskill"] = [nxt() for _ in skill.get("subskill", [])]
+        if skill.get("subskill"):
+            skill["subskill"] = [nxt() for _ in skill["subskill"]]
     for edu in result.get("education", []):
         if edu.get("faculty"):
             edu["faculty"] = nxt()
@@ -95,7 +97,8 @@ def apply_translations(cv: dict, translations: list[str]) -> dict:
     for pres in result.get("presentation", []):
         if pres.get("title"):
             pres["title"] = nxt()
-        pres["detail"] = [nxt() for _ in pres.get("detail", [])]
+        if pres.get("detail"):
+            pres["detail"] = [nxt() for _ in pres["detail"]]
     for art in result.get("article", []):
         if art.get("title"):
             art["title"] = nxt()
@@ -126,6 +129,10 @@ def translate(strings: list[str]) -> list[str]:
         accept="application/json",
     )
     raw = json.loads(response["body"].read())
+    if raw.get("stop_reason") == "max_tokens":
+        raise RuntimeError(
+            f"Bedrock response truncated (max_tokens): translation incomplete after {len(raw['content'][0]['text'])} chars"
+        )
     text = raw["content"][0]["text"].strip()
     if text.startswith("```"):
         lines = text.splitlines()
