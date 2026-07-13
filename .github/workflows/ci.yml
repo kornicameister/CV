@@ -33,6 +33,8 @@ jobs:
         run: make cv.pdf
       - name: make cv.json
         run: make cv.json
+      - name: make cv.eng.json
+        run: make cv.eng.json
 
       - name: Collect Docker Logs
         uses: jwalton/gh-docker-logs@v2
@@ -42,3 +44,53 @@ jobs:
         with:
           name: 'cv_${{ github.sha }}_build'
           path: build/
+
+  translate:
+    runs-on: ubuntu-latest
+    needs: [build]
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: setup-uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Restore translation cache
+        id: pl-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: build/cv.pl.json
+          key: cv-pl-${{ hashFiles('data/**') }}
+
+      - name: Configure AWS credentials
+        if: steps.pl-cache.outputs.cache-hit != 'true'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/cv-translator-github-actions
+          aws-region: eu-central-1
+
+      - name: Download build artifact
+        if: steps.pl-cache.outputs.cache-hit != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: cv_${{ github.sha }}_build
+          path: build/
+
+      - name: make cv.pl.json
+        if: steps.pl-cache.outputs.cache-hit != 'true'
+        run: make cv.pl.json
+
+      - name: Save translation cache
+        if: steps.pl-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: build/cv.pl.json
+          key: cv-pl-${{ hashFiles('data/**') }}
+
+      - name: Upload Polish CV artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv_${{ github.sha }}_pl
+          path: build/cv.pl.json
