@@ -189,3 +189,10 @@ appendix.md
 
 build/
 specs/
+
+# Claude Code — shared workspace config (override global gitignore)
+!.claude/
+!.claude/**
+# but keep local/machine-specific files out
+.claude/settings.local.json
+.claude/worktrees/
