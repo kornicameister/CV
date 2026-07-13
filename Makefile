@@ -24,8 +24,8 @@ clean:
 build_docker: Dockerfile
 	docker build --pull -t pandoc -f $< .
 
-build/cv.yml: cv.yml expand_includes.py init
-	uv run expand_includes.py cv.yml > $@
+build/cv.yml: cv.yml scripts/expand_includes.py init
+	uv run scripts/expand_includes.py cv.yml > $@
 
 build/cv.json: build/cv.yml init
 	uv run python3 -c \
