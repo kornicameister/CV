@@ -48,6 +48,9 @@ endif
 build/cv.eng.json: build/cv.json
 	cp $< $@
 
+build/cv.pl.json: build/cv.eng.json scripts/translate_cv.py
+	uv run --with boto3 scripts/translate_cv.py $< $@
+
 cv.pdf: build/cv.yml init build_docker
 	$(PANDOC) build/cv.yml metadata.yml $(PANDOC_PDF_OPTS) -o build/$@
 
@@ -56,6 +59,7 @@ cv_full.pdf: clean init appendix.pdf cv.pdf
 
 cv.json: build/cv.json
 cv.eng.json: build/cv.eng.json
+cv.pl.json: build/cv.pl.json
 
 web: build/cv.json
 	mkdir -p web/src/data web/public/media
