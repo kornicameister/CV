@@ -45,6 +45,9 @@ else
 appendix.pdf:
 endif
 
+build/cv.eng.json: build/cv.json
+	cp $< $@
+
 cv.pdf: build/cv.yml init build_docker
 	$(PANDOC) build/cv.yml metadata.yml $(PANDOC_PDF_OPTS) -o build/$@
 
@@ -52,10 +55,6 @@ cv_full.pdf: clean init appendix.pdf cv.pdf
 	test -e ./build/appendix.pdf && pdfunite build/cv.pdf build/appendix.pdf build/cv_with_appendix.pdf || exit 0
 
 cv.json: build/cv.json
-
-build/cv.eng.json: build/cv.json
-	cp $< $@
-
 cv.eng.json: build/cv.eng.json
 
 web: build/cv.json
