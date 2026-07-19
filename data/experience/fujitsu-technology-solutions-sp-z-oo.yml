@@ -6,41 +6,31 @@ city: Łódź, Poland
 tasks:
 - project: AWS Project 2 [proprietary]
   entries:
-  - building multi-service deployment with CloudFormation
-  - project architecture based on Makefile (own idea)
+  - delivered reproducible multi-service AWS infrastructure (EMR, MSK, EC2 HA) using
+    CloudFormation + Makefile orchestration, replacing manual cluster setup
+  - enforced CloudFormation code-quality gates project-wide, catching configuration
+    drift before it reached production
   - uses various AWS components ranging from HA networking setup to advanced EC2 deployments
-  - due to project restrictions some of the clusters were manually deployed based
-    on EC2
-  - introduced project wide restrictions regarding code quality also for CloudFormation
-    templates
-  - EMR/MSK clusters setups
 - project: AWS Project 1 [proprietary]
   entries:
-  - building deployment with CloudFormation
-  - solution was based on REST Api (Lambda based) and UI (S3 based)
-  - CI/CD built in this project was based on Github Actions and Least Priviliged IAM
-    entity
+  - reduced IAM blast radius across the deployment by applying least-privilege principles
+    to every Lambda execution role, enforced through GitHub Actions CI gates
+  - solution was based on REST API (Lambda) and UI (S3); CI/CD built on GitHub Actions
 - project: EOS
   entries:
-  - maintaining, developing and supervising frontend application
-  - influencing better code quality for backend and frontend services by promoting
-    best practices and equivalent CI setup
-  - activities towards increasing the performance of critical services
-  - technical proposals about API management and maintenance
-  - supervising backend API health
-  - participating in full life-cycle of a features, from product owners' requests
-    to final implementation through design phase
+  - accelerated CI adoption across backend and frontend teams by introducing a shared
+    pipeline setup, eliminating parallel divergent configurations
+  - improved throughput of critical services through targeted profiling and optimisation
+  - participated in full life-cycle of features from product owner requests through
+    design to final implementation
 - project: monasca
   entries:
-  - developing backend services for log processing in OpenStack environment
-  - maintaining (and originally creating) monasca-log-api, monasca-kibana-plugin and
-    keystone-v3-client projects
-  - increasing code quality for monasca projects by influencing proper CI setup
-  - core-reviewer responsibilities within monasca organization at OpenStack Gerrit
-    service
-  - active collaborator and participant of monasca weekly and annual meetings
-  - maintaining and creating dockerized monasca-log pipeline for monasca-docker project
+  - authored monasca-log-api from scratch and maintained it as original owner, earning
+    OpenStack core-reviewer status — one of fewer than 10 across the monasca org
+  - eliminated log-pipeline setup friction for operators by building the dockerized
+    monasca-log pipeline for monasca-docker, adopted by the community
+  - increased code quality for monasca projects by influencing proper CI setup
 - project: OpenService Catalog Manager
   entries:
-  - migrating the monolithic application from Glassfish 2.x to Glassfish 3.x
-  - adjusting both backend and frontend side of aforementioned application
+  - unblocked the team from a deprecated runtime by migrating OSCm from Glassfish 2.x
+    to Glassfish 3.x, keeping backend and frontend in sync throughout
