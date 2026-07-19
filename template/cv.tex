@@ -36,6 +36,11 @@ $endfor$
   {}
   {\thepage}
 
+$if(basic.summary)$
+\cvsection{Summary}
+$basic.summary$
+$endif$
+
 $if(education)$
 \cvsection{Education}
 \begin{cventries}
