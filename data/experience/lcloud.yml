@@ -18,6 +18,9 @@ tasks:
     OAuth2/Cognito + CloudFront + ALB + ECS Fargate MCP server infrastructure
   - replaced ad-hoc deployment steps with CDK-based IaC for the complete agentic
     workflow, from provisioning to teardown
+  - orchestrated systems of 5+ specialised agents, each scoped to a task domain
+    and equipped with selected MCP servers — coordination handled programmatically,
+    not by a single monolithic agent
 - project: (Gen)AI/ML
   entries:
   - drove 10+ R&D GenAI projects end-to-end, from client problem framing through
