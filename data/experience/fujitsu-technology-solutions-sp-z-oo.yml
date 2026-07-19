@@ -10,26 +10,25 @@ tasks:
     CloudFormation + Makefile orchestration, replacing manual cluster setup
   - enforced CloudFormation code-quality gates project-wide, catching configuration
     drift before it reached production
-  - uses various AWS components ranging from HA networking setup to advanced EC2 deployments
+  - stack spanned HA VPC networking, EMR, MSK, and manually-provisioned EC2 clusters due to project security restrictions
 - project: AWS Project 1 [proprietary]
   entries:
   - reduced IAM blast radius across the deployment by applying least-privilege principles
     to every Lambda execution role, enforced through GitHub Actions CI gates
-  - solution was based on REST API (Lambda) and UI (S3); CI/CD built on GitHub Actions
+  - serverless REST API (Lambda) and static UI (S3) deployed end-to-end with GitHub Actions CI/CD
 - project: EOS
   entries:
   - accelerated CI adoption across backend and frontend teams by introducing a shared
     pipeline setup, eliminating parallel divergent configurations
   - improved throughput of critical services through targeted profiling and optimisation
-  - participated in full life-cycle of features from product owner requests through
-    design to final implementation
+  - owned features end-to-end from product owner requirements through design to production, reducing handoff gaps
 - project: monasca
   entries:
   - authored monasca-log-api from scratch and maintained it as original owner, earning
     OpenStack core-reviewer status — one of fewer than 10 across the monasca org
   - eliminated log-pipeline setup friction for operators by building the dockerized
     monasca-log pipeline for monasca-docker, adopted by the community
-  - increased code quality for monasca projects by influencing proper CI setup
+  - raised monasca project CI standards by introducing gating pipelines that blocked merges on quality regressions
 - project: OpenService Catalog Manager
   entries:
   - unblocked the team from a deprecated runtime by migrating OSCm from Glassfish 2.x
