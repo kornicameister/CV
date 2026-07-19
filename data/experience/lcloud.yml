@@ -6,24 +6,28 @@ city: Warsaw, Poland
 tasks:
 - project: NP problems
   entries:
-  - working with Timefold solver
-  - solving NP-hard problem according to customer's needs
-  - Java based ecosystem
+  - improved client business operations planning by implementing Timefold solver
+    for NP-hard scheduling constraints, replacing manual planning steps
+  - modelled problem constraints per customer requirements in Java-based ecosystem
 - project: Agentic AI on AWS
   entries:
-  - designing and building multi-agent systems on AWS Bedrock AgentCore
-  - cross-account IAM chaining enabling agents to operate across AWS accounts securely
-  - MCP server infrastructure with OAuth2/Cognito authentication, CloudFront, ALB, ECS Fargate
-  - CDK-based IaC for full agentic workflow deployment lifecycle
-  - Python, serverless-first, production-grade
+  - delivered production-grade agentic AI systems to multiple clients, covering
+    the full stack from cross-account IAM chaining to MCP server infrastructure
+  - eliminated manual auth wiring for every new agent integration by deploying
+    OAuth2/Cognito + CloudFront + ALB + ECS Fargate MCP server infrastructure
+  - replaced ad-hoc deployment steps with CDK-based IaC covering the full agentic
+    workflow lifecycle, from provisioning to teardown
 - project: (Gen)AI/ML
   entries:
-  - architecture design and cost analysis for GenAI commercial projects
-  - LLM evaluation pipelines for agentic RAG and multi-agent systems
-  - MCP server tooling including credential-aware proxies and AWS-integrated servers
-  - Python, TypeScript
+  - delivered 10+ R&D GenAI projects end-to-end — from client problem framing
+    through architecture and cost analysis to POC or production handoff
+  - cut evaluation cycle time for agentic RAG and multi-agent systems by building
+    reusable LLM evaluation pipelines, giving clients decision-quality signals earlier
 - project: internal
   entries:
-  - IAM architecture, credential management tooling, and developer experience improvements
-  - event-driven integrations (webhook validation, EventBridge routing, data pipelines to Snowflake)
-  - security audit tooling and CloudFormation resource monitoring
+  - eliminated credential sprawl by designing IAM architecture and building credential
+    management tooling that standardised access patterns across the organisation
+  - reduced integration boilerplate by standardising webhook validation, EventBridge
+    routing, and Snowflake data pipeline patterns for reuse across projects
+  - improved visibility into infrastructure drift by building CloudFormation resource
+    monitoring and security audit tooling
