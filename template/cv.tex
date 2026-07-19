@@ -44,25 +44,6 @@ $basic.summary$
 \end{cvparagraph}
 $endif$
 
-$if(education)$
-\cvsection{Education}
-\begin{cventries}
-    $for(education)$
-    \cventry
-    {$education.faculty$}
-    {$education.school$}
-    {$education.city$}
-    {$education.years$}
-    $if(education.thesis)$
-    {Thesis: \textit{$education.thesis$}}
-    $else$
-    {}
-    $endif$
-    \vspace{5pt}
-    $endfor$
-\end{cventries}
-$endif$
-
 $if(experience)$
 \cvsection{Experience}
 \begin{cventries}
@@ -109,6 +90,25 @@ $for(skill)$
     }
 $endfor$
 \end{cvskills}
+$endif$
+
+$if(education)$
+\cvsection{Education}
+\begin{cventries}
+    $for(education)$
+    \cventry
+    {$education.faculty$}
+    {$education.school$}
+    {$education.city$}
+    {$education.years$}
+    $if(education.thesis)$
+    {Thesis: \textit{$education.thesis$}}
+    $else$
+    {}
+    $endif$
+    \vspace{5pt}
+    $endfor$
+\end{cventries}
 $endif$
 
 $if(presentation)$
