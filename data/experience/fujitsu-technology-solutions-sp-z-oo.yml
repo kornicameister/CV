@@ -8,27 +8,31 @@ tasks:
   entries:
   - delivered reproducible multi-service AWS infrastructure (EMR, MSK, EC2 HA) using
     CloudFormation + Makefile orchestration, replacing manual cluster setup
-  - enforced CloudFormation code-quality gates project-wide, catching configuration
+  - enforced CloudFormation code-quality gates project-wide to catch configuration
     drift before it reached production
-  - stack spanned HA VPC networking, EMR, MSK, and manually-provisioned EC2 clusters due to project security restrictions
+  - stack covered HA VPC networking, EMR, MSK, and manually-provisioned EC2 clusters
+    due to project security restrictions
 - project: AWS Project 1 [proprietary]
   entries:
   - reduced IAM blast radius across the deployment by applying least-privilege principles
     to every Lambda execution role, enforced through GitHub Actions CI gates
-  - serverless REST API (Lambda) and static UI (S3) deployed end-to-end with GitHub Actions CI/CD
+  - deployed a serverless REST API (Lambda) and static UI (S3) end-to-end with
+    GitHub Actions CI/CD
 - project: EOS
   entries:
   - accelerated CI adoption across backend and frontend teams by introducing a shared
-    pipeline setup, eliminating parallel divergent configurations
+    pipeline setup, removing the parallel divergent configurations they had before
   - improved throughput of critical services through targeted profiling and optimisation
-  - owned features end-to-end from product owner requirements through design to production, reducing handoff gaps
+  - owned features end-to-end from product owner requirements through design to
+    production, cutting handoff gaps along the way
 - project: monasca
   entries:
   - authored monasca-log-api from scratch and maintained it as original owner, earning
-    OpenStack core-reviewer status — one of fewer than 10 across the monasca org
+    OpenStack core-reviewer status, one of fewer than 10 across the monasca org
   - eliminated log-pipeline setup friction for operators by building the dockerized
-    monasca-log pipeline for monasca-docker, adopted by the community
-  - raised monasca project CI standards by introducing gating pipelines that blocked merges on quality regressions
+    monasca-log pipeline for monasca-docker, which the community adopted
+  - raised monasca project CI standards by introducing gating pipelines that blocked
+    merges on quality regressions
 - project: OpenService Catalog Manager
   entries:
   - unblocked the team from a deprecated runtime by migrating OSCm from Glassfish 2.x

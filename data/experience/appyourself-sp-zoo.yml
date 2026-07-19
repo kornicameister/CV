@@ -7,27 +7,27 @@ tasks:
 - project: AY-NextGen
   entries:
   - shipped 6 microservices to production in 1+ year by architecting the full CDK-based
-    deployment model — pipelines, component integration, and environment isolation
-  - enabled every developer on the 7-person team to deploy independently, unlocking
-    parallel E2E testing in maximum component isolation
-  - designed the AWS organisation structure with CDK from day one, establishing the
+    deployment model covering pipelines, component integration, and environment isolation
+  - gave every developer on the 7-person team the ability to deploy independently,
+    which unlocked parallel E2E testing at maximum component isolation
+  - designed the AWS organisation structure with CDK from day one, providing the
     foundation all subsequent services built on
-  - bootstrapped AWS organisation across environments using CDK StackSets, providing
-    consistent account structure from day one
+  - bootstrapped AWS organisation across environments using CDK StackSets for
+    consistent account structure from the start
   - built an internal dependency-update tool that propagated version changes automatically
-    across own components (not just 3rd-party), eliminating manual cross-service update steps
+    across own components (not just 3rd-party), removing manual cross-service update steps
 - project: AY-OldGen
   entries:
   - eliminated email delivery and receiving failures by rebuilding the mail pipeline
     on AWS services, including lossless attachment handling
   - reduced production incidents by migrating legacy monolith features to AWS-native
-    services with improved observability and monitoring
-  - created detailed feature designs with cost assessments from requirements down,
+    services with better observability and monitoring
+  - wrote detailed feature designs with cost assessments from requirements down,
     giving product owners decision-quality data before committing to builds
 - project: team specific
   entries:
   - reduced IAM over-privilege surface across services by applying least-privilege
-    concept to every role; introduced MFA for all 7 engineers
+    to every role; introduced MFA for all 7 engineers
   - laid groundwork for multi-account SSO access, improving long-term security posture
     (work handed off at departure)
   - accelerated Scrum adoption by establishing Git workflow, release process, and
