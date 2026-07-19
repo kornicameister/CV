@@ -23,6 +23,8 @@ tasks:
   - accelerated CI adoption across backend and frontend teams by introducing a shared
     pipeline setup, removing the parallel divergent configurations they had before
   - improved throughput of critical services through targeted profiling and optimisation
+  - drove API governance proposals adopted by both backend and frontend teams,
+    covering design standards and long-term maintenance strategy
   - owned features end-to-end from product owner requirements through design to
     production, cutting handoff gaps along the way
 - project: monasca
