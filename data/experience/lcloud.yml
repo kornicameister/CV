@@ -11,8 +11,8 @@ tasks:
   - modelled problem constraints per customer requirements in Java-based ecosystem
 - project: Agentic AI on AWS
   entries:
-  - delivered production-grade agentic AI systems to multiple clients, covering
-    the full stack from cross-account IAM chaining to MCP server infrastructure
+  - delivered production-grade agentic AI systems on AWS Bedrock AgentCore to multiple
+    clients, covering the full stack from cross-account IAM chaining to MCP server infrastructure
   - eliminated manual auth wiring for every new agent integration by deploying
     OAuth2/Cognito + CloudFront + ALB + ECS Fargate MCP server infrastructure
   - replaced ad-hoc deployment steps with CDK-based IaC covering the full agentic
@@ -23,6 +23,8 @@ tasks:
     through architecture and cost analysis to POC or production handoff
   - cut evaluation cycle time for agentic RAG and multi-agent systems by building
     reusable LLM evaluation pipelines, giving clients decision-quality signals earlier
+  - built MCP server tooling including credential-aware proxies and AWS-integrated
+    servers, adopted across client and internal agentic deployments
 - project: internal
   entries:
   - eliminated credential sprawl by designing IAM architecture and building credential
