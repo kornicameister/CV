@@ -9,32 +9,30 @@ tasks:
   - improved client business operations planning by implementing Timefold solver
     for NP-hard scheduling constraints, replacing manual planning steps
   - modelled problem constraints per customer requirements in Java-based ecosystem
-- project: Agentic AI on AWS
+- project: (Gen)AI on AWS
   entries:
+  - drove 10+ R&D GenAI projects end-to-end, from client problem framing through
+    architecture and cost analysis to POC or production handoff — several projects
+    adopted and taken forward by clients after delivery
+  - built a GenAI-powered call centre on Amazon Connect + Bedrock, routing contacts
+    through a knowledge-base-connected agent and escalating to human agents only
+    when needed
   - delivered production-grade agentic AI systems on AWS Bedrock AgentCore to
-    multiple clients, responsible for the full stack from cross-account IAM
-    chaining to MCP server infrastructure
-  - eliminated manual auth wiring for every new agent integration by deploying
-    OAuth2/Cognito + CloudFront + ALB + ECS Fargate MCP server infrastructure
+    multiple clients — agents invoked by external systems and integrations, with
+    CDK-managed infrastructure end to end
+  - deployed AWS AgentCore Gateway as a managed MCP entry point with Cognito JWT
+    auth, exposing multiple MCP server runtimes through a single endpoint; added
+    OAuth 2.1 PKCE flow so human operators could connect via Claude Code without
+    separate credential management
+  - implemented cross-account IAM chaining with session tags per client, giving
+    agents scoped access to client AWS accounts with no standing permissions and
+    no cross-tenant leakage
   - replaced ad-hoc deployment steps with CDK-based IaC for the complete agentic
     workflow, from provisioning to teardown
   - orchestrated systems of 5+ specialised agents, each scoped to a task domain
     and equipped with selected MCP servers — coordination handled programmatically,
     not by a single monolithic agent
-- project: (Gen)AI/ML
-  entries:
-  - drove 10+ R&D GenAI projects end-to-end, from client problem framing through
-    architecture and cost analysis to POC or production handoff
-  - cut evaluation cycle time for agentic RAG and multi-agent systems by building
-    reusable LLM evaluation pipelines, so clients had decision-quality signals
-    before they needed them
-  - built multi-tenant MCP server tooling with credential-aware proxies; each
-    client got isolated AWS-integrated access with no credential leakage
 - project: internal
   entries:
-  - eliminated credential sprawl by designing IAM architecture and building credential
-    management tooling that standardised access patterns across the organisation
-  - reduced integration boilerplate by standardising webhook validation, EventBridge
-    routing, and Snowflake data pipeline patterns for reuse across projects
-  - caught infrastructure drift earlier by building CloudFormation resource
-    monitoring and security audit tooling
+  - built a browser extension to bridge incompatible ticketing systems, removing
+    manual cross-system work for the team
