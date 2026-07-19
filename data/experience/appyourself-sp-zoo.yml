@@ -12,6 +12,10 @@ tasks:
     parallel E2E testing in maximum component isolation
   - designed the AWS organisation structure with CDK from day one, establishing the
     foundation all subsequent services built on
+  - bootstrapped AWS organisation across environments using CDK StackSets, providing
+    consistent account structure from day one
+  - built an internal dependency-update tool that propagated version changes automatically
+    across own components (not just 3rd-party), eliminating manual cross-service update steps
 - project: AY-OldGen
   entries:
   - eliminated email delivery and receiving failures by rebuilding the mail pipeline
