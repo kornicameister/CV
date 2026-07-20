@@ -65,7 +65,7 @@ jobs:
 
       - name: Restore translation cache
         id: pl-cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: build/cv.pl.json
           key: cv-pl-${{ hashFiles('data/**', 'scripts/translate_cv.py') }}
@@ -106,7 +106,7 @@ jobs:
         run: make cv.pl.json
 
       - name: Save translation cache
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: build/cv.pl.json
           key: cv-pl-${{ hashFiles('data/**', 'scripts/translate_cv.py') }}
