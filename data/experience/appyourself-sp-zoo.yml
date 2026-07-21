@@ -19,7 +19,8 @@ tasks:
 - project: AY-OldGen
   entries:
   - eliminated email delivery and receiving failures by rebuilding the mail pipeline
-    on AWS services, including lossless attachment handling
+    on AWS services, including effective attachment handling especially targeting
+    volume issues
   - reduced production incidents by migrating legacy monolith features to AWS-native
     services with better observability and monitoring
   - wrote detailed feature designs with cost assessments from requirements down,
