@@ -33,3 +33,7 @@ tasks:
   entries:
   - built a browser extension to bridge two incompatible ticketing systems, eliminating
     manual data copying between them
+  - built a multi-agent pull request review workflow as Claude Code skills;
+    difficulty-tiered subagent dispatch (haiku/sonnet/opus), shared JSON
+    schema contracts between skills, and Jira integration for deferred findings
+    topped with HTML render for human interactions
