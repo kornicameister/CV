@@ -11,8 +11,12 @@ tasks:
   - modelled problem constraints per customer requirements in Java-based ecosystem
 - project: (Gen)AI on AWS
   entries:
-  - drove 10+ R&D GenAI projects from problem framing through architecture and cost
-    analysis to handoff; several were adopted and extended by clients after delivery
+  - founded the AI agent platform with first cross-account access proof-of-concept
+    (October 2025), contributing 45% of all commits across infrastructure, backend
+    services, agent runtime, shared libraries, and chat interface layers
+  - drove 10+ R&D GenAI projects for clients across multiple industries, from problem
+    framing through architecture and cost analysis to handoff; several were adopted
+    and extended by clients after delivery
   - built a GenAI-powered call centre on Amazon Connect + Bedrock, with a
     knowledge-base-connected agent filtering routine contacts before escalation to a human
   - delivered agentic AI systems on AWS Bedrock AgentCore to multiple clients; agents
@@ -20,12 +24,16 @@ tasks:
     infrastructure lifecycle
   - deployed AWS AgentCore Gateway as the MCP entry point with Cognito JWT auth,
     routing requests to multiple MCP server runtimes; added OAuth 2.1 PKCE so human
-    operators could connect via Claude Code without managing separate credentials
+    operators could connect via Claude Code without managing separate credentials,
+    then built chat interface integration (handler, IaC, user commands) to expose
+    agents to broader, less technical audience via the company messaging platform
   - implemented cross-account IAM chaining with session tags scoped per client, so
     each agent's access was limited to that client's accounts with nothing shared
     across tenants
   - replaced ad-hoc deployment steps with CDK IaC covering the full agentic workflow
     lifecycle
+  - designed image build fingerprinting system that fixed a class of stale cache bugs
+    when shared library dependencies changed
   - orchestrated 5+ specialised agents, each focused on a specific task domain with
     its own set of MCP servers; the coordination layer was programmatic, not a single
     general-purpose agent
