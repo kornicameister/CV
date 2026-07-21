@@ -10,6 +10,10 @@ tasks:
     deployment model covering pipelines, component integration, and environment isolation
   - gave every developer on the 7-person team the ability to deploy independently,
     which unlocked parallel E2E testing at maximum component isolation
+  - authored multiple specifications used powering the full-stack team to deliver coherent
+    implementation's vision
+  - introduced and succesfully implemented OpenAPI driven API development for public-to-service
+    and service-to-service paradigms
   - designed the AWS organisation structure with CDK from day one, providing the
     foundation all subsequent services built on
   - bootstrapped AWS organisation across environments using CDK StackSets for
