@@ -1,7 +1,4 @@
 category: General
 subskill:
-- team work
-- communicative
-- like challenges
-- interdisciplinary
-- automation
+  - technical leadership (led backend teams at AppYourself and Fujitsu)
+  - automation (CDK, GitHub Actions, Makefile — applied across three organisations)

@@ -35,23 +35,12 @@ $endfor$
   {}
   {\thepage}
 
-$if(education)$
-\cvsection{Education}
-\begin{cventries}
-    $for(education)$
-    \cventry
-    {$education.faculty$}
-    {$education.school$}
-    {$education.city$}
-    {$education.years$}
-    $if(education.thesis)$
-    {Thesis: \textit{$education.thesis$}}
-    $else$
-    {}
-    $endif$
-    \vspace{5pt}
-    $endfor$
-\end{cventries}
+$if(basic.summary)$
+\cvsection{Summary}
+\par
+\begin{cvparagraph}
+$basic.summary$
+\end{cvparagraph}
 $endif$
 
 $if(experience)$
@@ -100,6 +89,25 @@ $for(skill)$
     }
 $endfor$
 \end{cvskills}
+$endif$
+
+$if(education)$
+\cvsection{Education}
+\begin{cventries}
+    $for(education)$
+    \cventry
+    {$education.faculty$}
+    {$education.school$}
+    {$education.city$}
+    {$education.years$}
+    $if(education.thesis)$
+    {Thesis: \textit{$education.thesis$}}
+    $else$
+    {}
+    $endif$
+    \vspace{5pt}
+    $endfor$
+\end{cventries}
 $endif$
 
 $if(presentation)$

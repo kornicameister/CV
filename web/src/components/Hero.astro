@@ -14,9 +14,11 @@ interface Props {
   position: string;
   photoUrl: string;
   social: Social[];
+  quote?: string;
+  summary?: string;
 }
 
-const { firstName, lastName, position, photoUrl, social } = Astro.props;
+const { firstName, lastName, position, photoUrl, social, quote, summary } = Astro.props;
 
 // Filter for GitHub and LinkedIn only
 const displaySocial = social.filter(s =>
@@ -121,6 +123,9 @@ for (let i = 0; i < shapeCount; i++) {
       <span class="name-alias">kornicameister</span>
     </h1>
     <p class="hero-position">{position}</p>
+    {(quote || summary) && <hr class="hero-divider" />}
+    {quote && <p class="hero-quote">"{quote}"</p>}
+    {summary && <p class="hero-summary">{summary}</p>}
     <div class="hero-social">
       {displaySocial.map(social => (
         <a
@@ -263,8 +268,31 @@ for (let i = 0; i < shapeCount; i++) {
   .hero-position {
     font-size: 1.5rem;
     color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-weight: 300;
+  }
+
+  .hero-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    width: 48px;
+    margin: 0 auto 1rem;
+  }
+
+  .hero-quote {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-summary {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.80);
+    max-width: 560px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
   }
 
   .hero-social {
@@ -301,6 +329,10 @@ for (let i = 0; i < shapeCount; i++) {
 
     .hero-position {
       font-size: 1.2rem;
+    }
+
+    .hero-summary {
+      font-size: 0.875rem;
     }
   }
 </style>

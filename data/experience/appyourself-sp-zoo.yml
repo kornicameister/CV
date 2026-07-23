@@ -6,24 +6,34 @@ city: Łódź, Poland
 tasks:
 - project: AY-NextGen
   entries:
-  - event storming & DDD
-  - design documents
-  - technical documentation
-  - setting up AWS organization with AWS CDK
-  - microservice architecture
-  - building serverless components/services
-  - designed and implemented deployment model on top of NodeJS and AWS CDK
-  - supporting team with auxiliary DevOps tools
+  - shipped 6 microservices to production in 1+ year by architecting the full CDK-based
+    deployment model covering pipelines, component integration, and environment isolation
+  - gave every developer on the 7-person team the ability to deploy independently,
+    which unlocked parallel E2E testing at maximum component isolation
+  - authored multiple specifications used powering the full-stack team to deliver coherent
+    implementation's vision
+  - introduced and succesfully implemented OpenAPI driven API development for public-to-service
+    and service-to-service paradigms
+  - designed the AWS organisation structure with CDK from day one, providing the
+    foundation all subsequent services built on
+  - bootstrapped AWS organisation across environments using CDK StackSets for
+    consistent account structure from the start
+  - built an internal dependency-update tool that propagated version changes automatically
+    across own components (not just 3rd-party), removing manual cross-service update steps
 - project: AY-OldGen
   entries:
-  - migrating old monolithic stack into AWS-based environment
-  - improving/implementing monitoring for old/new features
-  - creating new features, using AWS services, to supplement existing services
-  - creating designs containing detailed feature analysis from requirements down to
-    cost assessments
+  - eliminated email delivery and receiving failures by rebuilding the mail pipeline
+    on AWS services, including effective attachment handling especially targeting
+    volume issues
+  - reduced production incidents by migrating legacy monolith features to AWS-native
+    services with better observability and monitoring
+  - wrote detailed feature designs with cost assessments from requirements down,
+    giving product owners decision-quality data before committing to builds
 - project: team specific
   entries:
-  - improving security posture by utilizing least privileged concept
-  - helping with Scrum adoption (Git and release workflow, documentation, planning)
-  - building awareness concerning an importance of documentation both preliminary
-    (designs) and final one
+  - reduced IAM over-privilege surface across services by applying least-privilege
+    to every role; introduced MFA for all 7 engineers
+  - laid groundwork for multi-account SSO access, improving long-term security posture
+    (work handed off at departure)
+  - accelerated Scrum adoption by establishing Git workflow, release process, and
+    documentation standards across the team
