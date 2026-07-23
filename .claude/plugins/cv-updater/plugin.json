@@ -1,6 +1,6 @@
 {
   "name": "cv-updater",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Analyze git commits for CV updates with privacy-first anonymization",
   "author": {
     "name": "Tomasz Trębski",
