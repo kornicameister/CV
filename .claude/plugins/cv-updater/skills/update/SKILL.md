@@ -74,6 +74,10 @@ Agent({
   description: "Analyze commits for CV updates",
   prompt: `You are updating CV from recent git commit history.
 
+**User Input Required:**
+- Ask user for branch name to analyze (default: main)
+- For repos without local main/master: use origin/main or current branch
+
 **Steps:**
 
 1. Load config from \`~/dev/CV/update-cv-db/config/{project-name}.json\`:
@@ -82,13 +86,14 @@ Agent({
    - last_run: start date for analysis
    - anonymization_map: client name → replacement
    - project_name: auto-detected from repo path
+   - branch: branch to analyze (from user or config default)
 
 2. Get commits since last run:
    \`\`\`bash
    uv run ../../lib/cv-updater-git.py get-commits \\
      --author-email "you@email.com" \\
      --since "2024-07-01" \\
-     --branch main \\
+     --branch <user-specified-branch> \\
      --cwd /path/to/work/repo \\
      --project-name cguse-skills
    \`\`\`
@@ -182,6 +187,10 @@ Config updated: ~/dev/CV/update-cv-db/config/cguse-skills.json (last_run = 2024-
 
 ### "Wrong project name detected"
 → Override with `--project-name` flag in cv-updater-git.py commands
+
+### "Branch main does not exist"
+→ Use `--branch origin/main` for repos without local main branch (worktrees, feature branches)
+→ Or specify current branch: `--branch $(git rev-parse --abbrev-ref HEAD)`
 
 ## Files
 
