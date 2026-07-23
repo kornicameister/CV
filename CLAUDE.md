@@ -2,6 +2,29 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Fact Verification — CV Content
+
+**NEVER state facts about CV content from memory. ALWAYS verify first.**
+
+When writing about CV content (LinkedIn posts, summaries, examples):
+
+1. **Read the actual CV data files first** — `data/experience/*.yml`, `data/skills/*.yml`, etc.
+2. **Use exact quotes or paraphrases** from those files — never invent examples
+3. **If creating examples** — pull from real bullets in the CV, not from imagination
+
+Making up facts about CV content is **absolutely forbidden**. If you catch yourself about to state a CV fact without having read the files — STOP. Read the files first.
+
+Wrong:
+- "Reduced MTTR from 45 to 15 minutes" (invented metric)
+- "Freed 2 engineers" (invented outcome)
+
+Right:
+- Read `data/**/*.yml` first, this is source of truth !!!
+- Quote: "founded the AI agent platform with first cross-account access proof-of-concept, contributing 45% of all commits"
+- Quote: "gave every developer on the 7-person team the ability to deploy independently"
+
+This applies to ALL CV-related content: blog posts, LinkedIn messages, summaries, examples.
+
 ## Overview
 
 This is a CV/Resume generation system that:
