@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Git post-merge hook for CV inference notification
+# Install: cp post-merge.hook /path/to/monitored/repo/.git/hooks/post-merge && chmod +x
+
+set -euo pipefail
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+# Get author email from git config (more reliable than name)
+AUTHOR_EMAIL=$(git config user.email)
+
+# Only notify on main/master branch
+if [[ "$BRANCH" != "main" && "$BRANCH" != "master" ]]; then
+    exit 0
+fi
+
+# Count new commits by target author since last check
+LAST_CHECK_FILE=".git/cv-inference-last-check"
+if [[ -f "$LAST_CHECK_FILE" ]]; then
+    LAST_CHECK=$(cat "$LAST_CHECK_FILE")
+else
+    # First run - check last 7 days
+    LAST_CHECK=$(date -v-7d +%Y-%m-%d 2>/dev/null || date -d '7 days ago' +%Y-%m-%d)
+fi
+
+NEW_COMMITS=$(git log --author="$AUTHOR_EMAIL" --since="$LAST_CHECK" --oneline | wc -l | tr -d ' ')
+
+if [[ "$NEW_COMMITS" -gt 0 ]]; then
+    echo ""
+    echo "✨ CV Inference Notification"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "Found $NEW_COMMITS new commits by $AUTHOR_EMAIL on $BRANCH"
+    echo ""
+    echo "Consider running in your CV repo:"
+    echo "  /cv-inference:update"
+    echo ""
+    echo "Or analyze this repo directly:"
+    echo "  cd ~/dev/CV && /cv-inference:update --repo $(pwd)"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+fi
+
+# Update last check timestamp
+date +%Y-%m-%d > "$LAST_CHECK_FILE"
