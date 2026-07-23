@@ -17,6 +17,7 @@
     {
       "path": "/Users/tomasztrebski/dev/some-project",
       "branch": "main",
+      "since_commit": "abc123def",
       "last_run": "2024-07-23"
     }
   ],

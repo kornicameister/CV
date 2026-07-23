@@ -98,31 +98,42 @@ def get_commits(
     author_email: str,
     runner: GitCommandRunner,
     since_date: str | None = None,
+    since_commit: str | None = None,
     branch: str = "main",
     include_merges: bool = False,
 ) -> list[dict[str, Any]]:
     """
-    Get commits by author email since date on specified branch.
+    Get commits by author email since date or commit on specified branch.
 
     Args:
         author_email: Git author email to filter by (more reliable than name)
         runner: Git command runner
         since_date: ISO date string (YYYY-MM-DD) or None for all commits
+        since_commit: Commit hash to start from (exclusive) or None
         branch: Branch name (default: main)
         include_merges: Include merge commits (default: False)
 
     Returns:
         List of commit dicts with: hash, author, email, date, message, is_merge
+
+    Note:
+        If both since_date and since_commit are provided, since_commit takes precedence.
     """
     cmd = [
         "log",
-        branch,
         f"--author={author_email}",
         "--format=%H|%an|%ae|%ad|%s",
         "--date=iso-strict",
     ]
-    if since_date:
-        cmd.append(f"--since={since_date}")
+
+    # Commit range takes precedence over date
+    if since_commit:
+        cmd.insert(1, f"{since_commit}..{branch}")
+    else:
+        cmd.insert(1, branch)
+        if since_date:
+            cmd.append(f"--since={since_date}")
+
     if not include_merges:
         cmd.append("--no-merges")
 
@@ -280,6 +291,7 @@ def get_commit_messages(
     author_email: str,
     runner: GitCommandRunner,
     since_date: str | None = None,
+    since_commit: str | None = None,
     branch: str = "main",
 ) -> list[str]:
     """
@@ -289,7 +301,11 @@ def get_commit_messages(
         List of commit message strings
     """
     commits = get_commits(
-        author_email=author_email, runner=runner, since_date=since_date, branch=branch
+        author_email=author_email,
+        runner=runner,
+        since_date=since_date,
+        since_commit=since_commit,
+        branch=branch,
     )
     return [c["message"] for c in commits]
 
@@ -328,6 +344,9 @@ def main() -> None:
         "--author-email", required=True, help="Author email to filter by"
     )
     get_parser.add_argument("--since", help="Start date (YYYY-MM-DD)")
+    get_parser.add_argument(
+        "--since-commit", help="Start commit hash (exclusive, takes precedence over --since)"
+    )
     get_parser.add_argument("--branch", default="main", help="Branch name")
     get_parser.add_argument("--cwd", default=".", help="Repository path")
 
@@ -354,6 +373,9 @@ def main() -> None:
     )
     messages_parser.add_argument("--author-email", required=True, help="Author email")
     messages_parser.add_argument("--since", help="Start date (YYYY-MM-DD)")
+    messages_parser.add_argument(
+        "--since-commit", help="Start commit hash (exclusive, takes precedence over --since)"
+    )
     messages_parser.add_argument("--branch", default="main", help="Branch name")
     messages_parser.add_argument("--cwd", default=".", help="Repository path")
 
@@ -387,6 +409,7 @@ def main() -> None:
             author_email=args.author_email,
             runner=runner,
             since_date=args.since,
+            since_commit=getattr(args, "since_commit", None),
             branch=args.branch,
         )
         print(json.dumps({"commits": commits}, indent=2))
@@ -406,6 +429,7 @@ def main() -> None:
             author_email=args.author_email,
             runner=runner,
             since_date=args.since,
+            since_commit=getattr(args, "since_commit", None),
             branch=args.branch,
         )
         print(json.dumps({"messages": messages}, indent=2))
