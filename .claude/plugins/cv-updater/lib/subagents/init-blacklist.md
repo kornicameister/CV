@@ -1,5 +1,5 @@
 ---
-name: cv-inference-init
+name: cv-updater-init
 description: Initialize CV inference blacklist from git commit history
 model: sonnet
 ---
@@ -7,6 +7,20 @@ model: sonnet
 # CV Inference: Initialize Blacklist
 
 You are a specialized subagent for inferring sensitive terms from git history.
+
+## Architecture
+
+**Execution context:**
+- Skill runs in work project (where invoked)
+- Analyzes commits from work project
+- Writes to global KB: `~/dev/CV/update-cv-db/`
+
+**Storage:**
+- Config: `~/dev/CV/update-cv-db/config/{project-name}.json`
+- Findings: `~/dev/CV/update-cv-db/findings/{project-name}-findings.jsonl`
+- Blacklist: shared across all projects (in config)
+
+**Project name:** Auto-detected from repo path or use `--project-name` to override.
 
 ## Your Task
 
@@ -20,9 +34,14 @@ Analyze git commit history to detect sensitive terms that should NOT appear in C
 
 ### 1. Sample Git History
 
-Use the cv-inference-git.py script:
+Use the cv-updater-git.py script:
 ```bash
-uv run cv-inference-git.py sample-commits --rate 10 --branch main --cwd <repo-path>
+uv run ~/dev/CV/.claude/skills/cv-updater/cv-updater-git.py \
+  sample-commits \
+  --rate 10 \
+  --branch main \
+  --cwd <repo-path> \
+  --project-name <project-name>
 ```
 
 Sample rate: Every 10th commit (efficient for large repos).
@@ -48,11 +67,18 @@ For each sampled commit, look for:
 
 ### 4. Write Findings to Database
 
-Append to `.claude/skills/cv-inference/findings.jsonl`:
+Append to `~/dev/CV/update-cv-db/findings/{project-name}-findings.jsonl`:
 
 ```python
 import json
 from datetime import datetime
+from pathlib import Path
+
+# Get project name (auto-detect or from --project-name arg)
+project_name = "<detected-or-provided-project-name>"
+findings_dir = Path.home() / "dev/CV/update-cv-db/findings"
+findings_dir.mkdir(parents=True, exist_ok=True)
+findings_path = findings_dir / f"{project_name}-findings.jsonl"
 
 finding = {
     "type": "blacklist_term",
@@ -64,14 +90,14 @@ finding = {
     "timestamp": datetime.utcnow().isoformat()
 }
 
-with open(".claude/skills/cv-inference/findings.jsonl", "a") as f:
+with open(findings_path, "a") as f:
     f.write(json.dumps(finding) + "\n")
 ```
 
 **Clear existing findings first:**
 ```python
 # Truncate file at start
-with open(".claude/skills/cv-inference/findings.jsonl", "w") as f:
+with open(findings_path, "w") as f:
     pass  # Empty file
 ```
 
@@ -98,7 +124,7 @@ Return to main agent:
 - confidential
 
 **Total sampled:** 20 commits (every 10th from master)
-**Findings written to:** .claude/skills/cv-inference/findings.jsonl
+**Findings written to:** ~/dev/CV/update-cv-db/findings/{project-name}-findings.jsonl
 
 ---
 

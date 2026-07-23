@@ -1,5 +1,5 @@
 ---
-name: cv-inference-update
+name: cv-updater-update
 description: Analyze git commits and infer CV-worthy achievements with anonymization
 model: sonnet
 ---
@@ -7,6 +7,20 @@ model: sonnet
 # CV Inference: Update CV from Commits
 
 You are a specialized subagent for analyzing commits and inferring CV achievements.
+
+## Architecture
+
+**Execution context:**
+- Skill runs in work project (where invoked)
+- Analyzes commits from work project
+- Writes to global KB: `~/dev/CV/update-cv-db/`
+
+**Storage:**
+- Config: `~/dev/CV/update-cv-db/config/{project-name}.json`
+- Findings: `~/dev/CV/update-cv-db/findings/{project-name}-findings.jsonl`
+- Blacklist: shared across all projects (in config)
+
+**Project name:** Auto-detected from repo path or use `--project-name` to override.
 
 ## Your Task
 
@@ -16,11 +30,15 @@ Analyze git commits since last run, filter blacklist, infer CV-worthy achievemen
 
 ### 1. Load Config
 
-Read `.claude/skills/cv-inference/config.json`:
+Read `~/dev/CV/update-cv-db/config/{project-name}.json`:
 ```python
 import json
+from pathlib import Path
 
-with open(".claude/skills/cv-inference/config.json") as f:
+project_name = "<detected-or-provided-project-name>"
+config_path = Path.home() / "dev/CV/update-cv-db/config" / f"{project_name}.json"
+
+with open(config_path) as f:
     config = json.load(f)
 
 blacklist = config["blacklist"]
@@ -32,11 +50,13 @@ last_run = config.get("last_run", "2024-01-01")
 ### 2. Get Commits Since Last Run
 
 ```bash
-uv run cv-inference-git.py get-commits \
+uv run ~/dev/CV/.claude/skills/cv-updater/cv-updater-git.py \
+  get-commits \
   --author-email "<author-email>" \
   --since "<last-run-date>" \
   --branch main \
-  --cwd <repo-path>
+  --cwd <repo-path> \
+  --project-name <project-name>
 ```
 
 ### 3. Filter Blacklisted Commits
@@ -119,8 +139,15 @@ Example:
 
 Clear old findings, then append:
 ```python
+from pathlib import Path
+
+project_name = "<detected-or-provided-project-name>"
+findings_dir = Path.home() / "dev/CV/update-cv-db/findings"
+findings_dir.mkdir(parents=True, exist_ok=True)
+findings_path = findings_dir / f"{project_name}-findings.jsonl"
+
 # Clear
-with open(".claude/skills/cv-inference/findings.jsonl", "w") as f:
+with open(findings_path, "w") as f:
     pass
 
 # Append achievements
@@ -136,7 +163,7 @@ for achievement in achievements:
         "anonymization_map": achievement["anonymization_map"],
         "timestamp": datetime.utcnow().isoformat()
     }
-    with open(".claude/skills/cv-inference/findings.jsonl", "a") as f:
+    with open(findings_path, "a") as f:
         f.write(json.dumps(finding) + "\n")
 
 # Append skipped commits
@@ -149,7 +176,7 @@ for skipped in skipped_commits:
         "message": skipped["message"],
         "timestamp": datetime.utcnow().isoformat()
     }
-    with open(".claude/skills/cv-inference/findings.jsonl", "a") as f:
+    with open(findings_path, "a") as f:
         f.write(json.dumps(finding) + "\n")
 ```
 
@@ -157,7 +184,8 @@ for skipped in skipped_commits:
 
 ```python
 config["last_run"] = datetime.utcnow().strftime("%Y-%m-%d")
-with open(".claude/skills/cv-inference/config.json", "w") as f:
+config_path = Path.home() / "dev/CV/update-cv-db/config" / f"{project_name}.json"
+with open(config_path, "w") as f:
     json.dump(config, f, indent=2)
 ```
 
@@ -178,7 +206,7 @@ Skipped 3 commits due to blacklist:
 - abc123: "Update internal-only config" (matched: internal-only)
 - def456: "Fix client-secret integration" (matched: client-secret-name)
 
-Findings written to: .claude/skills/cv-inference/findings.jsonl
+Findings written to: ~/dev/CV/update-cv-db/findings/{project-name}-findings.jsonl
 Config updated: last_run = 2024-07-23
 ```
 

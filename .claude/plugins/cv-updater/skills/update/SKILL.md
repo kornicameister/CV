@@ -1,11 +1,45 @@
 ---
-name: cv-inference-update
+name: cv-updater-update
 description: Analyze recent git commits for CV updates. Filters by blacklist, infers achievements, anonymizes client/project names, outputs YAML ready for data/experience/*.yml. Use after completing work to update CV from commit history.
 ---
 
-# CV Inference: Update CV from Commits
+# CV Updater: Update CV from Commits
 
 Analyzes recent git commits, infers CV-worthy achievements, outputs anonymized YAML.
+
+## Architecture
+
+**Execution Context:**
+- Skill runs in work project (where you invoke it)
+- Analyzes commits from work project repo
+- Writes to global knowledge base in CV repo
+
+**Global Knowledge Base:**
+- Location: `~/dev/CV/update-cv-db/`
+- Config: `config/{project-name}.json` (per-project blacklist)
+- Findings: `findings/{project-name}-findings.jsonl` (per-project inference results)
+- Hooks: `hooks/{project-name}-post-merge.backup` (hook backups)
+
+**Multi-Project Support:**
+- One global blacklist shared across all projects
+- Per-project findings (separate files)
+- Project name auto-detected from repo path
+- Override with `--project-name` if needed
+
+**Diagram:**
+```
+Work Project (cguse-skills)          CV Repo (~/dev/CV)
+├── .claude/                         ├── update-cv-db/
+│   └── skills/ (or plugins/)        │   ├── config/
+│       └── cv-updater (symlink)     │   │   ├── cguse-skills.json
+│                                    │   │   └── other-project.json
+├── .git/hooks/                      │   ├── findings/
+│   └── post-merge                   │   │   ├── cguse-skills-findings.jsonl
+│                                    │   │   └── other-project-findings.jsonl
+└── src/ (your code)                 │   └── hooks/
+                                     │       └── cguse-skills-post-merge.backup
+                                     └── data/experience/*.yml (your CV)
+```
 
 ## When to Use
 
@@ -16,19 +50,20 @@ Analyzes recent git commits, infers CV-worthy achievements, outputs anonymized Y
 
 ## What It Does
 
-1. Loads blacklist from `.claude/skills/cv-inference/config.json`
+1. Loads blacklist from `~/dev/CV/update-cv-db/config/{project-name}.json`
 2. Gets commits since last run (by your git email)
 3. Filters blacklisted commits (privacy > CV completeness)
 4. Analyzes remaining commits for high/medium value achievements
 5. Groups related commits into single achievements
 6. Anonymizes client/project names consistently
 7. Outputs YAML matching `data/experience/*.yml` structure
-8. Updates `last_run` date in config
+8. Writes findings to `~/dev/CV/update-cv-db/findings/{project-name}-findings.jsonl`
+9. Updates `last_run` date in config
 
 ## Prerequisites
 
-- Config exists: `.claude/skills/cv-inference/config.json`
-- If NOT: run `/cv-inference-init` first
+- Config exists: `~/dev/CV/update-cv-db/config/{project-name}.json`
+- If NOT: run `/cv-updater-init` first
 
 ## Workflow
 
@@ -41,25 +76,27 @@ Agent({
 
 **Steps:**
 
-1. Load config from \`.claude/skills/cv-inference/config.json\`:
+1. Load config from \`~/dev/CV/update-cv-db/config/{project-name}.json\`:
    - blacklist: terms to filter
    - author_email: whose commits to analyze
    - last_run: start date for analysis
    - anonymization_map: client name → replacement
+   - project_name: auto-detected from repo path
 
 2. Get commits since last run:
    \`\`\`bash
-   uv run ../cv-inference/cv-inference-git.py get-commits \\
+   uv run ../../lib/cv-updater-git.py get-commits \\
      --author-email "you@email.com" \\
      --since "2024-07-01" \\
      --branch main \\
-     --cwd /path/to/repo
+     --cwd /path/to/work/repo \\
+     --project-name cguse-skills
    \`\`\`
 
 3. Filter blacklisted commits:
    - Check if message OR file paths contain blacklisted terms
    - Case-insensitive, partial match
-   - Log skipped commits to findings.jsonl
+   - Log skipped commits to ~/dev/CV/update-cv-db/findings/{project-name}-findings.jsonl
 
 4. Analyze remaining for CV value:
    - **High-value:** new features, perf improvements, architecture
@@ -83,10 +120,10 @@ Agent({
        - Implemented data quality checks with Great Expectations
    \`\`\`
 
-8. Update config: \`last_run = today\`
+8. Update config in \`~/dev/CV/update-cv-db/config/{project-name}.json\`: \`last_run = today\`
 
 **Read the full subagent instructions from:**
-\`../cv-inference/subagents/update-cv.md\`
+\`../../lib/subagents/update-cv.md\`
 
 **Important:**
 - NEVER skip blacklist filtering (privacy > CV value)
@@ -104,13 +141,15 @@ Agent({
 - Only high/medium value commits → achievements
 - Client/project names anonymized consistently
 - YAML matches `data/experience/*.yml` structure
-- Config updated with `last_run` date
+- Findings written to `~/dev/CV/update-cv-db/findings/{project-name}-findings.jsonl`
+- Config updated with `last_run` date in `~/dev/CV/update-cv-db/config/{project-name}.json`
 - Skipped commits logged for transparency
 
 ## Output Example
 
 ```yaml
 # CV Updates from 12 commits since 2024-07-01
+# Project: cguse-skills
 
 - project: Enterprise Client Data Platform
   entries:
@@ -123,27 +162,30 @@ Skipped 2 commits due to blacklist:
 - abc123: "Update internal-only config" (matched: internal-only)
 - def456: "Fix client-secret integration" (matched: client-secret-name)
 
-Findings written to: .claude/skills/cv-inference/findings.jsonl
-Config updated: last_run = 2024-07-23
+Findings written to: ~/dev/CV/update-cv-db/findings/cguse-skills-findings.jsonl
+Config updated: ~/dev/CV/update-cv-db/config/cguse-skills.json (last_run = 2024-07-23)
 ```
 
 ## Common Issues
 
 ### "Config not found"
-→ Run `/cv-inference-init` first
+→ Run `/cv-updater-init` first to create `~/dev/CV/update-cv-db/config/{project-name}.json`
 
 ### "No new commits"
 → Check `last_run` date in config, verify repo path
 
 ### "Too many blacklist matches"
-→ Review blacklist in config, remove false positives
+→ Review blacklist in `~/dev/CV/update-cv-db/config/{project-name}.json`, remove false positives
 
 ### "Achievements too generic"
 → Check commit messages have enough context
 
+### "Wrong project name detected"
+→ Override with `--project-name` flag in cv-updater-git.py commands
+
 ## Files
 
-- **Subagent:** `../cv-inference/subagents/update-cv.md`
-- **Python script:** `../cv-inference/cv-inference-git.py`
-- **Config:** `.claude/skills/cv-inference/config.json` (read)
-- **Findings:** `.claude/skills/cv-inference/findings.jsonl` (written)
+- **Subagent:** `../../lib/subagents/update-cv.md`
+- **Python script:** `../../lib/cv-updater-git.py`
+- **Config (read):** `~/dev/CV/update-cv-db/config/{project-name}.json`
+- **Findings (written):** `~/dev/CV/update-cv-db/findings/{project-name}-findings.jsonl`

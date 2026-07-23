@@ -1,0 +1,14 @@
+# CV inference local database - contains potentially sensitive commit analysis
+findings.jsonl
+config.json
+
+# Test artifacts (TDD process docs, not runtime)
+test-artifacts/
+baseline-findings.md
+test-scenarios.md
+DEPLOYMENT-SUMMARY.md
+
+# Python
+*.pyc
+__pycache__/
+.pytest_cache/

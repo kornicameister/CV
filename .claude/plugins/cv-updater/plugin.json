@@ -1,0 +1,22 @@
+{
+  "name": "cv-updater",
+  "version": "1.0.0",
+  "description": "Analyze git commits for CV updates with privacy-first anonymization. Automatically detects sensitive terms (client/project names) and outputs anonymized YAML ready for data/experience/*.yml. Multi-project support with global knowledge base.",
+  "author": "Tomasz Trębski",
+  "skills": [
+    "skills/init",
+    "skills/update"
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "uv": true
+  },
+  "global_state": {
+    "location": "~/dev/CV/update-cv-db/",
+    "structure": {
+      "config": "per-project blacklist configuration",
+      "findings": "per-project analysis results",
+      "hooks": "git hook backups"
+    }
+  }
+}

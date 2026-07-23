@@ -14,7 +14,7 @@ if [[ "$BRANCH" != "main" && "$BRANCH" != "master" ]]; then
 fi
 
 # Count new commits by target author since last check
-LAST_CHECK_FILE=".git/cv-inference-last-check"
+LAST_CHECK_FILE=".git/cv-updater-last-check"
 if [[ -f "$LAST_CHECK_FILE" ]]; then
     LAST_CHECK=$(cat "$LAST_CHECK_FILE")
 else
@@ -31,10 +31,10 @@ if [[ "$NEW_COMMITS" -gt 0 ]]; then
     echo "Found $NEW_COMMITS new commits by $AUTHOR_EMAIL on $BRANCH"
     echo ""
     echo "Consider running in your CV repo:"
-    echo "  /cv-inference:update"
+    echo "  /cv-updater:update"
     echo ""
     echo "Or analyze this repo directly:"
-    echo "  cd ~/dev/CV && /cv-inference:update --repo $(pwd)"
+    echo "  cd ~/dev/CV && /cv-updater:update --repo $(pwd)"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
 fi

@@ -1,6 +1,6 @@
 # Findings Database Schema
 
-**File:** `.claude/skills/cv-inference/findings.jsonl`
+**File:** `.claude/skills/cv-updater/findings.jsonl`
 
 **Format:** JSON Lines (one JSON object per line)
 
@@ -92,7 +92,7 @@ finding = {
     "timestamp": datetime.utcnow().isoformat()
 }
 
-with open(".claude/skills/cv-inference/findings.jsonl", "a") as f:
+with open(".claude/skills/cv-updater/findings.jsonl", "a") as f:
     f.write(json.dumps(finding) + "\n")
 ```
 
@@ -102,7 +102,7 @@ with open(".claude/skills/cv-inference/findings.jsonl", "a") as f:
 import json
 
 findings = []
-with open(".claude/skills/cv-inference/findings.jsonl") as f:
+with open(".claude/skills/cv-updater/findings.jsonl") as f:
     for line in f:
         findings.append(json.loads(line))
 

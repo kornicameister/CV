@@ -10,9 +10,38 @@ import json
 import logging
 import os
 import subprocess
+from pathlib import Path
 from typing import Any
 
+# Global knowledge base - all projects write here
+DEFAULT_CV_DB_PATH = Path.home() / "dev" / "CV" / "update-cv-db"
+CV_DB_PATH = Path(os.getenv("CV_DB_PATH", DEFAULT_CV_DB_PATH))
+
 logger = logging.getLogger(__name__)
+
+
+def get_project_name(repo_path: str) -> str:
+    """Extract project name from repo path."""
+    return Path(repo_path).resolve().name
+
+
+def ensure_cv_db_exists() -> None:
+    """Ensure global CV knowledge base directories exist."""
+    CV_DB_PATH.mkdir(parents=True, exist_ok=True)
+    (CV_DB_PATH / "config").mkdir(exist_ok=True)
+    (CV_DB_PATH / "findings").mkdir(exist_ok=True)
+
+
+def get_config_path(project_name: str) -> Path:
+    """Get path to project config file in global knowledge base."""
+    ensure_cv_db_exists()
+    return CV_DB_PATH / "config" / f"{project_name}.json"
+
+
+def get_findings_path(project_name: str) -> Path:
+    """Get path to project findings file in global knowledge base."""
+    ensure_cv_db_exists()
+    return CV_DB_PATH / "findings" / f"{project_name}-findings.jsonl"
 
 
 class GitCommandRunner:
@@ -270,6 +299,10 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
     parser = argparse.ArgumentParser(description="Git operations for CV inference")
+    parser.add_argument(
+        "--project-name",
+        help="Project name for global knowledge base (default: inferred from repo path)",
+    )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     # get-user-email command
@@ -327,6 +360,16 @@ def main() -> None:
     args = parser.parse_args()
     runner = GitCommandRunner(cwd=getattr(args, "cwd", "."))
     fs_ops = FileSystemOperations()
+
+    # Infer project name if not provided
+    cwd = getattr(args, "cwd", ".")
+    project_name = args.project_name or get_project_name(cwd)
+
+    # Log global knowledge base paths (for visibility)
+    logger.info("Global CV DB: %s", CV_DB_PATH)
+    logger.info("Project name: %s", project_name)
+    logger.info("Config path: %s", get_config_path(project_name))
+    logger.info("Findings path: %s", get_findings_path(project_name))
 
     if args.command == "get-user-email":
         email = get_git_user_email(runner=runner)
