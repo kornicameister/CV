@@ -1,0 +1,19 @@
+start: 2.2013
+end: 12.2014
+position: Java, JavaScript Developer
+company: Transition Technologies Solutions S.A.
+city: Łódź, Poland
+tasks:
+  - project: Windchill for Airbus Helicopters
+    entries:
+      - met client requirements by customizing PTC Windchill system with Java-based extensions
+      - enabled client-specific data ingestion by building Tibco JMS queue integration layer that transformed and uploaded external data into PTC format
+  - project: Web application for field technicians
+    entries:
+      - extended Angular 1.x application with new features for field operations
+      - connected field app to Windchill by implementing Java integration layer
+  - project: Extra activities
+    entries:
+      - upskilled team through internal and external JavaScript training sessions
+      - shaped hiring by participating in technical recruitment interviews
+      - mentored interns as internship leader

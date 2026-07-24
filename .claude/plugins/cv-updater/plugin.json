@@ -1,0 +1,13 @@
+{
+  "name": "cv-updater",
+  "version": "1.1.0",
+  "description": "Analyze git commits for CV updates with privacy-first anonymization",
+  "author": {
+    "name": "Tomasz Trębski",
+    "email": "kornicameister@gmail.com"
+  },
+  "skills": ["skills/init", "skills/update"],
+  "homepage": "https://github.com/kornicameister/CV",
+  "license": "MIT",
+  "keywords": ["cv", "git", "commits", "privacy", "anonymization"]
+}
