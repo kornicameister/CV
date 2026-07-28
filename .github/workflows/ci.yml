@@ -97,7 +97,7 @@ jobs:
           aws-region: ${{ secrets.AWS_BEDROCK_REGION }}
 
       - name: Download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: cv_${{ github.sha }}_build
           path: build/
